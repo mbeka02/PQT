@@ -35,6 +35,7 @@ export class GameClass {
         this.totalpoints = Math.round(this.gaussianRand(mean, stdDev));
     }
 
+    // I trust ChatGPT did a good job
     private gaussianRand(mean: number, stdDev: number): number {
         let x1, x2, rad, y1;
         do {

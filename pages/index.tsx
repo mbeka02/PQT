@@ -17,6 +17,7 @@ export default function Home() {
 
   function reset() {
     setGames([]);
+    updateNumber(num);
   }
   
   function play() {
