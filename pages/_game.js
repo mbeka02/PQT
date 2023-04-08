@@ -1,8 +1,8 @@
 import style from '../styles/game.module.css'
 
 export default function Game({ homeScore, awayScore, id, home, away }) {
-    let homeName="home";
-    let awayName="away";
+    let homeName=home.city;
+    let awayName=away.city;
     return <>
     <div className={style.wrapper}>
         <h1>{id}</h1>
