@@ -1,6 +1,9 @@
 import style from '../styles/game.module.css'
 
-export default function Game({ homeScore, awayScore, id, home, away }) {
+export default function Game({ homeScore, awayScore, id, home, away } : { homeScore: number, awayScore: number, id: number, home: any, away: any }): JSX.Element {
+    if(home === undefined || away === undefined) {
+        return <></>;
+    }
     let homeName=home.city;
     let awayName=away.city;
     return <>
