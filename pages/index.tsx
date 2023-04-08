@@ -43,12 +43,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <button onClick={play}>Play a round</button>
-        <button onClick={function() {doTimes(5, play)}}>x5</button>
-        <button onClick={function() {doTimes(10, play)}}>x10</button>
-        <label>{num * multiplier}</label>
-        <input type="range" id="number" onChange={function (e: any){updateNumber(e.target.value)}} value={num}/>
-        <button onClick={reset}>Reset</button>
+        <div className={styles.commandCenter}>
+          <div>
+            <button onClick={play}>Play a round</button>
+            <button onClick={function() {doTimes(5, play)}}>x5</button>
+            <button onClick={function() {doTimes(10, play)}}>x10</button>
+          </div>
+          <label>{num * multiplier}</label>
+          <input type="range" id="number" onChange={function (e: any){updateNumber(e.target.value)}} value={num}/>
+          <button onClick={reset}>Reset</button>
+        </div>
         <div className={gameStyles.container}>
         {
           games.map((game, i) => <>
