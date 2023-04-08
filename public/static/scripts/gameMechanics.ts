@@ -2,8 +2,12 @@ export class PlayerClass {
 }
 
 export class TeamClass {
-  constructor(public name: string, public players: PlayerClass[], public playing: PlayerClass[], public points: number = 0) {
-  }
+    name;
+    constructor(public city: string, public animal: string, public players: PlayerClass[], public playing: PlayerClass[], public points: number = 0) {
+        this.name = city + ' ' + animal;
+        this.city = city;
+        this.animal = animal;
+    }
 }
 
 
@@ -24,8 +28,8 @@ export class GameClass {
         }
         const homeAnimal = this.animals[Math.floor(Math.random() * this.animals.length)];
         const awayAnimal = this.animals[Math.floor(Math.random() * this.animals.length)];
-        this.home = new TeamClass(homeCity + ' ' + homeAnimal, [], []);
-        this.away = new TeamClass(awayCity + ' ' + awayAnimal, [], []);
+        this.home = new TeamClass(homeCity, homeAnimal, [], []);
+        this.away = new TeamClass(awayCity, awayAnimal, [], []);
         const mean = 102; // statistically average mean points per game
         const stdDev = 10;
         this.totalpoints = Math.round(this.gaussianRand(mean, stdDev));

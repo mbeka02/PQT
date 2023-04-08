@@ -7,6 +7,18 @@ import { useState } from 'react';
 
 export default function Home() {
   const [games, setGames] = useState<GameClass[]>(Array.from({ length: 700 }, _ => new GameClass()))
+  const [num, setNum] = useState<number>(0);
+
+  function doTimes(times: number, f: Function) {
+    for(let i = 0; i < times; i++) {
+      f();
+    }
+  }
+
+  function reset() {
+    setGames([]);
+  }
+  
   function play() {
     let temp = [...games];
     temp.forEach((game) => {
@@ -14,6 +26,14 @@ export default function Home() {
     })
     setGames(temp);
   }
+
+  function updateNumber(num: number) {
+    setGames(Array.from({length: num * multiplier}, _ => new GameClass()));
+    setNum(num);
+  }
+
+  const MAXSIZE = 1000;
+  const multiplier = MAXSIZE / 100
   return (
     <>
       <Head>
@@ -23,7 +43,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <button onClick={play}>Click me!</button>
+        <button onClick={play}>Play a round</button>
+        <button onClick={function() {doTimes(5, play)}}>x5</button>
+        <button onClick={function() {doTimes(10, play)}}>x10</button>
+        <label>{num * multiplier}</label>
+        <input type="range" id="number" onChange={function (e: any){updateNumber(e.target.value)}} value={num}/>
+        <button onClick={reset}>Reset</button>
         <div className={gameStyles.container}>
         {
           games.map((game, i) => <>
