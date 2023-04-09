@@ -1,6 +1,6 @@
 import style from '../styles/game.module.css'
 
-export default function Game({ homeScore, awayScore, id, home, away } : { homeScore: number, awayScore: number, id: number, home: any, away: any }): JSX.Element {
+export default function Game({ homeScore, awayScore, id, home, away, lastLog } : { homeScore: number, awayScore: number, id: number, home: any, away: any, lastLog: string }): JSX.Element {
     if(home === undefined || away === undefined) {
         return <></>;
     }
@@ -26,6 +26,11 @@ export default function Game({ homeScore, awayScore, id, home, away } : { homeSc
                     {awayScore}
                 </p>
             </div>
+        </div>
+        <div className={style.logs}>
+            <p>
+                {lastLog}
+            </p>
         </div>
     </div>
     </>
