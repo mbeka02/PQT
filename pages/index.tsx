@@ -62,7 +62,8 @@ export default function Home() {
             awayScore={game.awaypoints}
             home={game.home}
             away={game.away}
-            id={i}></Game></>)
+            id={i}
+            lastLog={game.logs.length ? game.logs[game.logs.length - 1] : ""}></Game></>)
         }
         </div>
       </main>
