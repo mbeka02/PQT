@@ -2,12 +2,12 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import gameStyles from '@/styles/game.module.css'
 import Game from './_game';
-import { GameClass, TeamClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
+import { GameClass } from '@/public/static/scripts/gameMechanics';
 import { useState } from 'react';
 
 export default function Home() {
   const [games, setGames] = useState<GameClass[]>(Array.from({ length: 700 }, _ => new GameClass()))
-  const [num, setNum] = useState<number>(0);
+  const [num, setNum] = useState<number>(70);
 
   function doTimes(times: number, f: Function) {
     for(let i = 0; i < times; i++) {

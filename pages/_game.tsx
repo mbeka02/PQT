@@ -1,13 +1,20 @@
 import style from '../styles/game.module.css'
+import { useState } from 'react';
+import GameModal from './_gameModal';
 
 export default function Game({ homeScore, awayScore, id, home, away, lastLog } : { homeScore: number, awayScore: number, id: number, home: any, away: any, lastLog: string }): JSX.Element {
+    const [ showModal, setShowModal ] = useState<boolean>(false);
+    function showModalOnClick() { // shitty name because I just defined another variable like that earlier. I'm sorry.
+        setShowModal(true);
+    }
     if(home === undefined || away === undefined) {
         return <></>;
     }
     let homeName=home.city;
     let awayName=away.city;
     return <>
-    <div className={style.wrapper}>
+    { showModal && <GameModal home={home} away={away} homeScore={homeScore} awayScore={awayScore} logs={[lastLog]}/> }
+    <div className={style.wrapper} onClick={showModalOnClick}>
         <h1>{id}</h1>
         <div className={style.contentWrapper}>
             <div>
