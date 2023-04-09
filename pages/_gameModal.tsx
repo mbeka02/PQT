@@ -12,11 +12,10 @@ export default function GameModal({ home, away, homeScore, awayScore, logs }: { 
     }
     return <>
     <div className={ styles.wrapper }>
-        <button type="button" onClick={close}>X</button>
         <div className={ styles.content }>
             <h1>
                 {home && home.name}
-                vs
+                &nbsp;vs&nbsp;
                 {away && away.name}
             </h1>
             <h3>
