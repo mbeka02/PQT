@@ -63,7 +63,7 @@ export default function Home() {
             home={game.home}
             away={game.away}
             id={i}
-            lastLog={game.logs.length ? game.logs[game.logs.length - 1] : ""}></Game></>)
+            logs={game.logs.length ? game.logs : []}></Game></>)
         }
         </div>
       </main>

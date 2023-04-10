@@ -3,7 +3,7 @@ import { useState } from 'react';
 import GameModal from './_gameModal';
 import modalStyles from 'styles/gameModal.module.css';
 
-export default function Game({ homeScore, awayScore, id, home, away, lastLog } : { homeScore: number, awayScore: number, id: number, home: any, away: any, lastLog: string }): JSX.Element {
+export default function Game({ homeScore, awayScore, id, home, away, logs } : { homeScore: number, awayScore: number, id: number, home: any, away: any, logs: string[] }): JSX.Element {
     const [ showModal, setShowModal ] = useState<boolean>(false);
 
     function showModalOnClick() {
@@ -25,7 +25,7 @@ export default function Game({ homeScore, awayScore, id, home, away, lastLog } :
         <>
             { showModal && (
                 <>
-                    <GameModal home={home} away={away} homeScore={homeScore} awayScore={awayScore} logs={[lastLog]}/>
+                    <GameModal home={home} away={away} homeScore={homeScore} awayScore={awayScore} logs={logs}/>
                     <button className={modalStyles.button} onClick={hideModalOnClick} type="button">X</button>
                 </>
             )}
@@ -52,7 +52,7 @@ export default function Game({ homeScore, awayScore, id, home, away, lastLog } :
                 </div>
                 <div className={style.logs}>
                     <p>
-                        {lastLog}
+                        {logs[logs.length-1]}
                     </p>
                 </div>
             </div>
