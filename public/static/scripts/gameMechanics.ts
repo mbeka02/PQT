@@ -10,6 +10,16 @@ export class TeamClass {
     }
 }
 
+export class LogClass {
+    content: string;
+    date: number;
+
+    constructor(content: string, gameStart: number) {
+        this.content = content;
+        this.date = new Date().getTime() - gameStart;
+    }
+}
+
 export class GameClass {
     private cities: string[] = ['New York', 'London', 'Paris', 'Tokyo', 'Sydney', 'Rio de Janeiro', 'Beijing', 'Dubai', 'Toronto', 'Mumbai', 'Cairo', 'Moscow', 'Los Angeles', 'Bangkok', 'Amsterdam', 'Barcelona', 'Berlin', 'Cape Town', 'Chicago', 'Dallas'];
     private animals: string[] = ['lions', 'tigers', 'elephants', 'giraffes', 'monkeys', 'pandas', 'zebras', 'koalas', 'kangaroos', 'hippos', 'crocodiles', 'rhinos', 'penguins', 'whales', 'dolphins', 'octopi'];
@@ -20,9 +30,10 @@ export class GameClass {
     homepoints: number = 0;
     awaypoints: number = 0;
     totalpoints: number;
-    logs: string[] = [];
+    logs: LogClass[] = [];
     weather: string;
     homeStadium: boolean;
+    startTime: number;
 
     constructor() {
         const homeCity = this.cities[Math.floor(Math.random() * this.cities.length)];
@@ -43,6 +54,7 @@ export class GameClass {
         this.totalpoints = Math.round(this.gaussianRand(mean, stdDev));
         this.weather = this.conditions[Math.floor(Math.random() * this.conditions.length)];
         this.homeStadium = Math.random() < 0.5;
+        this.startTime = new Date().getTime()
     }
 
     // I trust ChatGPT did a good job
@@ -90,8 +102,7 @@ export class GameClass {
 
           const res = choices[Math.floor(Math.random() * choices.length)]
 
-          this.logs.push(res);
-          console.log(res);
+          this.logs.push(new LogClass(res, this.startTime));
     }
 
     playRound(): void {

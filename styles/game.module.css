@@ -87,6 +87,29 @@ background: transparent;        /* color of the tracking area */
 background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
+.log {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.5em 0px;
+    padding: 0.5em 0px;
+}
+
+.log:hover {
+    background-color: #9c9c9c;
+}
+
+.log p {
+    margin: 0px;
+}
+
+.logTime {
+    color: #9c9137;
+    min-width: 50px;
+    width: 50px;
+    text-align: center;
+}
+
 .conditions {
     border: 1px solid #9c9c9c;
     width: 278px;

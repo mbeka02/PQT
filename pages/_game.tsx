@@ -1,7 +1,7 @@
 import style from '../styles/game.module.css'
 import { useState } from 'react';
 import GameModal from './_gameModal';
-import { GameClass, TeamClass } from '@/public/static/scripts/gameMechanics';
+import { GameClass, TeamClass, LogClass } from '@/public/static/scripts/gameMechanics';
 import modalStyles from 'styles/gameModal.module.css';
 
 function TeamWrapper({team, gameScore} : {team: TeamClass, gameScore: number}) {
@@ -17,6 +17,16 @@ function TeamWrapper({team, gameScore} : {team: TeamClass, gameScore: number}) {
             </div>
             <p>Score: {gameScore}</p>
         </div>
+    </div>
+    </>
+}
+
+function LogWrapper({ log } : { log: LogClass }) {
+    let seconds = Math.round(log.date / 1000).toString() + "s";
+    return <>
+    <div className={style.log}>
+        <p className={style.logTime}>{seconds}</p>
+        <p className={style.logContent}>{log.content}</p>
     </div>
     </>
 }
@@ -53,7 +63,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                         <TeamWrapper team={game.away} gameScore={game.awaypoints}/>
                     </div>
                     <div className={style.logs}>
-                        {game.logs.map((l, key) => <p key={key}>{l}<br/></p>)}
+                        {game.logs.length && game.logs.map((l, key) => <LogWrapper log={l} key={key}></LogWrapper>) || <p>No logs available yet...</p>}
                     </div>
                     <div className={style.conditions}>
                         <h3>
