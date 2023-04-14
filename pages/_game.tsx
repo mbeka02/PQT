@@ -19,7 +19,7 @@ function TeamWrapper({team, gameScore, finished, won} : {team: TeamClass, gameSc
                 <h3>
                     {team.name}
                 </h3>
-                <p><span>{team.wins}</span>-<span>{team.losses}</span>-<span>{team.ties}</span></p>
+                <p><span>{team.wins}</span>-<span>{team.ties}</span>-<span>{team.losses}</span></p>
             </div>
             <p>Score: {gameScore}</p>
         </div>

@@ -13,6 +13,8 @@ export class TeamClass {
 export class LogClass {
     content: string;
     date: number;
+    totalWins: number = 0;
+    totalLosses: number = 0;
 
     constructor(content: string, gameStart: number) {
         this.content = content;
@@ -113,9 +115,18 @@ export class GameClass {
 
     playRound(): void {
         if (!this.totalpoints) { // if no points left
-            this.finished = true;
             this.homeWon = this.homepoints > this.awaypoints;
             this.awayWon = !this.homeWon;
+            if(!this.finished){ // to avoid doing it more than once
+                if(this.homeWon) {
+                    this.home.wins += 1;
+                    this.away.losses += 1;
+                } else {
+                    this.home.losses += 1;
+                    this.away.wins += 1;
+                }
+            }
+            this.finished = true;
             return;
         }
         let points: number = Math.floor(Math.random()) + 2;
