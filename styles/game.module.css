@@ -1,5 +1,5 @@
 .container {
-    justify-content: space-between;
+    justify-content: space-evenly;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -10,6 +10,7 @@
 .wrapper {
     background-color: white;
     min-width: 300px;
+    max-width: 600px;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -23,4 +24,81 @@
     justify-content: space-between;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.teamswrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 290px !important;
+    height: 192px;
+    padding: 0px !important;
+    border: 0px transparent !important;
+    margin: 5px;
+}
+
+.team {
+    width: 278px;
+    border: 1px solid #9c9c9c;
+    height: 80px;
+    padding: 5px;
+    background-color: #eee;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.team > div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.team > p {
+    font-size: 30px;
+}
+
+.teamDivider {
+    height: 5px;
+    width: 100%;
+}
+
+.logs {
+    border: 1px solid #9c9c9c;
+    background-color: #000;
+    color: white;
+    overflow-y: auto;
+    height: 180px;
+    width: 278px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.conditions {
+    border: 1px solid #9c9c9c;
+    width: 278px;
+    height: 180px;
+    background-color: #eee;
+    margin: 5px;
+    padding: 5px;
+}
+
+.gameStats {
+    border: 1px solid #9c9c9c;
+    width: 278px;
+    height: 180px;
+    background-color: #eee;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+.statsTable {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
 }

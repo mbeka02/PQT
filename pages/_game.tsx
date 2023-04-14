@@ -1,9 +1,26 @@
 import style from '../styles/game.module.css'
 import { useState } from 'react';
 import GameModal from './_gameModal';
+import { GameClass, TeamClass } from '@/public/static/scripts/gameMechanics';
 import modalStyles from 'styles/gameModal.module.css';
 
-export default function Game({ homeScore, awayScore, id, home, away, logs } : { homeScore: number, awayScore: number, id: number, home: any, away: any, logs: string[] }): JSX.Element {
+function TeamWrapper({team, gameScore} : {team: TeamClass, gameScore: number}) {
+    return <>
+    <div className={style.team}>
+        <div>
+            <div>
+                <h3>
+                    {team.name}
+                </h3>
+                <p><span>{team.wins}</span>-<span>{team.losses}</span>-<span>{team.ties}</span></p>
+            </div>
+            <p>Score: {gameScore}</p>
+        </div>
+    </div>
+    </>
+}
+
+export default function Game({ game, homeScore, awayScore, id, logs } : { game: GameClass, homeScore: number, awayScore: number, id: number, logs: string[] }): JSX.Element {
     const [ showModal, setShowModal ] = useState<boolean>(false);
 
     function showModalOnClick() {
@@ -14,18 +31,15 @@ export default function Game({ homeScore, awayScore, id, home, away, logs } : { 
         setShowModal(false);
     }
 
-    if(home === undefined || away === undefined) {
+    if(game.home === undefined || game.away === undefined) {
         return <></>;
     }
-
-    let homeName=home.city;
-    let awayName=away.city;
 
     return (
         <>
             { showModal && (
                 <>
-                    <GameModal home={home} away={away} homeScore={homeScore} awayScore={awayScore} logs={logs}/>
+                    <GameModal home={game.home} away={game.away} homeScore={homeScore} awayScore={awayScore} logs={logs}/>
                     <button className={modalStyles.button} onClick={hideModalOnClick} type="button">X</button>
                 </>
             )}
@@ -33,27 +47,58 @@ export default function Game({ homeScore, awayScore, id, home, away, logs } : { 
             <div className={style.wrapper} onClick={showModalOnClick}>
                 <h1>{id}</h1>
                 <div className={style.contentWrapper}>
-                    <div>
+                    <div className={style.teamswrapper}>
+                        <TeamWrapper team={game.home} gameScore={game.homepoints}/>
+                        <TeamWrapper team={game.away} gameScore={game.awaypoints}/>
+                    </div>
+                    <div className={style.logs}>
+                        {logs.map((l) => <p>{l}<br/></p>)}
+                    </div>
+                    <div className={style.conditions}>
                         <h3>
-                            {homeName}
+                            Game conditions:
                         </h3>
                         <p>
-                            {homeScore}
+                            Location: {game.homeStadium ? game.home.city + " stadium" : game.away.city + " stadium"}
                         </p>
-                    </div>
-                    <div>
-                        <h3>
-                            {awayName}
-                        </h3>
                         <p>
-                            {awayScore}
+                            Weather: {game.weather}
                         </p>
                     </div>
-                </div>
-                <div className={style.logs}>
-                    <p>
-                        {logs[logs.length-1]}
-                    </p>
+                    <div className={style.gameStats}>
+                        <table className={style.statsTable}>
+                            <tr>
+                                <th></th>
+                                <th>Home </th>
+                                <th>Away</th>
+                            </tr>
+                            <tr>
+                                <th>Points:</th>
+                                <td>30</td>
+                                <td>60</td>
+                            </tr>
+                            <tr>
+                                <th>Rebounds:</th>
+                                <td>30</td>
+                                <td>60</td>
+                            </tr>
+                            <tr>
+                                <th>Assists:</th>
+                                <td>30</td>
+                                <td>60</td>
+                            </tr>
+                            <tr>
+                                <th>Steals:</th>
+                                <td>30</td>
+                                <td>60</td>
+                            </tr>
+                            <tr>
+                                <th>Blocks:</th>
+                                <td>30</td>
+                                <td>60</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </>

@@ -3,7 +3,7 @@ export class PlayerClass {
 
 export class TeamClass {
     name;
-    constructor(public city: string, public animal: string, public players: PlayerClass[], public playing: PlayerClass[], public points: number = 0) {
+    constructor(public city: string, public animal: string, public emoji: string, public players: PlayerClass[], public playing: PlayerClass[], public points: number = 0, public wins = 0, public losses = 0, public ties = 0) {
         this.name = city + ' ' + animal;
         this.city = city;
         this.animal = animal;
@@ -12,13 +12,17 @@ export class TeamClass {
 
 export class GameClass {
     private cities: string[] = ['New York', 'London', 'Paris', 'Tokyo', 'Sydney', 'Rio de Janeiro', 'Beijing', 'Dubai', 'Toronto', 'Mumbai', 'Cairo', 'Moscow', 'Los Angeles', 'Bangkok', 'Amsterdam', 'Barcelona', 'Berlin', 'Cape Town', 'Chicago', 'Dallas'];
-    private animals: string[] = ['lion', 'tiger', 'elephant', 'giraffe', 'monkey', 'panda', 'zebra', 'koala', 'kangaroo', 'hippopotamus', 'crocodile', 'rhinoceros', 'gazelle', 'jaguar', 'lemur', 'penguin', 'seagull', 'whale', 'dolphin', 'octopus'];
+    private animals: string[] = ['lions', 'tigers', 'elephants', 'giraffes', 'monkeys', 'pandas', 'zebras', 'koalas', 'kangaroos', 'hippos', 'crocodiles', 'rhinos', 'penguins', 'whales', 'dolphins', 'octopi'];
+    private emojis: string[] = ['🦁','🐯','🐘','🦒','🐵','🐼','🦓','🐨','🦘','🦛','🐊','🦏','🐧','🐋','🐬','🐙'];
+    private conditions: string[] = ['sunny', 'cloudy', 'foggy', 'rainy', 'stormy']
     home: TeamClass;
     away: TeamClass;
     homepoints: number = 0;
     awaypoints: number = 0;
     totalpoints: number;
     logs: string[] = [];
+    weather: string;
+    homeStadium: boolean;
 
     constructor() {
         const homeCity = this.cities[Math.floor(Math.random() * this.cities.length)];
@@ -26,13 +30,19 @@ export class GameClass {
         while (awayCity === homeCity) {
         awayCity = this.cities[Math.floor(Math.random() * this.cities.length)];
         }
-        const homeAnimal = this.animals[Math.floor(Math.random() * this.animals.length)];
-        const awayAnimal = this.animals[Math.floor(Math.random() * this.animals.length)];
-        this.home = new TeamClass(homeCity, homeAnimal, [], []);
-        this.away = new TeamClass(awayCity, awayAnimal, [], []);
+        let animalIndex = Math.floor(Math.random() * this.animals.length)
+        const homeAnimal = this.animals[animalIndex];
+        const homeEmoji = this.emojis[animalIndex];
+        animalIndex = Math.floor(Math.random() * this.animals.length);
+        const awayAnimal = this.animals[animalIndex];
+        const awayEmoji = this.emojis[animalIndex];
+        this.home = new TeamClass(homeCity, homeAnimal, homeEmoji, [], []);
+        this.away = new TeamClass(awayCity, awayAnimal, awayEmoji, [], []);
         const mean = 102; // statistically average mean points per game
-        const stdDev = 10;
+        const stdDev = 10; // standard deviation. How much around the mean will 66.6% of data points be.
         this.totalpoints = Math.round(this.gaussianRand(mean, stdDev));
+        this.weather = this.conditions[Math.floor(Math.random() * this.conditions.length)];
+        this.homeStadium = Math.random() < 0.5;
     }
 
     // I trust ChatGPT did a good job
