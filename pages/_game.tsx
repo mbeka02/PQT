@@ -68,36 +68,40 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                     </div>
                     <div className={style.gameStats}>
                         <table className={style.statsTable}>
-                            <tr>
-                                <th></th>
-                                <th>Home </th>
-                                <th>Away</th>
-                            </tr>
-                            <tr>
-                                <th>Points:</th>
-                                <td>30</td>
-                                <td>60</td>
-                            </tr>
-                            <tr>
-                                <th>Rebounds:</th>
-                                <td>30</td>
-                                <td>60</td>
-                            </tr>
-                            <tr>
-                                <th>Assists:</th>
-                                <td>30</td>
-                                <td>60</td>
-                            </tr>
-                            <tr>
-                                <th>Steals:</th>
-                                <td>30</td>
-                                <td>60</td>
-                            </tr>
-                            <tr>
-                                <th>Blocks:</th>
-                                <td>30</td>
-                                <td>60</td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Home </th>
+                                    <th>Away</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Points:</td>
+                                    <td>30</td>
+                                    <td>60</td>
+                                </tr>
+                                <tr>
+                                    <td>Rebounds:</td>
+                                    <td>30</td>
+                                    <td>60</td>
+                                </tr>
+                                <tr>
+                                    <td>Assists:</td>
+                                    <td>30</td>
+                                    <td>60</td>
+                                </tr>
+                                <tr>
+                                    <td>Steals:</td>
+                                    <td>30</td>
+                                    <td>60</td>
+                                </tr>
+                                <tr>
+                                    <td>Blocks:</td>
+                                    <td>30</td>
+                                    <td>60</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
