@@ -65,8 +65,7 @@ export default function Home() {
             game={game}
             homeScore={game.homepoints}
             awayScore={game.awaypoints}
-            id={i}
-            logs={game.logs.length ? game.logs : []}></Game></>)
+            id={i}></Game></>)
         }
         </div>
       </main>

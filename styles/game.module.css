@@ -16,7 +16,6 @@
     flex-direction: column;
     padding: 16px;
     margin: 15px;
-    border: 2px solid black;
 }
 
 .contentWrapper {
@@ -76,6 +75,16 @@
     width: 278px;
     margin: 5px;
     padding: 5px;
+}
+
+.logs::-webkit-scrollbar {
+width: 4px;               /* width of the entire scrollbar */
+}
+.logs::-webkit-scrollbar-track {
+background: transparent;        /* color of the tracking area */
+}
+.logs::-webkit-scrollbar-thumb {
+background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .conditions {

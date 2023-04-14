@@ -21,7 +21,7 @@ function TeamWrapper({team, gameScore} : {team: TeamClass, gameScore: number}) {
     </>
 }
 
-export default function Game({ game, homeScore, awayScore, id, logs } : { game: GameClass, homeScore: number, awayScore: number, id: number, logs: string[] }): JSX.Element {
+export default function Game({ game, homeScore, awayScore, id } : { game: GameClass, homeScore: number, awayScore: number, id: number }): JSX.Element {
     const [ showModal, setShowModal ] = useState<boolean>(false);
 
     function showModalOnClick() {
@@ -32,7 +32,7 @@ export default function Game({ game, homeScore, awayScore, id, logs } : { game: 
         setShowModal(false);
     }
 
-    if(game.home === undefined || game.away === undefined) {
+    if(game.home == undefined || game.away == undefined) {
         return <></>;
     }
 
@@ -40,7 +40,7 @@ export default function Game({ game, homeScore, awayScore, id, logs } : { game: 
         <>
             { showModal && (
                 <>
-                    <GameModal home={game.home} away={game.away} homeScore={homeScore} awayScore={awayScore} logs={logs}/>
+                    <GameModal home={game.home} away={game.away} homeScore={homeScore} awayScore={awayScore} logs={game.logs}/>
                     <button className={modalStyles.button} onClick={hideModalOnClick} type="button">X</button>
                 </>
             )}
@@ -53,7 +53,7 @@ export default function Game({ game, homeScore, awayScore, id, logs } : { game: 
                         <TeamWrapper team={game.away} gameScore={game.awaypoints}/>
                     </div>
                     <div className={style.logs}>
-                        {logs.map((l) => <p>{l}<br/></p>)}
+                        {game.logs.map((l, key) => <p key={key}>{l}<br/></p>)}
                     </div>
                     <div className={style.conditions}>
                         <h3>
