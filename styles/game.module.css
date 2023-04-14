@@ -88,6 +88,7 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .log {
+    color: gray;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -96,7 +97,12 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .log:hover {
-    background-color: #9c9c9c;
+    color: white;
+    background-color: #1c1c1c;
+}
+
+.log:hover > .logTime {
+    color: #9c9137;
 }
 
 .log p {
@@ -104,7 +110,6 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .logTime {
-    color: #9c9137;
     min-width: 50px;
     width: 50px;
     text-align: center;
