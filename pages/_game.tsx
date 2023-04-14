@@ -7,6 +7,7 @@ import modalStyles from 'styles/gameModal.module.css';
 function TeamWrapper({team, gameScore} : {team: TeamClass, gameScore: number}) {
     return <>
     <div className={style.team}>
+        <p>{team.emoji}</p>
         <div>
             <div>
                 <h3>
