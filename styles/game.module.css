@@ -94,6 +94,9 @@ background-color: #1a73e8;    /* color of the scroll thumb */
     align-items: center;
     margin: 0.5em 0px;
     padding: 0.5em 0px;
+    border-radius: 5px;
+    cursor: default;
+    transition: 0.1s linear;
 }
 
 .log:hover {
@@ -110,6 +113,7 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .logTime {
+    transition: 0.1s linear;
     min-width: 50px;
     width: 50px;
     text-align: center;

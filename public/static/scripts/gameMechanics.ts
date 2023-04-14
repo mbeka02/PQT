@@ -41,10 +41,13 @@ export class GameClass {
         while (awayCity === homeCity) {
         awayCity = this.cities[Math.floor(Math.random() * this.cities.length)];
         }
-        let animalIndex = Math.floor(Math.random() * this.animals.length)
-        const homeAnimal = this.animals[animalIndex];
-        const homeEmoji = this.emojis[animalIndex];
-        animalIndex = Math.floor(Math.random() * this.animals.length);
+        const homeAnimalIndex = Math.floor(Math.random() * this.animals.length);
+        const homeAnimal = this.animals[homeAnimalIndex];
+        const homeEmoji = this.emojis[homeAnimalIndex];
+        let animalIndex = Math.floor(Math.random() * this.animals.length);
+        while(animalIndex == homeAnimalIndex) {
+            animalIndex = Math.floor(Math.random() * this.animals.length);
+        }
         const awayAnimal = this.animals[animalIndex];
         const awayEmoji = this.emojis[animalIndex];
         this.home = new TeamClass(homeCity, homeAnimal, homeEmoji, [], []);
