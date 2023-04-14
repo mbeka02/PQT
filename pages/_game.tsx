@@ -32,7 +32,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
         setShowModal(false);
     }
 
-    if(game.home == undefined || game.away == undefined) {
+    if(game == undefined || game.home == undefined || game.away == undefined || game == undefined || awayScore == undefined || id == undefined) {
         return <></>;
     }
 
