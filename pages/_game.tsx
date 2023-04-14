@@ -4,9 +4,15 @@ import GameModal from './_gameModal';
 import { GameClass, TeamClass, LogClass } from '@/public/static/scripts/gameMechanics';
 import modalStyles from 'styles/gameModal.module.css';
 
-function TeamWrapper({team, gameScore} : {team: TeamClass, gameScore: number}) {
+function TeamWrapper({team, gameScore, finished, won} : {team: TeamClass, gameScore: number, finished: boolean, won: boolean}) {
+    let className = style.team;
+    if(finished && won) {
+        className = `${style.team} ${style.teamWon}`;
+    } else if(finished) {
+        className = `${style.team} ${style.teamLost}`;
+    }
     return <>
-    <div className={style.team}>
+    <div className={className}>
         <p>{team.emoji}</p>
         <div>
             <div>
@@ -59,8 +65,8 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                 <h1>{id}</h1>
                 <div className={style.contentWrapper}>
                     <div className={style.teamswrapper}>
-                        <TeamWrapper team={game.home} gameScore={game.homepoints}/>
-                        <TeamWrapper team={game.away} gameScore={game.awaypoints}/>
+                        <TeamWrapper team={game.home} gameScore={game.homepoints} finished={game.finished} won={game.homeWon}/>
+                        <TeamWrapper team={game.away} gameScore={game.awaypoints} finished={game.finished} won={game.awayWon}/>
                     </div>
                     <div className={style.logs}>
                         {game.logs.length && game.logs.map((l, key) => <LogWrapper log={l} key={key}></LogWrapper>) || <p>No logs available yet...</p>}

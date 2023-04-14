@@ -34,6 +34,9 @@ export class GameClass {
     weather: string;
     homeStadium: boolean;
     startTime: number;
+    finished: boolean = false;
+    homeWon: boolean = false;
+    awayWon: boolean = false;
 
     constructor() {
         const homeCity = this.cities[Math.floor(Math.random() * this.cities.length)];
@@ -110,6 +113,9 @@ export class GameClass {
 
     playRound(): void {
         if (!this.totalpoints) { // if no points left
+            this.finished = true;
+            this.homeWon = this.homepoints > this.awaypoints;
+            this.awayWon = !this.homeWon;
             return;
         }
         let points: number = Math.floor(Math.random()) + 2;
