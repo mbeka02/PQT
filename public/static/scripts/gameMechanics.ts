@@ -1,12 +1,56 @@
 export class PlayerClass {
+    homeLocation: string = '';
+    conditions: string[] = [];
+    cuisine: string =  '';
+    color: string = '';
+    coffee: string = '';
+    class: string = '';
+    zodiac: string = '';
+    vibes: string = '';
+    position: string = '';
+    style: string = '';
+    _2pt: number = 0;
+    _3pt: number = 0;
+    passing: number = 0;
+    dribbling: number = 0;
+    defense: number = 0;
+    jumping: number = 0;
+    stealing: number = 0;
+    blocking: number = 0;
+    speed: number = 0;
+    constructor( h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, b:number, spd:number) {
+        this.homeLocation = h;
+        this.conditions = cond;
+        this.cuisine = cui;
+        this.color = col;
+        this.coffee = cof;
+        this.class = cl;
+        this.zodiac = z;
+        this.vibes = v;
+        this.position = p;
+        this.style = s;
+        this._2pt = _2;
+        this._3pt = _3;
+        this.passing = pas;
+        this.dribbling = d;
+        this.defense = def;
+        this.jumping = j;
+        this.blocking = b;
+        this.speed = spd;
+    }
 }
 
 export class TeamClass {
     name;
-    constructor(public city: string, public animal: string, public emoji: string, public players: PlayerClass[], public playing: PlayerClass[], public points: number = 0, public wins = 0, public losses = 0, public ties = 0) {
+    wins: number = 0;
+    losses: number = 0;
+    ties: number = 0;
+    points: number = 0;
+    constructor(public city: string, public animal: string, public emoji: string, public players: PlayerClass[], public playing: PlayerClass[]) {
         this.name = city + ' ' + animal;
         this.city = city;
         this.animal = animal;
+        this.players = players;
     }
 }
 
