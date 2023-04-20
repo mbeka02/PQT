@@ -15,6 +15,8 @@ export default function GameModal({ home, away, homeScore, awayScore, logs }: { 
                 |
                 {awayScore}
             </h3>
+            <p> home players: {home?.players.length}</p>
+            <p> away players: {away?.players.length}</p>
             <div className={ styles.logs }>
                 {logs?.map((e, i) => <p key={i}>{e.content}</p>)}
             </div>
