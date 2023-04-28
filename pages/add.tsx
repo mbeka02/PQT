@@ -3,7 +3,7 @@ import styles from 'styles/add.module.css';
 export default function Home() {
     return <>
         <div className={styles.formWrapper}>
-            <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addTeam' method='post'>
+            <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addTeam' method='post' content='application/json'>
                 <h1>
                     Add a team
                 </h1>
@@ -13,7 +13,7 @@ export default function Home() {
                 <input type="text" name="teamLocation" placeholder="location..."/>
                 <input type="submit"/>
             </form>
-            <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addPlayer' method='post'>
+            <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addPlayer' method='post' content='application/json'>
                 <h1>
                     Add a player
                 </h1>
