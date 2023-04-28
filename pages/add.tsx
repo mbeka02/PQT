@@ -1,16 +1,45 @@
+import { useState } from 'react';
 import styles from 'styles/add.module.css';
 
 export default function Home() {
+    const [teamName, setTeamName] = useState<string>();
+    const [teamLocation, setTeamLocation] = useState<string>();
+    const [teamStatus, setTeamStatus] = useState<string>();
+
+    function formDataOkay(): boolean {
+        return teamName !== undefined && setTeamName !== undefined;
+    }
+
+    const handleTeamSubmit = async function (e: React.FormEvent<HTMLFormElement>): Promise<void> {
+        e.preventDefault();
+        if (!formDataOkay()) {
+          return;
+        }
+        const formData = {
+          'name': teamName,
+          'location': teamLocation
+        };
+      
+        fetch('https://blaseballapi.nicolello.repl.co/addTeam', {
+          body: JSON.stringify(formData),
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+          },
+        }).then(async (r) => setTeamStatus(await r.json()));
+      }      
+
     return <>
         <div className={styles.formWrapper}>
-            <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addTeam' method='post' content='application/json'>
+            Team status: {teamStatus}
+            <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addTeam' method='post' content='application/json' onSubmit={handleTeamSubmit}>
                 <h1>
                     Add a team
                 </h1>
                 <label>Name</label>
-                <input type="text" name="teamName" placeholder="name..."/>
+                <input type="text" name="teamName" placeholder="name..." value={teamName} onChange={(e) => setTeamName(e.target.value)}/>
                 <label>Location</label>
-                <input type="text" name="teamLocation" placeholder="location..."/>
+                <input type="text" name="teamLocation" placeholder="location..." value={teamLocation} onChange={(e) => setTeamLocation(e.target.value)}/>
                 <input type="submit"/>
             </form>
             <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addPlayer' method='post' content='application/json'>
