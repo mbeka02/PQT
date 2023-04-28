@@ -4,6 +4,7 @@ import gameStyles from '@/styles/game.module.css'
 import Game from './_game';
 import { GameClass } from '@/public/static/scripts/gameMechanics';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function Home() {
   const [games, setGames] = useState<GameClass[]>()
@@ -57,6 +58,7 @@ export default function Home() {
           <label>{num * multiplier}</label>
           <input type="range" id="number" onChange={function (e: any){updateNumber(parseInt(e.target.value))}} value={num}/>
           <button onClick={reset}>Reset</button>
+          <Link href='/add'>Click me to go add players/teams</Link>
         </div>
         <div className={gameStyles.container}>
         {
