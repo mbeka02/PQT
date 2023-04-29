@@ -38,7 +38,7 @@ export default function Home() {
         // Convert the form data to a JSON object
         const data: { [key: string]: string | number } = {};
         formData.forEach((value, key) => {
-            if (key === '_2pt' || key === '_3pt' || key === 'passing') {
+            if (key === '_2pt' || key === '_3pt' || key === 'passing' || key === 'dribbling' || key === 'defense' || key === 'jumping' || key === 'steals' || key === 'blocks' || key === 'speed') {
                 data[key] = parseInt(value as string);
             } else {
                 data[key] = value as string;
