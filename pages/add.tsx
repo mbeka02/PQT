@@ -37,13 +37,22 @@ export default function Home() {
     
         // Convert the form data to a JSON object
         const data: { [key: string]: string | number } = {};
-        formData.forEach((value, key) => {
-            if (key === '_2pt' || key === '_3pt' || key === 'passing' || key === 'dribbling' || key === 'defense' || key === 'jumping' || key === 'steals' || key === 'blocks' || key === 'speed') {
-                data[key] = parseInt(value as string);
-            } else {
-                data[key] = value as string;
-            }
+        const intKeys: { [key: string]: boolean} = {
+            '_2pt': true,
+            '_3pt': true,
+            'passing': true,
+            'dribbling': true,
+            'defense': true,
+            'jumping': true,
+            'steals': true,
+            'blocks': true,
+            'speed': true,
+          };
+          
+        formData.forEach((value: FormDataEntryValue, key: string) => {
+            data[key] = intKeys[key] ? parseInt(value as string, 10) : value as string;
         });
+        
     
         // Send the JSON request to the server
         fetch('https://blaseballapi.nicolello.repl.co/addPlayer', {
