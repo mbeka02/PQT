@@ -66,7 +66,7 @@ function createRandomPlayer(n:number): PlayerClass[] {
         const randomVibes = vibes[Math.floor(Math.random() * vibes.length)];
         const randomPosition = positions[Math.floor(Math.random() * positions.length)];
         const randomStyle = '';
-
+        // random numbers from 0 to 10
         const random2pt = Math.floor(Math.random() * 10);
         const random3pt = Math.floor(Math.random() * 10);
         const randomPassing = Math.floor(Math.random() * 10);
@@ -121,7 +121,7 @@ export class GameClass {
     away: TeamClass;
     homepoints: number = 0;
     awaypoints: number = 0;
-    totalpoints: number;
+    totalpoints: number; // Represents the total points of the match. With every play, points will be detracted from this until there are exactly 0 left.
     logs: LogClass[] = [];
     weather: string;
     homeStadium: boolean;
@@ -132,6 +132,7 @@ export class GameClass {
 
     constructor() {
         const homeCity = this.cities[Math.floor(Math.random() * this.cities.length)];
+        // avoid awayCity and homeCity being the same
         let awayCity = homeCity;
         while (awayCity === homeCity) {
         awayCity = this.cities[Math.floor(Math.random() * this.cities.length)];
@@ -157,6 +158,13 @@ export class GameClass {
 
     // I trust ChatGPT did a good job
     private gaussianRand(mean: number, stdDev: number): number {
+        /*
+        Quick math lesson!
+        This is a continuous probabilistic distribution using a Gaussian distribution
+        Because that's how the scores are distributed.
+        With a Gaussian distribution, the stdDev represents how far 66% of the data is from the mean.
+        A Gaussian distribution is like the one for the IQ distribution.
+        */
         let x1, x2, rad, y1;
         do {
         x1 = 2 * Math.random() - 1;
@@ -183,7 +191,7 @@ export class GameClass {
             `The ${team} team's fast break leads to an easy ${num} points!`
           ];
           
-          const negativeLogs = [
+        const negativeLogs = [
             `The ${team} team misses an easy shot!`,
             `The ${team} team turns over the ball!`,
             `The ${team} team commits a costly foul!`,
@@ -194,13 +202,14 @@ export class GameClass {
             `The ${team} team's shots just aren't falling!`,
             `The ${team} team's offense is in a rut!`,
             `The ${team} team's slow pace is hurting their chances!`
-          ];
+        ];
+        
+        //select the logs to choose from
+        const choices = (good) ? positiveLogs : negativeLogs;
 
-          const choices = (good) ? positiveLogs : negativeLogs;
+        const res = choices[Math.floor(Math.random() * choices.length)]
 
-          const res = choices[Math.floor(Math.random() * choices.length)]
-
-          this.logs.push(new LogClass(res, this.startTime));
+        this.logs.push(new LogClass(res, this.startTime));
     }
 
     playRound(): void {
@@ -219,7 +228,7 @@ export class GameClass {
             this.finished = true;
             return;
         }
-        let points: number = Math.floor(Math.random()) + 2;
+        let points: number = Math.floor(Math.random()) + 2; // either 2 or 3
         if (this.totalpoints === 5) { // if there are 5 points left they must be 3 and 2
             points = 3;
         }
@@ -229,13 +238,17 @@ export class GameClass {
         if (this.totalpoints < 4) { // with 3 or 2, return themselves
             points = this.totalpoints;
         }
+        // Choose winner and loser randomly
         const winner: string = Math.random() < 0.5 ? 'home' : 'away';
         const loser: string = (winner === 'home') ? 'home' : 'away';
+        //  Give them their points, respectively
         if (winner === "home") {
             this.homepoints += points;
         } else {
             this.awaypoints += points;
         }
+        // Decide whether to create a good log for the winner
+        // or a bad one for the losers
         const good = Math.random() < 0.5;
         if(good) {
             this.generateLog(winner, points, true);
