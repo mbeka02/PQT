@@ -94,28 +94,28 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                             <tbody>
                                 <tr>
                                     <td>Points:</td>
-                                    <td>30</td>
-                                    <td>60</td>
+                                    <td>{game.homepoints}</td>
+                                    <td>{game.awaypoints}</td>
                                 </tr>
                                 <tr>
                                     <td>Rebounds:</td>
-                                    <td>30</td>
-                                    <td>60</td>
+                                    <td>{game.homerebounds}</td>
+                                    <td>{game.awayrebounds}</td>
                                 </tr>
                                 <tr>
                                     <td>Assists:</td>
-                                    <td>30</td>
-                                    <td>60</td>
+                                    <td>{game.homeassists}</td>
+                                    <td>{game.awayassists}</td>
                                 </tr>
                                 <tr>
                                     <td>Steals:</td>
-                                    <td>30</td>
-                                    <td>60</td>
+                                    <td>{game.homesteals}</td>
+                                    <td>{game.awaysteals}</td>
                                 </tr>
                                 <tr>
                                     <td>Blocks:</td>
-                                    <td>30</td>
-                                    <td>60</td>
+                                    <td>{game.homeblocks}</td>
+                                    <td>{game.awayblocks}</td>
                                 </tr>
                             </tbody>
                         </table>

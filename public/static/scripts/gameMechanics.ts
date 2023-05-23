@@ -121,6 +121,14 @@ export class GameClass {
     away: TeamClass;
     homepoints: number = 0;
     awaypoints: number = 0;
+    homerebounds: number = 0;
+    awayrebounds: number = 0;
+    homeassists: number = 0;
+    awayassists: number = 0;
+    homesteals: number = 0;
+    awaysteals: number = 0;
+    homeblocks: number = 0;
+    awayblocks: number = 0;
     totalpoints: number; // Represents the total points of the match. With every play, points will be detracted from this until there are exactly 0 left.
     logs: LogClass[] = [];
     weather: string;
@@ -207,7 +215,13 @@ export class GameClass {
         //select the logs to choose from
         const choices = (good) ? positiveLogs : negativeLogs;
 
-        const res = choices[Math.floor(Math.random() * choices.length)]
+        const index = Math.floor(Math.random() * choices.length)
+        
+        if(choices[index] == positiveLogs[4] || choices[index] == positiveLogs[5]) {
+            team == 'home' ? this.homeblocks += 1 : this.awayblocks += 1;
+        }
+
+        const res = choices[index]
 
         this.logs.push(new LogClass(res, this.startTime));
     }
@@ -216,8 +230,10 @@ export class GameClass {
         if (!this.totalpoints) { // if no points left
             this.homeWon = this.homepoints > this.awaypoints;
             this.awayWon = !this.homeWon;
+
             if(!this.finished){ // to avoid doing it more than once
                 if(this.homeWon) {
+                    
                     this.home.wins += 1;
                     this.away.losses += 1;
                 } else {
@@ -246,6 +262,33 @@ export class GameClass {
             this.homepoints += points;
         } else {
             this.awaypoints += points;
+        }
+        if(winner == "home") {
+            if(Math.random() > 0.8) {
+                // 1 every 5
+                this.homesteals += 1;
+            } else {
+                if(Math.random() > 0.8) {
+                    // 1 every less than 5
+                    this.homeassists += 1;
+                }
+            }
+            if(Math.random() > 0.9) {
+                this.homerebounds += 1;
+            }
+        } else {
+            if(Math.random() > 0.8) {
+                // 1 every 5
+                this.awaysteals += 1;
+            } else {
+                if(Math.random() > 0.8) {
+                    // 1 every less than 5
+                    this.awayassists += 1;
+                }
+            }
+            if(Math.random() > 0.9) {
+                this.awayrebounds += 1;
+            }
         }
         // Decide whether to create a good log for the winner
         // or a bad one for the losers
