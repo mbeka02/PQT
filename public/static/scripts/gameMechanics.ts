@@ -181,8 +181,7 @@ export class GameClass {
         } while (rad >= 1 || rad === 0);
         const c = Math.sqrt(-2 * Math.log(rad) / rad);
         y1 = x1 * c;
-        const result = mean + y1 * stdDev;
-        return result;
+        return mean + y1 * stdDev;
     }
 
     private generateLog(team: string, num: number, good: boolean) {
@@ -264,28 +263,26 @@ export class GameClass {
             this.awaypoints += points;
         }
         if(winner == "home") {
-            if(Math.random() > 0.8) {
-                // 1 every 5
-                this.homesteals += 1;
-            } else {
-                if(Math.random() > 0.8) {
-                    // 1 every less than 5
-                    this.homeassists += 1;
-                }
-            }
+            if (Math.random() > 0.8) {
+                            // 1 every 5
+                            this.homesteals += 1;
+                        }
+            else if (Math.random() > 0.8) {
+                                // 1 every less than 5
+                                this.homeassists += 1;
+                            }
             if(Math.random() > 0.9) {
                 this.homerebounds += 1;
             }
         } else {
-            if(Math.random() > 0.8) {
-                // 1 every 5
-                this.awaysteals += 1;
-            } else {
-                if(Math.random() > 0.8) {
-                    // 1 every less than 5
-                    this.awayassists += 1;
-                }
-            }
+            if (Math.random() > 0.8) {
+                            // 1 every 5
+                            this.awaysteals += 1;
+                        }
+            else if (Math.random() > 0.8) {
+                                // 1 every less than 5
+                                this.awayassists += 1;
+                            }
             if(Math.random() > 0.9) {
                 this.awayrebounds += 1;
             }
