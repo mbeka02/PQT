@@ -1,4 +1,5 @@
 export class PlayerClass {
+    name: string = '';
     homeLocation: string = '';
     conditions: string[] = [];
     cuisine: string =  '';
@@ -18,7 +19,15 @@ export class PlayerClass {
     stealing: number = 0;
     blocking: number = 0;
     speed: number = 0;
-    constructor( h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number) {
+    stats = {
+        points: 0,
+        rebounds: 0,
+        assists: 0,
+        steals: 0,
+        blocks: 0
+    };
+    constructor( n:string, h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number) {
+        this.name = n;
         this.homeLocation = h;
         this.conditions = cond;
         this.cuisine = cui;
@@ -38,6 +47,13 @@ export class PlayerClass {
         this.stealing = st;
         this.blocking = b;
         this.speed = spd;
+        this.stats = {
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0
+        };
     }
 }
 
@@ -55,7 +71,7 @@ function createRandomPlayer(n:number): PlayerClass[] {
     let res = [];
 
     for(let i=0; i<=n; i++) {
-
+        const randomName = Math.random().toString(36).slice(2, 7); // random 5-letter name
         const randomHomeLocation = homeLocations[Math.floor(Math.random() * homeLocations.length)];
         const randomConditions = [conditions[Math.floor(Math.random() * conditions.length)]];
         const randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
@@ -77,7 +93,7 @@ function createRandomPlayer(n:number): PlayerClass[] {
         const randomBlocking = Math.floor(Math.random() * 10);
         const randomSpeed = Math.floor(Math.random() * 10);
 
-        const p = new PlayerClass(randomHomeLocation, randomConditions, randomCuisine, randomColor, randomCoffee, randomClass, randomZodiac, randomVibes, randomPosition, randomStyle, random2pt, random3pt, randomPassing, randomDribbling, randomDefense, randomJumping, randomStealing, randomBlocking, randomSpeed);
+        const p = new PlayerClass(randomName, randomHomeLocation, randomConditions, randomCuisine, randomColor, randomCoffee, randomClass, randomZodiac, randomVibes, randomPosition, randomStyle, random2pt, random3pt, randomPassing, randomDribbling, randomDefense, randomJumping, randomStealing, randomBlocking, randomSpeed);
         
         res.push(p);
     }
@@ -156,6 +172,13 @@ export class GameClass {
         const awayEmoji = this.emojis[animalIndex];
         this.home = new TeamClass(homeCity, homeAnimal, homeEmoji, createRandomPlayer(12), createRandomPlayer(6));
         this.away = new TeamClass(awayCity, awayAnimal, awayEmoji, createRandomPlayer(12), createRandomPlayer(6));
+        this.home.players.forEach(p => p.stats = {
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0
+        })
         const mean = 102; // statistically average mean points per game
         const stdDev = 10; // standard deviation. How much around the mean will 66.6% of data points be.
         this.totalpoints = Math.round(this.gaussianRand(mean, stdDev));
@@ -182,6 +205,10 @@ export class GameClass {
         const c = Math.sqrt(-2 * Math.log(rad) / rad);
         y1 = x1 * c;
         return mean + y1 * stdDev;
+    }
+
+    private getRandomPlayer(team: TeamClass):PlayerClass {
+        return team.players[Math.round(Math.random() * (team.players.length - 1))]
     }
 
     private generateLog(team: string, num: number, good: boolean) {
@@ -217,7 +244,7 @@ export class GameClass {
         const index = Math.floor(Math.random() * choices.length)
         
         if(choices[index] == positiveLogs[4] || choices[index] == positiveLogs[5]) {
-            team == 'home' ? this.homeblocks += 1 : this.awayblocks += 1;
+            team == 'home' ? this.getRandomPlayer(this.home).blocking += 1 : this.getRandomPlayer(this.away).blocking += 1;
         }
 
         const res = choices[index]
@@ -232,7 +259,6 @@ export class GameClass {
 
             if(!this.finished){ // to avoid doing it more than once
                 if(this.homeWon) {
-                    
                     this.home.wins += 1;
                     this.away.losses += 1;
                 } else {
@@ -257,35 +283,25 @@ export class GameClass {
         const winner: string = Math.random() < 0.5 ? 'home' : 'away';
         const loser: string = (winner === 'home') ? 'home' : 'away';
         //  Give them their points, respectively
+        let chosenPlayer;
         if (winner === "home") {
             this.homepoints += points;
+            chosenPlayer = this.getRandomPlayer(this.home);
         } else {
             this.awaypoints += points;
+            chosenPlayer = this.getRandomPlayer(this.away);
         }
-        if(winner == "home") {
-            if (Math.random() > 0.8) {
-                            // 1 every 5
-                            this.homesteals += 1;
+        chosenPlayer.stats.points++;
+        if (Math.random() > 0.8) {
+                        // 1 every 5
+                        chosenPlayer.stats.steals += 1;
+                    }
+        else if (Math.random() > 0.8) {
+                            // 1 every less than 5
+                            chosenPlayer.stats.blocks += 1;
                         }
-            else if (Math.random() > 0.8) {
-                                // 1 every less than 5
-                                this.homeassists += 1;
-                            }
-            if(Math.random() > 0.9) {
-                this.homerebounds += 1;
-            }
-        } else {
-            if (Math.random() > 0.8) {
-                            // 1 every 5
-                            this.awaysteals += 1;
-                        }
-            else if (Math.random() > 0.8) {
-                                // 1 every less than 5
-                                this.awayassists += 1;
-                            }
-            if(Math.random() > 0.9) {
-                this.awayrebounds += 1;
-            }
+        if(Math.random() > 0.9) {
+            chosenPlayer.stats.rebounds += 1;
         }
         // Decide whether to create a good log for the winner
         // or a bad one for the losers

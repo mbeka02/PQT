@@ -99,23 +99,55 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                                 </tr>
                                 <tr>
                                     <td>Rebounds:</td>
-                                    <td>{game.homerebounds}</td>
-                                    <td>{game.awayrebounds}</td>
+                                    <td>
+                                        {
+                                            Math.max(...game.home.players.map((p) => p.stats.rebounds))
+                                        }
+                                    </td>
+                                    <td>
+                                        {
+                                            Math.max(...game.away.players.map((p) => p.stats.rebounds))
+                                        }
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Assists:</td>
-                                    <td>{game.homeassists}</td>
-                                    <td>{game.awayassists}</td>
+                                    <td>
+                                        {
+                                            Math.max(...game.home.players.map((p) => p.stats.assists))
+                                        }
+                                    </td>
+                                    <td>
+                                        {
+                                            Math.max(...game.away.players.map((p) => p.stats.assists))
+                                        }
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Steals:</td>
-                                    <td>{game.homesteals}</td>
-                                    <td>{game.awaysteals}</td>
+                                    <td>
+                                        {
+                                            Math.max(...game.home.players.map((p) => p.stats.steals))
+                                        }
+                                    </td>
+                                    <td>
+                                        {
+                                            Math.max(...game.away.players.map((p) => p.stats.steals))
+                                        }
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Blocks:</td>
-                                    <td>{game.homeblocks}</td>
-                                    <td>{game.awayblocks}</td>
+                                    <td>
+                                        {
+                                            Math.max(...game.home.players.map((p) => p.stats.blocks))
+                                        }
+                                    </td>
+                                    <td>
+                                        {
+                                            Math.max(...game.away.players.map((p) => p.stats.blocks))
+                                        }
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
