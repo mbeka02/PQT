@@ -1,7 +1,7 @@
 import style from '../styles/game.module.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import GameModal from './_gameModal';
-import { GameClass, TeamClass, LogClass } from '@/public/static/scripts/gameMechanics';
+import { GameClass, TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
 import modalStyles from 'styles/gameModal.module.css';
 
 function TeamWrapper({team, gameScore, finished, won} : {team: TeamClass, gameScore: number, finished: boolean, won: boolean}) {
@@ -37,123 +37,111 @@ function LogWrapper({ log } : { log: LogClass }) {
     </>
 }
 
-export default function Game({ game, homeScore, awayScore, id } : { game: GameClass, homeScore: number, awayScore: number, id: number }): JSX.Element {
-    const [ showModal, setShowModal ] = useState<boolean>(false);
+export default function Game({ game, homeScore, awayScore, id } : { game: GameClass, homeScore: number, awayScore: number, id: number }) {
+  const [showModal, setShowModal] = useState(false);
 
-    function showModalOnClick() {
-        setShowModal(true);
-    }
+  function showModalOnClick() {
+    setShowModal(true);
+  }
 
-    function hideModalOnClick() {
-        setShowModal(false);
-    }
+  function hideModalOnClick() {
+    setShowModal(false);
+  }
 
-    if(game == undefined || game.home == undefined || game.away == undefined || game == undefined || awayScore == undefined || id == undefined) {
-        return <></>;
-    }
+  if (!game || !game.home || !game.away || homeScore === undefined || awayScore === undefined || id === undefined) {
+    return null;
+  }
 
-    return (
+  const getBestPlayerStat = (players: PlayerClass[], stat:"points"|"rebounds"|"assists"|"steals"|"blocks") => {
+    const maxPointsPlayer = players.reduce((maxPlayer, player) => {
+      return player.stats[stat] > maxPlayer.stats[stat] ? player : maxPlayer;
+    }, players[0]);
+
+    return maxPointsPlayer.stats[stat];
+  };
+
+  const bestHomePlayerPoints = getBestPlayerStat(game.home.players, "points");
+  const bestHomePlayerRebounds = getBestPlayerStat(game.home.players, "rebounds");
+  const bestHomePlayerAssists = getBestPlayerStat(game.home.players, "assists");
+  const bestHomePlayerSteals = getBestPlayerStat(game.home.players, "steals");
+  const bestHomePlayerBlocks = getBestPlayerStat(game.home.players, "blocks");
+
+  const bestAwayPlayerPoints = getBestPlayerStat(game.away.players, "points");
+  const bestAwayPlayerRebounds = getBestPlayerStat(game.away.players, "rebounds");
+  const bestAwayPlayerAssists = getBestPlayerStat(game.away.players, "assists");
+  const bestAwayPlayerSteals = getBestPlayerStat(game.away.players, "steals");
+  const bestAwayPlayerBlocks = getBestPlayerStat(game.away.players, "blocks");
+
+  return (
+    <>
+      {showModal && (
         <>
-            { showModal && (
-                <>
-                    <GameModal home={game.home} away={game.away} homeScore={homeScore} awayScore={awayScore} logs={game.logs}/>
-                    <button className={modalStyles.button} onClick={hideModalOnClick} type="button">X</button>
-                </>
-            )}
-
-            <div className={style.wrapper} onClick={showModalOnClick}>
-                <h1>{id}</h1>
-                <div className={style.contentWrapper}>
-                    <div className={style.teamswrapper}>
-                        <TeamWrapper team={game.home} gameScore={game.homepoints} finished={game.finished} won={game.homeWon}/>
-                        <TeamWrapper team={game.away} gameScore={game.awaypoints} finished={game.finished} won={game.awayWon}/>
-                    </div>
-                    <div className={style.logs}>
-                        {game.logs.length && game.logs.map((l, key) => <LogWrapper log={l} key={key}></LogWrapper>) || <p>No logs available yet...</p>}
-                    </div>
-                    <div className={style.conditions}>
-                        <h3>
-                            Game conditions:
-                        </h3>
-                        <p>
-                            Location: {game.homeStadium ? game.home.city + " stadium" : game.away.city + " stadium"}
-                        </p>
-                        <p>
-                            Weather: {game.weather}
-                        </p>
-                    </div>
-                    <div className={style.gameStats}>
-                        <table className={style.statsTable}>
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Home </th>
-                                    <th>Away</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Points:</td>
-                                    <td>{game.homepoints}</td>
-                                    <td>{game.awaypoints}</td>
-                                </tr>
-                                <tr>
-                                    <td>Rebounds:</td>
-                                    <td>
-                                        {
-                                            Math.max(...game.home.players.map((p) => p.stats.rebounds))
-                                        }
-                                    </td>
-                                    <td>
-                                        {
-                                            Math.max(...game.away.players.map((p) => p.stats.rebounds))
-                                        }
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Assists:</td>
-                                    <td>
-                                        {
-                                            Math.max(...game.home.players.map((p) => p.stats.assists))
-                                        }
-                                    </td>
-                                    <td>
-                                        {
-                                            Math.max(...game.away.players.map((p) => p.stats.assists))
-                                        }
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Steals:</td>
-                                    <td>
-                                        {
-                                            Math.max(...game.home.players.map((p) => p.stats.steals))
-                                        }
-                                    </td>
-                                    <td>
-                                        {
-                                            Math.max(...game.away.players.map((p) => p.stats.steals))
-                                        }
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Blocks:</td>
-                                    <td>
-                                        {
-                                            Math.max(...game.home.players.map((p) => p.stats.blocks))
-                                        }
-                                    </td>
-                                    <td>
-                                        {
-                                            Math.max(...game.away.players.map((p) => p.stats.blocks))
-                                        }
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+          <GameModal home={game.home} away={game.away} homeScore={homeScore} awayScore={awayScore} logs={game.logs} />
+          <button className={modalStyles.button} onClick={hideModalOnClick} type="button">
+            X
+          </button>
         </>
-    );
+      )}
+
+      <div className={style.wrapper} onClick={showModalOnClick}>
+        <h1>{id}</h1>
+        <div className={style.contentWrapper}>
+          <div className={style.teamswrapper}>
+            <TeamWrapper team={game.home} gameScore={game.homepoints} finished={game.finished} won={game.homeWon} />
+            <TeamWrapper team={game.away} gameScore={game.awaypoints} finished={game.finished} won={game.awayWon} />
+          </div>
+          <div className={style.logs}>
+            {game.logs.length ? (
+              game.logs.map((l, key) => <LogWrapper log={l} key={key}></LogWrapper>)
+            ) : (
+              <p>No logs available yet...</p>
+            )}
+          </div>
+          <div className={style.conditions}>
+            <h3>Game conditions:</h3>
+            <p>Location: {game.homeStadium ? game.home.city + " stadium" : game.away.city + " stadium"}</p>
+            <p>Weather: {game.weather}</p>
+          </div>
+          <div className={style.gameStats}>
+            <table className={style.statsTable}>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>Home</th>
+                  <th>Away</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Points:</td>
+                  <td>{bestHomePlayerPoints}</td>
+                  <td>{bestAwayPlayerPoints}</td>
+                </tr>
+                <tr>
+                  <td>Rebounds:</td>
+                  <td>{bestHomePlayerRebounds}</td>
+                  <td>{bestAwayPlayerRebounds}</td>
+                </tr>
+                <tr>
+                  <td>Assists:</td>
+                  <td>{bestHomePlayerAssists}</td>
+                  <td>{bestAwayPlayerAssists}</td>
+                </tr>
+                <tr>
+                  <td>Steals:</td>
+                  <td>{bestHomePlayerSteals}</td>
+                  <td>{bestAwayPlayerSteals}</td>
+                </tr>
+                <tr>
+                  <td>Blocks:</td>
+                  <td>{bestHomePlayerBlocks}</td>
+                  <td>{bestAwayPlayerBlocks}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }
