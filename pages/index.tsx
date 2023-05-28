@@ -2,16 +2,43 @@ import Head from 'next/head'
 import styles from '@/styles/Home.module.css'
 import gameStyles from '@/styles/game.module.css'
 import Game from './_game';
-import { GameClass } from '@/public/static/scripts/gameMechanics';
+import { GameClass, PlayerClass, TeamClass } from '@/public/static/scripts/gameMechanics';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Blob } from 'buffer';
 
-export default function Home() {
+interface APITeamData {
+  [key:string] : {
+    team: {
+      id: number,
+      city: string,
+      name: string,
+      image: Blob,
+      animal: string
+    },
+    players: PlayerClass[]
+  }
+}
+
+export default function Home({ teams }: { teams: APITeamData }) {
   const [games, setGames] = useState<GameClass[]>()
   const [num, setNum] = useState<number>(10);
+  const [t, setT] = useState<TeamClass[]>([]);
 
   useEffect(() => {
-    setGames(Array.from({ length: 50 }, _ => new GameClass()))
+    let res:TeamClass[] = [];
+    teams && Object.keys(teams).forEach((k: string) => {
+      res.push(
+        new TeamClass(
+          teams[k].team.name,
+          teams[k].players,
+          teams[k].team.city,
+          teams[k].team.animal
+        )
+      );
+    });
+    setT(res);
+    setGames(Array.from({ length: 50 }, _ => new GameClass(res)));
   }, [])
 
   function doTimes(times: number, f: Function) {
@@ -34,7 +61,7 @@ export default function Home() {
   }
 
   function updateNumber(num: number) {
-    setGames(Array.from({length: num * multiplier}, _ => new GameClass()));
+    setGames(Array.from({length: num * multiplier}, _ => new GameClass(t)));
     setNum(num);
   }
 
@@ -52,8 +79,8 @@ export default function Home() {
         <div className={styles.commandCenter}>
           <div>
             <button onClick={play}>Play a round</button>
-            <button onClick={function() {doTimes(5, play)}}>x5</button>
-            <button onClick={function() {doTimes(10, play)}}>x10</button>
+            <button onClick={() => doTimes(5, play)}>x5</button>
+            <button onClick={() => doTimes(10, play)}>x10</button>
           </div>
           <label>{num * multiplier}</label>
           <input type="range" id="number" onChange={function (e: any){updateNumber(parseInt(e.target.value))}} value={num}/>
@@ -74,4 +101,30 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  try {
+    let teams: APITeamData | undefined = undefined;
+    await fetch('https://blaseballapi.nicolello.repl.co/get25teams')
+      .then((response) => response.json())
+      .then((data) => teams = data);
+
+    if(teams == undefined || typeof(teams) === undefined) {
+      throw new Error('Team data undefined')
+    }
+
+    return {
+      props: {
+        teams,
+      },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: {
+        teams: {},
+      },
+    };
+  }
 }

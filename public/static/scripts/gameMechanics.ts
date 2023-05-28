@@ -1,5 +1,6 @@
 export class PlayerClass {
     name: string = '';
+    team: string = ''
     homeLocation: string = '';
     conditions: string[] = [];
     cuisine: string =  '';
@@ -26,8 +27,9 @@ export class PlayerClass {
         steals: 0,
         blocks: 0
     };
-    constructor( n:string, h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number) {
+    constructor( n:string, t:string, h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number) {
         this.name = n;
+        this.team = t;
         this.homeLocation = h;
         this.conditions = cond;
         this.cuisine = cui;
@@ -72,6 +74,7 @@ function createRandomPlayer(n:number): PlayerClass[] {
 
     for(let i=0; i<=n; i++) {
         const randomName = Math.random().toString(36).slice(2, 7); // random 5-letter name
+        const randomTeam = Math.random().toString(36).slice(2, 7); // random 5-letter team
         const randomHomeLocation = homeLocations[Math.floor(Math.random() * homeLocations.length)];
         const randomConditions = [conditions[Math.floor(Math.random() * conditions.length)]];
         const randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
@@ -93,7 +96,7 @@ function createRandomPlayer(n:number): PlayerClass[] {
         const randomBlocking = Math.floor(Math.random() * 10);
         const randomSpeed = Math.floor(Math.random() * 10);
 
-        const p = new PlayerClass(randomName, randomHomeLocation, randomConditions, randomCuisine, randomColor, randomCoffee, randomClass, randomZodiac, randomVibes, randomPosition, randomStyle, random2pt, random3pt, randomPassing, randomDribbling, randomDefense, randomJumping, randomStealing, randomBlocking, randomSpeed);
+        const p = new PlayerClass(randomName, randomTeam, randomHomeLocation, randomConditions, randomCuisine, randomColor, randomCoffee, randomClass, randomZodiac, randomVibes, randomPosition, randomStyle, random2pt, random3pt, randomPassing, randomDribbling, randomDefense, randomJumping, randomStealing, randomBlocking, randomSpeed);
         
         res.push(p);
     }
@@ -104,14 +107,19 @@ function createRandomPlayer(n:number): PlayerClass[] {
 
 export class TeamClass {
     name;
+    players;
+    city;
+    emoji;
     wins: number = 0;
     losses: number = 0;
     ties: number = 0;
     points: number = 0;
-    constructor(public city: string, public animal: string, public emoji: string, public players: PlayerClass[], public playing: PlayerClass[]) {
-        this.name = city + ' ' + animal;
+    constructor(name: string, players: PlayerClass[], city: string, animal:string) {
+        let animals: string[] = ['lions', 'tigers', 'elephants', 'giraffes', 'monkeys', 'pandas', 'zebras', 'koalas', 'kangaroos', 'hippos', 'crocodiles', 'rhinos', 'penguins', 'whales', 'dolphins', 'octopi'];
+        let emojis: string[] = ['🦁','🐯','🐘','🦒','🐵','🐼','🦓','🐨','🦘','🦛','🐊','🦏','🐧','🐋','🐬','🐙'];
+        this.emoji = emojis[animals.indexOf(animal) || 0]
         this.city = city;
-        this.animal = animal;
+        this.name = name;
         this.players = players;
     }
 }
@@ -130,9 +138,7 @@ export class LogClass {
 
 export class GameClass {
     private cities: string[] = ['New York', 'London', 'Paris', 'Tokyo', 'Sydney', 'Rio de Janeiro', 'Beijing', 'Dubai', 'Toronto', 'Mumbai', 'Cairo', 'Moscow', 'Los Angeles', 'Bangkok', 'Amsterdam', 'Barcelona', 'Berlin', 'Cape Town', 'Chicago', 'Dallas'];
-    private animals: string[] = ['lions', 'tigers', 'elephants', 'giraffes', 'monkeys', 'pandas', 'zebras', 'koalas', 'kangaroos', 'hippos', 'crocodiles', 'rhinos', 'penguins', 'whales', 'dolphins', 'octopi'];
-    private emojis: string[] = ['🦁','🐯','🐘','🦒','🐵','🐼','🦓','🐨','🦘','🦛','🐊','🦏','🐧','🐋','🐬','🐙'];
-    private conditions: string[] = ['sunny', 'cloudy', 'foggy', 'rainy', 'stormy']
+    private conditions: string[] = ['sunny', 'cloudy', 'foggy', 'rainy', 'stormy'];
     home: TeamClass;
     away: TeamClass;
     homepoints: number = 0;
@@ -154,31 +160,26 @@ export class GameClass {
     homeWon: boolean = false;
     awayWon: boolean = false;
 
-    constructor() {
-        const homeCity = this.cities[Math.floor(Math.random() * this.cities.length)];
-        // avoid awayCity and homeCity being the same
-        let awayCity = homeCity;
-        while (awayCity === homeCity) {
-        awayCity = this.cities[Math.floor(Math.random() * this.cities.length)];
-        }
-        const homeAnimalIndex = Math.floor(Math.random() * this.animals.length);
-        const homeAnimal = this.animals[homeAnimalIndex];
-        const homeEmoji = this.emojis[homeAnimalIndex];
-        let animalIndex = Math.floor(Math.random() * this.animals.length);
-        while(animalIndex == homeAnimalIndex) {
-            animalIndex = Math.floor(Math.random() * this.animals.length);
-        }
-        const awayAnimal = this.animals[animalIndex];
-        const awayEmoji = this.emojis[animalIndex];
-        this.home = new TeamClass(homeCity, homeAnimal, homeEmoji, createRandomPlayer(12), createRandomPlayer(6));
-        this.away = new TeamClass(awayCity, awayAnimal, awayEmoji, createRandomPlayer(12), createRandomPlayer(6));
+    constructor(teams:TeamClass[]) {
+        const homeIndex = Math.round((teams.length - 1) * Math.random())
+        this.home = teams[homeIndex];
+        console.log(homeIndex, this.home);
+        homeIndex == teams.length -1 ? this.away = teams[homeIndex - 1] : this.away = teams[homeIndex + 1];
+
         this.home.players.forEach(p => p.stats = {
             points: 0,
             rebounds: 0,
             assists: 0,
             steals: 0,
             blocks: 0
-        })
+        });
+        this.away.players.forEach(p => p.stats = {
+            points: 0,
+            rebounds: 0,
+            assists: 0,
+            steals: 0,
+            blocks: 0
+        });
         const mean = 102; // statistically average mean points per game
         const stdDev = 10; // standard deviation. How much around the mean will 66.6% of data points be.
         this.totalpoints = Math.round(this.gaussianRand(mean, stdDev));
