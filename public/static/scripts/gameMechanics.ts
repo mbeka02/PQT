@@ -59,51 +59,6 @@ export class PlayerClass {
     }
 }
 
-function createRandomPlayer(n:number): PlayerClass[] {
-    const homeLocations = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Philadelphia'];
-    const conditions = ['Rainy', 'Sunny', 'Cloudy', 'Windy'];
-    const cuisines = ['Italian', 'Mexican', 'Chinese', 'Japanese', 'Indian'];
-    const colors = ['Red', 'Green', 'Blue', 'Yellow', 'Purple'];
-    const coffees = ['Espresso', 'Latte', 'Cappuccino', 'Americano', 'Mocha'];
-    const classes = ['Freshman', 'Sophomore', 'Junior', 'Senior'];
-    const zodiacs = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
-    const vibes = ['Chill', 'Upbeat', 'Mellow', 'Energetic'];
-    const positions = ['Point Guard', 'Shooting Guard', 'Small Forward', 'Power Forward', 'Center'];
-
-    let res = [];
-
-    for(let i=0; i<=n; i++) {
-        const randomName = Math.random().toString(36).slice(2, 7); // random 5-letter name
-        const randomTeam = Math.random().toString(36).slice(2, 7); // random 5-letter team
-        const randomHomeLocation = homeLocations[Math.floor(Math.random() * homeLocations.length)];
-        const randomConditions = [conditions[Math.floor(Math.random() * conditions.length)]];
-        const randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        const randomCoffee = coffees[Math.floor(Math.random() * coffees.length)];
-        const randomClass = classes[Math.floor(Math.random() * classes.length)];
-        const randomZodiac = zodiacs[Math.floor(Math.random() * zodiacs.length)];
-        const randomVibes = vibes[Math.floor(Math.random() * vibes.length)];
-        const randomPosition = positions[Math.floor(Math.random() * positions.length)];
-        const randomStyle = '';
-        // random numbers from 0 to 10
-        const random2pt = Math.floor(Math.random() * 10);
-        const random3pt = Math.floor(Math.random() * 10);
-        const randomPassing = Math.floor(Math.random() * 10);
-        const randomDribbling = Math.floor(Math.random() * 10);
-        const randomDefense = Math.floor(Math.random() * 10);
-        const randomJumping = Math.floor(Math.random() * 10);
-        const randomStealing = Math.floor(Math.random() * 10);
-        const randomBlocking = Math.floor(Math.random() * 10);
-        const randomSpeed = Math.floor(Math.random() * 10);
-
-        const p = new PlayerClass(randomName, randomTeam, randomHomeLocation, randomConditions, randomCuisine, randomColor, randomCoffee, randomClass, randomZodiac, randomVibes, randomPosition, randomStyle, random2pt, random3pt, randomPassing, randomDribbling, randomDefense, randomJumping, randomStealing, randomBlocking, randomSpeed);
-        
-        res.push(p);
-    }
-
-    return res;
-}
-
 
 export class TeamClass {
     name;
@@ -137,7 +92,6 @@ export class LogClass {
 }
 
 export class GameClass {
-    private cities: string[] = ['New York', 'London', 'Paris', 'Tokyo', 'Sydney', 'Rio de Janeiro', 'Beijing', 'Dubai', 'Toronto', 'Mumbai', 'Cairo', 'Moscow', 'Los Angeles', 'Bangkok', 'Amsterdam', 'Barcelona', 'Berlin', 'Cape Town', 'Chicago', 'Dallas'];
     private conditions: string[] = ['sunny', 'cloudy', 'foggy', 'rainy', 'stormy'];
     home: TeamClass;
     away: TeamClass;
@@ -163,8 +117,12 @@ export class GameClass {
     constructor(teams:TeamClass[]) {
         const homeIndex = Math.round((teams.length - 1) * Math.random())
         this.home = teams[homeIndex];
-        console.log(homeIndex, this.home);
-        homeIndex == teams.length -1 ? this.away = teams[homeIndex - 1] : this.away = teams[homeIndex + 1];
+        const awayIndex = Math.round((teams.length - 1) * Math.random())
+        if(homeIndex == awayIndex) {
+            homeIndex == teams.length - 1 ? this.away = teams[homeIndex - 1] : this.away = teams[homeIndex + 1];
+        } else {
+            this.away = teams[awayIndex];
+        }
 
         this.home.players.forEach(p => p.stats = {
             points: 0,
