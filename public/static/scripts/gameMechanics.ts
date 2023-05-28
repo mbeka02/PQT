@@ -113,6 +113,7 @@ export class GameClass {
     finished: boolean = false;
     homeWon: boolean = false;
     awayWon: boolean = false;
+    draw: boolean = false;
 
     constructor(teams:TeamClass[]) {
         const homeIndex = Math.round((teams.length - 1) * Math.random())
@@ -214,12 +215,16 @@ export class GameClass {
     playRound(): void {
         if (!this.totalpoints) { // if no points left
             this.homeWon = this.homepoints > this.awaypoints;
-            this.awayWon = !this.homeWon;
+            this.awayWon = this.awaypoints > this.homepoints;
 
             if(!this.finished){ // to avoid doing it more than once
-                if(this.homeWon) {
+                if(this.awayWon) {
                     this.home.wins += 1;
                     this.away.losses += 1;
+                } else if(this.homepoints == this.awaypoints) {
+                    this.draw = true;
+                    this.home.ties += 1;
+                    this.away.ties += 1;
                 } else {
                     this.home.losses += 1;
                     this.away.wins += 1;

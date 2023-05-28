@@ -57,6 +57,11 @@
     padding: 4px;
 }
 
+.teamDraw {
+    border: 3px solid aqua;
+    padding: 4px;
+}
+
 .team > div {
     width: 100%;
     display: flex;

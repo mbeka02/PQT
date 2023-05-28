@@ -4,11 +4,13 @@ import GameModal from './_gameModal';
 import { GameClass, TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
 import modalStyles from 'styles/gameModal.module.css';
 
-function TeamWrapper({team, gameScore, finished, won} : {team: TeamClass, gameScore: number, finished: boolean, won: boolean}) {
+function TeamWrapper({team, gameScore, finished, won, draw} : {team: TeamClass, gameScore: number, finished: boolean, won: boolean, draw:boolean}) {
     let className = style.team;
     if(finished && won) {
         className = `${style.team} ${style.teamWon}`;
-    } else if(finished) {
+    } else if(finished && draw) {
+        className = `${style.team} ${style.teamdraw}`;
+    } else if(finished && !won) {
         className = `${style.team} ${style.teamLost}`;
     }
     return <>
@@ -87,8 +89,8 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
         <h1>{id}</h1>
         <div className={style.contentWrapper}>
           <div className={style.teamswrapper}>
-            <TeamWrapper team={game.home} gameScore={game.homepoints} finished={game.finished} won={game.homeWon} />
-            <TeamWrapper team={game.away} gameScore={game.awaypoints} finished={game.finished} won={game.awayWon} />
+            <TeamWrapper team={game.home} gameScore={game.homepoints} finished={game.finished} won={game.homeWon} draw={game.draw} />
+            <TeamWrapper team={game.away} gameScore={game.awaypoints} finished={game.finished} won={game.awayWon} draw={game.draw} />
           </div>
           <div className={style.logs}>
             {game.logs.length ? (
