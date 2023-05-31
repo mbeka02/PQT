@@ -5,28 +5,46 @@ export default function Home() {
     const [teamName, setTeamName] = useState<string>();
     const [teamLocation, setTeamLocation] = useState<string>();
 
-    function formDataOkay(): boolean {
-        return teamName !== undefined && setTeamName !== undefined;
+    const teamSchema = {
+        'id': 'INTEGER',
+        'city': 'TEXT',
+        'name': 'TEXT',
+        'image': 'BLOB',
+        'animal': 'TEXT'
     }
 
-    const handleTeamSubmit = async function (e: React.FormEvent<HTMLFormElement>): Promise<void> {
-        e.preventDefault();
-        if (!formDataOkay()) {
-            return;
-        }
-        const formData = {
-            'name': teamName,
-            'location': teamLocation
-        };
-        
+    function handleTeamSubmit(event: any) {
+        event.preventDefault(); // Prevent the default form submission behavior
+      
+        // Get the form data
+        const form = event.target;
+        const formData = new FormData(form);
+
+        // Convert the form data to JSON
+        const jsonObject:{[key:string]:any} = {};
+        formData.forEach((value, key) => {
+            jsonObject[key] = value;
+        });
+        const jsonData = JSON.stringify(jsonObject);
+      
+        // Send the form data to the API endpoint
         fetch('https://blaseballapi.nicolello.repl.co/addTeam', {
-            body: JSON.stringify(formData),
-            method: 'POST',
-            headers: {
-            'content-type': 'application/json',
-            },
-        }).then(async (r) => (await r.json()));
-    }
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: jsonData
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Handle the response from the API
+            console.log(data);
+          })
+          .catch(error => {
+            // Handle any error that occurred during the request
+            console.error(error);
+          });
+      }
 
     const handlePlayerSubmit = async function (e: React.FormEvent<HTMLFormElement>): Promise<void> {
         e.preventDefault();
@@ -38,6 +56,7 @@ export default function Home() {
         // Convert the form data to a JSON object
         const data: { [key: string]: string | number } = {};
         const intKeys: { [key: string]: boolean} = {
+            'team_id': true,
             '_2pt': true,
             '_3pt': true,
             'passing': true,
@@ -69,14 +88,18 @@ export default function Home() {
 
     return <>
         <div className={styles.formWrapper}>
-            <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addTeam' method='post' content='application/json' onSubmit={handleTeamSubmit}>
+            <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addTeam' method='post' content='application/json' onSubmit={(e) => handleTeamSubmit(e)}>
                 <h1>
                     Add a team
                 </h1>
-                <label>Name</label>
-                <input type="text" name="teamName" placeholder="name..." value={teamName} onChange={(e) => setTeamName(e.target.value)}/>
-                <label>Location</label>
-                <input type="text" name="teamLocation" placeholder="location..." value={teamLocation} onChange={(e) => setTeamLocation(e.target.value)}/>
+                <label>Id</label>
+                <input type="text" name="id" placeholder="id..."/>
+                <label>City</label>
+                <input type="text" name="city" placeholder="city..."/>
+                <label htmlFor="name">Name</label>
+                <input type="text" name="name" placeholder="name..." />
+                <label htmlFor="animal">Animal</label>
+                <input type="text" name="animal" placeholder="animal..."/>
                 <input type="submit"/>
             </form>
             <form className={styles.form} action='https://blaseballapi.nicolello.repl.co/addPlayer' method='post' content='application/json' onSubmit={handlePlayerSubmit}>
@@ -84,8 +107,12 @@ export default function Home() {
                     Add a player
                 </h1>
                 <div className={styles.playerFormOne}>
-                <label htmlFor="home-location">Home Location:</label>
-                <input type="text" id="home-location" name="home-location"/>
+                <label htmlFor="player-name">Name</label>
+                <input type='text' id='player-name' name="name"/>
+                <label htmlFor="player-name">Team ID</label>
+                <input type='number' id='team_id' name="team_id"/>
+                <label htmlFor="home_location">Home Location:</label>
+                <input type="text" id="home-location" name="home_location"/>
 
                 <label htmlFor="conditions">Conditions:</label>
                 <select id="conditions" name="conditions">
@@ -134,8 +161,6 @@ export default function Home() {
 
                 <label htmlFor="position">Position:</label>
                 <input type="text" id="position" name="position"/>
-
-                <input type="button" id="next" value="Next"/>
 
                 <label htmlFor="style">Style:</label>
                 <input type="text" id="style" name="style"/>
