@@ -41,6 +41,12 @@ export default function Home({ teams }: { teams: APITeamData }) {
     setGames(Array.from({ length: 50 }, _ => new GameClass(res)));
   }, [])
 
+  if(!Object.keys(teams).length) {
+    return <>
+      <h1>The server returned null teams! This is likely because it doesn&apos;t have enough data. Please run &apos;python3 generate.py&apos; to generate 2000 random players and their relative teams</h1>
+    </>
+  }
+
   function doTimes(times: number, f: Function) {
     for(let i = 0; i < times; i++) {
       f();

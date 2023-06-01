@@ -125,14 +125,17 @@ export class GameClass {
             this.away = teams[awayIndex];
         }
 
-        this.home.players.forEach(p => p.stats = {
+        console.log(this.home);
+        console.log(this.away);
+
+        this.home?.players.forEach(p => p.stats = {
             points: 0,
             rebounds: 0,
             assists: 0,
             steals: 0,
             blocks: 0
         });
-        this.away.players.forEach(p => p.stats = {
+        this.away?.players.forEach(p => p.stats = {
             points: 0,
             rebounds: 0,
             assists: 0,
@@ -243,8 +246,15 @@ export class GameClass {
         if (this.totalpoints < 4) { // with 3 or 2, return themselves
             points = this.totalpoints;
         }
-        // Choose winner and loser randomly
-        const winner: string = Math.random() < 0.5 ? 'home' : 'away';
+
+        let isHomeWinner = Math.random() > 0.5;
+
+        // Choose winner and loser semi-randomly
+        if(this.homepoints + this.awaypoints > 10 && this.homepoints > 0 && this.awaypoints > 0) {
+            const p = this.homepoints / this.awaypoints;
+            isHomeWinner = Math.random() * p > 0.5;
+        }
+        const winner: string = isHomeWinner ? 'home' : 'away';
         const loser: string = (winner === 'home') ? 'home' : 'away';
         //  Give them their points, respectively
         let chosenPlayer;
