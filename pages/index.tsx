@@ -76,8 +76,8 @@ export default function Home({ teams }: { teams: APITeamData }) {
   return (
     <>
       <Head>
-        <title>Blaseball clone</title>
-        <meta name="description" content="A clone of the Blaseball app" />
+        <title>PQT</title>
+        <meta name="description" content="A Blasketball simulation" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -112,7 +112,7 @@ export default function Home({ teams }: { teams: APITeamData }) {
 export async function getServerSideProps() {
   try {
     let teams: APITeamData | undefined = undefined;
-    await fetch('https://blaseballapi.nicolello.repl.co/get25teams')
+    await fetch('https://pqt.waltahhh.repl.co/get25teams')
       .then((response) => response.json())
       .then((data) => teams = data);
 
