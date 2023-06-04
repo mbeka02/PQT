@@ -28,7 +28,7 @@ export default function Home() {
         const jsonData = JSON.stringify(jsonObject);
       
         // Send the form data to the API endpoint
-        fetch('https://blaseballapi.nicolello.repl.co/addTeam', {
+        fetch('https://pqt.waltahhh.repl.co/addTeam', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
