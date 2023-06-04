@@ -86,7 +86,7 @@ export default function Home({ teams }: { teams: APITeamData }) {
           <div>
             <button onClick={play}>Play a round</button>
             <button onClick={() => doTimes(5, play)}>x5</button>
-            <button onClick={() => doTimes(10, play)}>x10</button>
+            <button onClick={() => doTimes(15, play)}>x10</button>
           </div>
           <label>{num * multiplier}</label>
           <input type="range" id="number" onChange={function (e: any){updateNumber(parseInt(e.target.value))}} value={num}/>
