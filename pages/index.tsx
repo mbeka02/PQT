@@ -112,7 +112,7 @@ export default function Home({ teams }: { teams: APITeamData }) {
 export async function getServerSideProps() {
   try {
     let teams: APITeamData | undefined = undefined;
-    await fetch('https://pqt.waltahhh.repl.co/get25teams')
+    await fetch('https://pqt-waltahhh.replit.app/get25teams')
       .then((response) => response.json())
       .then((data) => teams = data);
 

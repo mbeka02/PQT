@@ -28,7 +28,7 @@ export default function Home() {
         const jsonData = JSON.stringify(jsonObject);
       
         // Send the form data to the API endpoint
-        fetch('https://pqt.waltahhh.repl.co/addTeam', {
+        fetch('https://pqt-waltahhh.replit.app/addTeam', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ export default function Home() {
         
     
         // Send the JSON request to the server
-        fetch('https://pqt.waltahhh.repl.co/addPlayer', {
+        fetch('https://pqt-waltahhh.replit.app/addPlayer', {
             body: JSON.stringify(data),
             method: 'POST',
             headers: {
@@ -88,7 +88,7 @@ export default function Home() {
 
     return <>
         <div className={styles.formWrapper}>
-            <form className={styles.form} action='https://pqt.waltahhh.repl.co/addTeam' method='post' content='application/json' onSubmit={(e) => handleTeamSubmit(e)}>
+            <form className={styles.form} action='https://pqt-waltahhh.replit.app/addTeam' method='post' content='application/json' onSubmit={(e) => handleTeamSubmit(e)}>
                 <h1>
                     Add a team
                 </h1>
@@ -102,7 +102,7 @@ export default function Home() {
                 <input type="text" name="animal" placeholder="animal..."/>
                 <input type="submit"/>
             </form>
-            <form className={styles.form} action='https://pqt.waltahhh.repl.co/addPlayer' method='post' content='application/json' onSubmit={handlePlayerSubmit}>
+            <form className={styles.form} action='https://pqt-waltahhh.replit.app/addPlayer' method='post' content='application/json' onSubmit={handlePlayerSubmit}>
                 <h1>
                     Add a player
                 </h1>

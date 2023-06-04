@@ -92,7 +92,7 @@ export class LogClass {
 }
 
 export class GameClass {
-    private conditions: string[] = ['sunny', 'cloudy', 'foggy', 'rainy', 'stormy'];
+    private conditions: string[] = ['sunny', 'cloudy', 'foggy', 'rainy', 'stormy', 'apocalyptic', 'humid', 'indoors'];
     home: TeamClass;
     away: TeamClass;
     homepoints: number = 0;
