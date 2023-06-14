@@ -129,7 +129,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
               <tbody>
                 <tr>
                   <td>Points:</td>
-                  <td><span>{bestHomePlayerPointsName}</span></td>
+                  <td><span>{bestHomePlayerPointsName.toString()}</span></td>
                   <td><span>{bestHomePlayerPoints}</span></td>
                   <td></td>
                   <td><span>{bestAwayPlayerPoints}</span></td>
