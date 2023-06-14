@@ -61,12 +61,12 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
   const getBestPlayerStat = (players: PlayerClass[], stat: "points" | "rebounds" | "assists" | "steals" | "blocks") => {
     const maxPointsPlayer = players.reduce((maxPlayer, player) => {
       return player.stats[stat] > maxPlayer.stats[stat] ? player : maxPlayer;
-    }, players[0] || {});
+    }, { stats: { [stat]: 0 } });
 
     const playerName = `${maxPointsPlayer.firstName.charAt(0)}. ${maxPointsPlayer.lastName}`;
 
     return {
-      value: maxPointsPlayer.stats[stat] || 0,
+      value: maxPointsPlayer.stats[stat],
       player: playerName
     };
   };
