@@ -1,3 +1,5 @@
+
+//this appears to be related to the manual player data entry forms
 export class PlayerClass {
     name: string = '';
     team: string = ''
@@ -105,7 +107,7 @@ export class GameClass {
     awaysteals: number = 0;
     homeblocks: number = 0;
     awayblocks: number = 0;
-    totalpoints: number; // Represents the total points of the match. With every play, points will be detracted from this until there are exactly 0 left.
+    total_possessions: number; // Represents the total points of the match. With every play, points will be detracted from this until there are exactly 0 left.
     logs: LogClass[] = [];
     weather: string;
     homeStadium: boolean;
@@ -144,22 +146,19 @@ export class GameClass {
             steals: 0,
             blocks: 0
         });
-        const mean = 102; // statistically average mean points per game
-        const stdDev = 10; // standard deviation. How much around the mean will 66.6% of data points be.
-        this.totalpoints = Math.round(this.gaussianRand(mean, stdDev));
-        this.weather = this.conditions[Math.floor(Math.random() * this.conditions.length)];
-        this.homeStadium = Math.random() < 0.5;
+        const mean = 100; // statistically average mean possessions per game
+        const stdDev = 15; // standard deviation. How much around the mean will 66.6% of data points be.
+        this.total_possessions = Math.round(this.gaussianRand(mean, stdDev));
+        this.weather = this.conditions[Math.floor(Math.random() * this.conditions.length)]; //this picks a random game condition from the array above
+        this.homeStadium = Math.random() < 0.5; //this flips a coin to determine home team
         this.startTime = new Date().getTime()
     }
 
-    // I trust ChatGPT did a good job
+    // This generates a random number and ensures that it falls along a Gaussian distribution according to the mean and stdDev defined above
     private gaussianRand(mean: number, stdDev: number): number {
         /*
-        Quick math lesson!
-        This is a continuous probabilistic distribution using a Gaussian distribution
-        Because that's how the scores are distributed.
+        Quick math lesson! This is a continuous probabilistic distribution using a Gaussian distribution because that's how the scores are distributed.
         With a Gaussian distribution, the stdDev represents how far 66% of the data is from the mean.
-        A Gaussian distribution is like the one for the IQ distribution.
         */
         let x1, x2, rad, y1;
         do {
@@ -172,24 +171,27 @@ export class GameClass {
         return mean + y1 * stdDev;
     }
 
+    //This is a function to pull a player from a team at random
     private getRandomPlayer(team: TeamClass):PlayerClass {
         return team.players[Math.round(Math.random() * (team.players.length - 1))]
     }
 
+    //This creates a bunch of generic positive outcome logs
     private generateLog(team: string, num: number, good: boolean) {
         const positiveLogs = [
             `The ${team} team just made an impressive slam dunk!`,
             `The ${team} team scores ${num} points!`,
             `The ${team} team makes a fantastic steal!`,
             `The ${team} team scores an easy layup!`,
-            `The ${team} team's defense is on fire!`,
-            `The ${team} team makes an incredible block!`,
+            `The ${team} team's defense is on fire!`,           //right now, if this log is selected the blocks stat is incremented +1; need to change this
+            `The ${team} team makes an incredible block!`,      //right now, if this log is selected the blocks stat is incremented +1; need to change this
             `The ${team} team hits a beautiful jump shot!`,
             `The ${team} team's passing game is on point!`,
             `The ${team} team's fans are going wild after that score!`,
             `The ${team} team's fast break leads to an easy ${num} points!`
           ];
-          
+    
+        //This creates a bunch of generic negative outcome logs
         const negativeLogs = [
             `The ${team} team misses an easy shot!`,
             `The ${team} team turns over the ball!`,
@@ -208,6 +210,7 @@ export class GameClass {
 
         const index = Math.floor(Math.random() * choices.length)
         
+        //this if statement does the block stat incrementing, mentioned above in positiveLogs[] comments
         if(choices[index] == positiveLogs[4] || choices[index] == positiveLogs[5]) {
             team == 'home' ? this.getRandomPlayer(this.home).blocking += 1 : this.getRandomPlayer(this.away).blocking += 1;
         }
@@ -218,15 +221,15 @@ export class GameClass {
     }
 
     playRound(): void {
-        if (!this.totalpoints) { // if no points left
+        if (!this.total_possessions) { // if no possessions are left
             this.homeWon = this.homepoints > this.awaypoints;
             this.awayWon = this.awaypoints > this.homepoints;
 
-            if(!this.finished){ // to avoid doing it more than once
+            if(!this.finished){ // to avoid executing endgame logic more than once; increments W/L/T statistics
                 if(this.awayWon) {
                     this.home.wins += 1;
                     this.away.losses += 1;
-                } else if(this.homepoints == this.awaypoints) {
+                } else if(this.homepoints == this.awaypoints) {  //note to self to update this code; ties should not be possible -- if tied, then add possessions and resolve
                     this.draw = true;
                     this.home.ties += 1;
                     this.away.ties += 1;
@@ -239,17 +242,21 @@ export class GameClass {
             return;
         }
         let points: number = Math.floor(Math.random()) + 2; // either 2 or 3
-        if (this.totalpoints === 5) { // if there are 5 points left they must be 3 and 2
+
+        //the following if statements are special cases relating to the old scoring system; should be able to remove these
+        /*
+        if (this.total_possessions === 5) { // if there are 5 points left they must be 3 and 2
             points = 3;
         }
-        if (this.totalpoints === 4) { // similarly, with 4 they must be 2 and 2
+        if (this.total_possessions === 4) { // similarly, with 4 they must be 2 and 2
             points = 2;
         }
-        if (this.totalpoints < 4) { // with 3 or 2, return themselves
-            points = this.totalpoints;
+        if (this.total_possessions < 4) { // with 3 or 2, return themselves
+            points = this.total_possessions;
         }
+        */
 
-        let isHomeWinner = Math.random() > 0.5;
+        let isHomeWinner = Math.random() > 0.5; //flips a coin to determine if home team wins a given possession (...I think)
 
         // Choose winner and loser semi-randomly
         if(this.homepoints + this.awaypoints > 10 && this.homepoints > 0 && this.awaypoints > 0) {
@@ -258,8 +265,10 @@ export class GameClass {
         }
         const winner: string = isHomeWinner ? 'home' : 'away';
         const loser: string = (winner === 'home') ? 'home' : 'away';
-        //  Give them their points, respectively
+
+        //  This picks a random player from the team that "won" the possession and gives them their points; it also increments team score by the same point amount
         let chosenPlayer;
+
         if (winner === "home") {
             this.homepoints += points;
             chosenPlayer = this.getRandomPlayer(this.home);
@@ -267,7 +276,10 @@ export class GameClass {
             this.awaypoints += points;
             chosenPlayer = this.getRandomPlayer(this.away);
         }
-        chosenPlayer.stats.points++;
+
+        chosenPlayer.stats.points += points;
+
+        // This code randomly allocates steals and blocks to the same chosenPlayer; probably want to delete/update this code eventually
         if (Math.random() > 0.8) {
                         // 1 every 5
                         chosenPlayer.stats.steals += 1;
@@ -276,9 +288,12 @@ export class GameClass {
                             // 1 every less than 5
                             chosenPlayer.stats.blocks += 1;
                         }
+
+        // Same random allocation thing here for rebounds; probably want to delete/update this code eventually                
         if(Math.random() > 0.9) {
             chosenPlayer.stats.rebounds += 1;
         }
+
         // Decide whether to create a good log for the winner
         // or a bad one for the losers
         const good = Math.random() < 0.5;
@@ -287,6 +302,6 @@ export class GameClass {
         } else {
             this.generateLog(loser, points, false);
         }
-        this.totalpoints -= points;
+        this.total_possessions -= 1; // Increments total_possessions down by 1
     }
 }

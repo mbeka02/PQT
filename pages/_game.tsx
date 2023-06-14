@@ -101,7 +101,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
           </div>
           <div className={style.conditions}>
             <h3>Game conditions:</h3>
-            <p>Location: {game.homeStadium ? game.home.city + " stadium" : game.away.city + " stadium"}</p>
+            <p>Location: {game.homeStadium ? game.home.city + " stadium" : game.away.city + " arena"}</p>
             <p>Weather: {game.weather}</p>
           </div>
           <div className={style.gameStats}>
