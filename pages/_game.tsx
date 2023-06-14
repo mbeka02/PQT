@@ -130,29 +130,29 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                 <tr>
                   <td>Points:</td>
                   <td><span>{bestHomePlayerPointsName}</span></td>
-                  <td>{bestHomePlayerPoints}</td>
+                  <td><span>{bestHomePlayerPoints}</span></td>
                   <td></td>
-                  <td>{bestAwayPlayerPoints}</td>
+                  <td><span>{bestAwayPlayerPoints}</span></td>
                 </tr>
                 <tr>
                   <td>Rebounds:</td>
-                  <td>{bestHomePlayerRebounds}</td>
-                  <td>{bestAwayPlayerRebounds}</td>
+                  <td><span>{bestHomePlayerRebounds}</span></td>
+                  <td><span>{bestAwayPlayerRebounds}</span></td>
                 </tr>
                 <tr>
                   <td>Assists:</td>
-                  <td>{bestHomePlayerAssists}</td>
-                  <td>{bestAwayPlayerAssists}</td>
+                  <td><span>{bestHomePlayerAssists}</span></td>
+                  <td><span>{bestAwayPlayerAssists}</span></td>
                 </tr>
                 <tr>
                   <td>Steals:</td>
-                  <td>{bestHomePlayerSteals}</td>
-                  <td>{bestAwayPlayerSteals}</td>
+                  <td><span>{bestHomePlayerSteals}</span></td>
+                  <td><span>{bestAwayPlayerSteals}</span></td>
                 </tr>
                 <tr>
                   <td>Blocks:</td>
-                  <td>{bestHomePlayerBlocks}</td>
-                  <td>{bestAwayPlayerBlocks}</td>
+                  <td><span>{bestHomePlayerBlocks}</span></td>
+                  <td><span>{bestAwayPlayerBlocks}</span></td>
                 </tr>
               </tbody>
             </table>
