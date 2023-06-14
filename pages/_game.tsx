@@ -130,29 +130,29 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                 <tr>
                   <td>Points:</td>
                   <td><span>{bestHomePlayerPointsName.toString()}</span></td>
-                  <td><span>{bestHomePlayerPoints}</span></td>
+                  <td><span>{bestHomePlayerPoints.toString()}</span></td>
                   <td></td>
-                  <td><span>{bestAwayPlayerPoints}</span></td>
+                  <td><span>{bestAwayPlayerPoints.toString()}</span></td>
                 </tr>
                 <tr>
                   <td>Rebounds:</td>
-                  <td><span>{bestHomePlayerRebounds}</span></td>
-                  <td><span>{bestAwayPlayerRebounds}</span></td>
+                  <td><span>{bestHomePlayerRebounds.toString()}</span></td>
+                  <td><span>{bestAwayPlayerRebounds.toString()}</span></td>
                 </tr>
                 <tr>
                   <td>Assists:</td>
-                  <td><span>{bestHomePlayerAssists}</span></td>
-                  <td><span>{bestAwayPlayerAssists}</span></td>
+                  <td><span>{bestHomePlayerAssists.toString()}</span></td>
+                  <td><span>{bestAwayPlayerAssists.toString()}</span></td>
                 </tr>
                 <tr>
                   <td>Steals:</td>
-                  <td><span>{bestHomePlayerSteals}</span></td>
-                  <td><span>{bestAwayPlayerSteals}</span></td>
+                  <td><span>{bestHomePlayerSteals.toString()}</span></td>
+                  <td><span>{bestAwayPlayerSteals.toString()}</span></td>
                 </tr>
                 <tr>
                   <td>Blocks:</td>
-                  <td><span>{bestHomePlayerBlocks}</span></td>
-                  <td><span>{bestAwayPlayerBlocks}</span></td>
+                  <td><span>{bestHomePlayerBlocks.toString()}</span></td>
+                  <td><span>{bestAwayPlayerBlocks.toString()}</span></td>
                 </tr>
               </tbody>
             </table>
