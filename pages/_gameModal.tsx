@@ -1,7 +1,7 @@
 import styles from 'styles/gameModal.module.css';
 import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
 
-function Player({ p }: {p:PlayerClass}) {
+/* function Player({ p }: {p:PlayerClass}) {
     return <>
     <div>
         2pt: {p._2pt} <br/>
@@ -15,7 +15,7 @@ function Player({ p }: {p:PlayerClass}) {
         speed: {p.speed} <br/>
     </div>
     </>
-}
+}*/
 
 export default function GameModal({ home, away, homeScore, awayScore, logs }: { home: TeamClass | undefined, away: TeamClass | undefined, homeScore: number | undefined, awayScore: number | undefined, logs:LogClass[] | undefined}) {
     return <>

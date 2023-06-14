@@ -101,7 +101,7 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .log {
-    color: gray;
+    color: ghostwhite;
     display: flex;
     flex-direction: row;
     align-items: center;

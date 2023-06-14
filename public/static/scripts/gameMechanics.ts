@@ -115,6 +115,8 @@ export class GameClass {
     awayWon: boolean = false;
     draw: boolean = false;
 
+
+// This constructor randomly grabs a home and away team from the TeamClass array
     constructor(teams:TeamClass[]) {
         const homeIndex = Math.round((teams.length - 1) * Math.random())
         this.home = teams[homeIndex];
