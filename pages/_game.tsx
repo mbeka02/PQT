@@ -63,6 +63,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
       return player.stats[stat] > maxPlayer.stats[stat] ? player : maxPlayer;
     }, { stats: { [stat]: 0 } });
 
+    console.log(maxPointsPlayer); //debug statement
     const playerName = `${maxPointsPlayer.firstName.charAt(0)}. ${maxPointsPlayer.lastName}`;
 
     return {
