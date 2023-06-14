@@ -4,6 +4,8 @@ import GameModal from './_gameModal';
 import { GameClass, TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
 import modalStyles from 'styles/gameModal.module.css';
 
+
+// This function defines the box that displays each team's location, name, W/L record and game score 
 function TeamWrapper({team, gameScore, finished, won, draw} : {team: TeamClass, gameScore: number, finished: boolean, won: boolean, draw:boolean}) {
     let className = style.team;
     if(finished && won) {
@@ -19,6 +21,7 @@ function TeamWrapper({team, gameScore, finished, won, draw} : {team: TeamClass, 
         <div>
             <div>
                 <h3>
+                    {team.city}
                     {team.name}
                 </h3>
                 <p><span>{team.wins}</span>-<span>{team.ties}</span>-<span>{team.losses}</span></p>
@@ -29,6 +32,7 @@ function TeamWrapper({team, gameScore, finished, won, draw} : {team: TeamClass, 
     </>
 }
 
+// This function defines the box that displays the game logs
 function LogWrapper({ log } : { log: LogClass }) {
     let seconds = Math.round(log.date / 1000).toString() + "s";
     return <>
@@ -54,15 +58,22 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
     return null;
   }
 
-  const getBestPlayerStat = (players: PlayerClass[], stat:"points"|"rebounds"|"assists"|"steals"|"blocks") => {
+  const getBestPlayerStat = (players: PlayerClass[], stat: "points" | "rebounds" | "assists" | "steals" | "blocks") => {
     const maxPointsPlayer = players.reduce((maxPlayer, player) => {
       return player.stats[stat] > maxPlayer.stats[stat] ? player : maxPlayer;
     }, players[0]);
 
-    return maxPointsPlayer.stats[stat];
+    const playerName = `${maxPointsPlayer.firstName.charAt(0)}. ${maxPointsPlayer.lastName}`;
+
+    return {
+      value: maxPointsPlayer.stats[stat],
+      player: playerName
+    };
   };
 
+
   const bestHomePlayerPoints = getBestPlayerStat(game.home.players, "points");
+  const bestHomePlayerPointsName = bestHomePlayerPoints.player;
   const bestHomePlayerRebounds = getBestPlayerStat(game.home.players, "rebounds");
   const bestHomePlayerAssists = getBestPlayerStat(game.home.players, "assists");
   const bestHomePlayerSteals = getBestPlayerStat(game.home.players, "steals");
@@ -109,14 +120,18 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
               <thead>
                 <tr>
                   <th></th>
+                  <th></th>         {/* empty space to display player names */}
                   <th>Home</th>
+                  <th></th>         {/* empty space to display player names */}
                   <th>Away</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Points:</td>
+                  <td>{bestHomePlayerPointsName}</td>
                   <td>{bestHomePlayerPoints}</td>
+                  <td></td>
                   <td>{bestAwayPlayerPoints}</td>
                 </tr>
                 <tr>
