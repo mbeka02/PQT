@@ -183,8 +183,8 @@ export class GameClass {
             `The ${team} team scores ${num} points!`,
             `The ${team} team makes a fantastic steal!`,
             `The ${team} team scores an easy layup!`,
-            `The ${team} team's defense is on fire!`,           //right now, if this log is selected the blocks stat is incremented +1; need to change this
-            `The ${team} team makes an incredible block!`,      //right now, if this log is selected the blocks stat is incremented +1; need to change this
+            `The ${team} team's defense is on fire!`,           
+            `The ${team} team makes an incredible block!`,      
             `The ${team} team hits a beautiful jump shot!`,
             `The ${team} team's passing game is on point!`,
             `The ${team} team's fans are going wild after that score!`,
@@ -210,10 +210,12 @@ export class GameClass {
 
         const index = Math.floor(Math.random() * choices.length)
         
+        /*
         //this if statement does the block stat incrementing, mentioned above in positiveLogs[] comments
         if(choices[index] == positiveLogs[4] || choices[index] == positiveLogs[5]) {
             team == 'home' ? this.getRandomPlayer(this.home).blocking += 1 : this.getRandomPlayer(this.away).blocking += 1;
         }
+        */
 
         const res = choices[index]
 
@@ -241,7 +243,8 @@ export class GameClass {
             this.finished = true;
             return;
         }
-        let points: number = Math.floor(Math.random()) + 2; // either 2 or 3
+
+        let points: number = Math.floor(Math.random() * 4) + 1; // either 1, 2, 3, or 4
 
         //the following if statements are special cases relating to the old scoring system; should be able to remove these
         /*
@@ -259,10 +262,14 @@ export class GameClass {
         let isHomeWinner = Math.random() > 0.5; //flips a coin to determine if home team wins a given possession (...I think)
 
         // Choose winner and loser semi-randomly
+
+        /*
         if(this.homepoints + this.awaypoints > 10 && this.homepoints > 0 && this.awaypoints > 0) {
             const p = this.homepoints / this.awaypoints;
             isHomeWinner = Math.random() * p > 0.5;
         }
+        */
+        
         const winner: string = isHomeWinner ? 'home' : 'away';
         const loser: string = (winner === 'home') ? 'home' : 'away';
 
