@@ -129,7 +129,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
               <tbody>
                 <tr>
                   <td>Points:</td>
-                  <td>{bestHomePlayerPointsName}</td>
+                  <td><span>{bestHomePlayerPointsName}</span></td>
                   <td>{bestHomePlayerPoints}</td>
                   <td></td>
                   <td>{bestAwayPlayerPoints}</td>
