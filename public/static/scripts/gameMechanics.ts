@@ -2,8 +2,8 @@
 //this appears to be related to the manual player data entry forms
 export class PlayerClass {
     playerID: number;
-    firstName: string = '';
-    lastName: string = '';
+    first_name: string = '';
+    last_name: string = '';
     team: string = ''
     homeLocation: string = '';
     conditions: string[] = [];
@@ -33,8 +33,8 @@ export class PlayerClass {
     };
     constructor(id:number, fn:string, ln:string, t:string, h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number) {
         this.playerID = id
-        this.firstName = fn;
-        this.lastName = ln;
+        this.first_name = fn;
+        this.last_name = ln;
         this.team = t;
         this.homeLocation = h;
         this.conditions = cond;
