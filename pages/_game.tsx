@@ -132,27 +132,27 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                   {/*<td><span>{bestHomePlayerPointsName.toString()}</span></td> */}
                   <td>{bestHomePlayerPoints.toString()}</td>
                   <td></td>
-                  <td><span>{bestAwayPlayerPoints.toString()}</span></td>
+                  <td>{bestAwayPlayerPoints.toString()}</td>
                 </tr>
                 <tr>
                   <td>Rebounds:</td>
-                  <td><span>{bestHomePlayerRebounds.toString()}</span></td>
-                  <td><span>{bestAwayPlayerRebounds.toString()}</span></td>
+                  <td>{bestHomePlayerRebounds.toString()}</td>
+                  <td>{bestAwayPlayerRebounds.toString()}</td>
                 </tr>
                 <tr>
                   <td>Assists:</td>
-                  <td><span>{bestHomePlayerAssists.toString()}</span></td>
-                  <td><span>{bestAwayPlayerAssists.toString()}</span></td>
+                  <td>{bestHomePlayerAssists.toString()}</td>
+                  <td>{bestAwayPlayerAssists.toString()}</td>
                 </tr>
                 <tr>
                   <td>Steals:</td>
-                  <td><span>{bestHomePlayerSteals.toString()}</span></td>
-                  <td><span>{bestAwayPlayerSteals.toString()}</span></td>
+                  <td>{bestHomePlayerSteals.toString()}</td>
+                  <td>{bestAwayPlayerSteals.toString()}</td>
                 </tr>
                 <tr>
                   <td>Blocks:</td>
-                  <td><span>{bestHomePlayerBlocks.toString()}</span></td>
-                  <td><span>{bestAwayPlayerBlocks.toString()}</span></td>
+                  <td>{bestHomePlayerBlocks.toString()}</td>
+                  <td>{bestAwayPlayerBlocks.toString()}</td>
                 </tr>
               </tbody>
             </table>
