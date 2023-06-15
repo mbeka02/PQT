@@ -1,6 +1,7 @@
 
 //this appears to be related to the manual player data entry forms
 export class PlayerClass {
+    playerID: number;
     firstName: string = '';
     lastName: string = '';
     team: string = ''
@@ -30,7 +31,8 @@ export class PlayerClass {
         steals: 0,
         blocks: 0
     };
-    constructor( fn:string, ln:string, t:string, h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number) {
+    constructor(id:number, fn:string, ln:string, t:string, h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number) {
+        this.playerID = id
         this.firstName = fn;
         this.lastName = ln;
         this.team = t;
