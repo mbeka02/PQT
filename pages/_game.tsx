@@ -21,8 +21,7 @@ function TeamWrapper({team, gameScore, finished, won, draw} : {team: TeamClass, 
         <div>
             <div>
                 <h3>
-                    {team.city}
-                    {team.name}
+                    {team.city} {team.name}
                 </h3>
                 <p><span>{team.wins}</span>-<span>{team.ties}</span>-<span>{team.losses}</span></p>
             </div>
@@ -113,7 +112,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
           </div>
           <div className={style.conditions}>
             <h3>Game conditions:</h3>
-            <p>Location: {game.homeStadium ? game.home.city + " stadium" : game.away.city + " arena"}</p>
+            <p>Location: {game.homeStadium ? game.home.city + " Stadium" : game.away.city + " Arena"}</p>
             <p>Weather: {game.weather}</p>
           </div>
           <div className={style.gameStats}>
@@ -131,7 +130,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                 <tr>
                   <td>Points:</td>
                   {/*<td><span>{bestHomePlayerPointsName.toString()}</span></td> */}
-                  <td><span>{bestHomePlayerPoints.toString()}</span></td>
+                  <td>{bestHomePlayerPoints}</td>
                   <td></td>
                   <td><span>{bestAwayPlayerPoints.toString()}</span></td>
                 </tr>
