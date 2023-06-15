@@ -68,7 +68,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
 
     return {
       value: maxPointsPlayer.stats[stat],
-      player: playerName
+    /*  player: playerName  */
     };
   };
 
