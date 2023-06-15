@@ -122,7 +122,6 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                   <th></th>
                   <th></th>         {/* empty space to display player names */}
                   <th>Home</th>
-                  <th></th>         {/* empty space to display player names */}
                   <th>Away</th>
                 </tr>
               </thead>
@@ -131,7 +130,6 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
                   <td>Points:</td>
                   {/*<td><span>{bestHomePlayerPointsName.toString()}</span></td> */}
                   <td>{bestHomePlayerPoints.toString()}</td>
-                  <td></td>
                   <td>{bestAwayPlayerPoints.toString()}</td>
                 </tr>
                 <tr>
