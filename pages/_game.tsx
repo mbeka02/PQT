@@ -74,7 +74,7 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
 
 
   const bestHomePlayerPoints = getBestPlayerStat(game.home.players, "points");
-  const bestHomePlayerPointsName = bestHomePlayerPoints.player;
+  /* const bestHomePlayerPointsName = bestHomePlayerPoints.player; */
   const bestHomePlayerRebounds = getBestPlayerStat(game.home.players, "rebounds");
   const bestHomePlayerAssists = getBestPlayerStat(game.home.players, "assists");
   const bestHomePlayerSteals = getBestPlayerStat(game.home.players, "steals");
