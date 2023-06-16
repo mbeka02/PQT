@@ -6,9 +6,9 @@
 }
 
 .wrapper {
-    background-color: palegoldenrod;
+    background-color: goldenrod;
     min-width: 300px;
-    max-width: 600px;
+    max-width: 900px;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -37,9 +37,9 @@
 }
 
 .team {
-    width: 278px;
+    width: 300px;
     border: 1px solid #9c9c9c;
-    height: 80px;
+    height: 100px;
     padding: 5px;
     background-color: #eee;
     display: flex;
