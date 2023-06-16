@@ -186,30 +186,30 @@ export class GameClass {
         const playerName = chosenPlayer ? `${chosenPlayer.first_name} ${chosenPlayer.last_name}` : 'a player';
 
         const positiveLogs = [
-            `The ${team} team just made an impressive slam dunk by ${playerName}!`,
-            `The ${team} team scores ${num} points by ${playerName}!`,
-            `The ${team} team makes a fantastic steal by ${playerName}!`,
-            `The ${team} team scores an easy layup by ${playerName}!`,
-            `The ${team} team's defense is on fire by ${playerName}!`,           
-            `The ${team} team makes an incredible block by ${playerName}!`,      
-            `The ${team} team hits a beautiful jump shot by ${playerName}!`,
-            `The ${team} team's passing game is on point by ${playerName}!`,
-            `The ${team} team's fans are going wild after that score by ${playerName}!`,
-            `The ${team} team's fast break leads to an easy ${num} points!`
+            `${playerName} (${team}) just made an impressive slam dunk!`,
+            `${playerName} (${team}) scores ${num} points!`,
+            `${playerName} (${team}) makes a fantastic steal!`,
+            `${playerName} (${team}) scores an easy layup!`,
+            `${playerName}'s (${team}) defense is impenetrable!`,           
+            `${playerName} (${team})  makes an incredible block!`,      
+            `${playerName} (${team}) hits a beautiful jump shot!`,
+            `${playerName}'s (${team}) passing game is on point!`,
+            `${playerName}'s (${team}) makes an impressive move for ${num} points!`,
+            `${playerName}'s (${team}) fast break leads to an easy ${num} points!`
           ];
     
         //This creates a bunch of generic negative outcome logs
         const negativeLogs = [
-            `The ${team} team misses an easy shot!`,
-            `The ${team} team turns over the ball!`,
-            `The ${team} team commits a costly foul!`,
-            `The ${team} team misses an important free throw!`,
-            `The ${team} team's shooting is off tonight!`,
-            `The ${team} team's defense is struggling!`,
-            `The ${team} team's passing game needs improvement!`,
-            `The ${team} team's shots just aren't falling!`,
-            `The ${team} team's offense is in a rut!`,
-            `The ${team} team's slow pace is hurting their chances!`
+            `${playerName} (${team}) misses an easy shot!`,
+            `${playerName} (${team}) turns over the ball!`,
+            `${playerName} (${team}) commits a costly foul!`,
+            `${playerName} (${team}) misses an important free throw!`,
+            `${playerName}'s (${team}) shooting is off tonight!`,
+            `${playerName}'s (${team}) defense is atrocious!`,
+            `${playerName}'s (${team}) passing game needs improvement!`,
+            `${playerName}'s (${team}) shots just aren't falling!`,
+            `${playerName}'s (${team}) offense is in a rut!`,
+            `${playerName}'s (${team}) looks gassed!`
         ];
         
         //select the logs to choose from
