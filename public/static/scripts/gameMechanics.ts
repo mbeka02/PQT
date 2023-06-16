@@ -278,17 +278,22 @@ export class GameClass {
         const loser: string = (winner === 'home') ? 'home' : 'away';
 
         //  This picks a random player from the team that "won" the possession and gives them their points; it also increments team score by the same point amount
-        let chosenPlayer;
+        let chosenPlayerHome;
+        let chosenPlayerAway;
 
         if (winner === "home") {
             this.homepoints += points;
-            chosenPlayer = this.getRandomPlayer(this.home);
+            chosenPlayerHome = this.getRandomPlayer(this.home);
+            chosenPlayerAway = this.getRandomPlayer(this.away);
+            chosenPlayerHome.stats.points += points;
         } else {
             this.awaypoints += points;
             chosenPlayer = this.getRandomPlayer(this.away);
+            chosenPlayerHome = this.getRandomPlayer(this.home);
+            chosenPlayerAway.stats.points += points;
         }
 
-        chosenPlayer.stats.points += points;
+        
 
         // This code randomly allocates steals and blocks to the same chosenPlayer; probably want to delete/update this code eventually
         if (Math.random() > 0.8) {
