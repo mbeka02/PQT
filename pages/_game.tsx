@@ -21,7 +21,7 @@ function TeamWrapper({team, gameScore, finished, won, draw} : {team: TeamClass, 
         <div>
             <div>
                 <h3>
-                    {team.city} {team.name}
+                    {team.city}<br></br>{team.name}
                 </h3>
                 <p><span>{team.wins}</span>-<span>{team.ties}</span>-<span>{team.losses}</span></p>
             </div>
