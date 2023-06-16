@@ -181,35 +181,36 @@ export class GameClass {
     }
 
     //This creates a bunch of generic positive outcome logs
-    private generateLog(team: string, num: number, good: boolean, chosenPlayer ?: PlayerClass) {
+    private generateLog(team: string, num: number, good: boolean, chosenPlayerW ?: PlayerClass, chosenPlayerL ?: PlayerClass) {
         
-        const playerName = chosenPlayer ? `${chosenPlayer.first_name} ${chosenPlayer.last_name}` : 'a player';
+        const playerNameW = chosenPlayerW ? `${chosenPlayerW.first_name} ${chosenPlayerW.last_name}` : 'a player';
+        const playerNameL = chosenPlayerL ? `${chosenPlayerL.first_name} ${chosenPlayerL.last_name}` : 'a player';
 
         const positiveLogs = [
-            `${playerName} (${team}) just made an impressive slam dunk!`,
-            `${playerName} (${team}) scores ${num} points!`,
-            `${playerName} (${team}) makes a fantastic steal!`,
-            `${playerName} (${team}) scores an easy layup!`,
-            `${playerName}'s (${team}) defense is impenetrable!`,           
-            `${playerName} (${team})  makes an incredible block!`,      
-            `${playerName} (${team}) hits a beautiful jump shot!`,
-            `${playerName}'s (${team}) passing game is on point!`,
-            `${playerName}'s (${team}) makes an impressive move for ${num} points!`,
-            `${playerName}'s (${team}) fast break leads to an easy ${num} points!`
+            `${playerNameW} (${team}) just dunked on ${playerNameL}!`,
+            `${playerNameW} (${team}) scores ${num} points over ${playerNameL}!`,
+            `${playerNameW} (${team}) makes a fantastic steal from ${playerNameL}!`,
+            `${playerNameW} (${team}) scores an easy layup over ${playerNameL}!`,
+            `${playerNameW}'s (${team}) defense on ${playerNameL} is impenetrable!`,           
+            `${playerNameW} (${team}) makes an incredible block on ${playerNameL}!`,      
+            `${playerNameW} (${team}) hits a beautiful jump shot over ${playerNameL}!`,
+            `${playerNameW}'s (${team}) passing game is on point!`,
+            `${playerNameW}'s (${team}) makes an impressive move for ${num} points!`,
+            `${playerNameW}'s (${team}) fast break leads to an easy ${num} points!`
           ];
     
         //This creates a bunch of generic negative outcome logs
         const negativeLogs = [
-            `${playerName} (${team}) misses an easy shot!`,
-            `${playerName} (${team}) turns over the ball!`,
-            `${playerName} (${team}) commits a costly foul!`,
-            `${playerName} (${team}) misses an important free throw!`,
-            `${playerName}'s (${team}) shooting is off tonight!`,
-            `${playerName}'s (${team}) defense is atrocious!`,
-            `${playerName}'s (${team}) passing game needs improvement!`,
-            `${playerName}'s (${team}) shots just aren't falling!`,
-            `${playerName}'s (${team}) offense is in a rut!`,
-            `${playerName}'s (${team}) looks gassed!`
+            `${playerNameL} (${team}) misses an easy shot, contested by ${playerNameW}!`,
+            `${playerNameL} (${team}) turns the ball over to ${playerNameW}!`,
+            `${playerNameL} (${team}) commits a costly foul on ${playerNameW}!`,
+            `${playerNameL} (${team}) misses an important free throw!`,
+            `${playerNameL}'s (${team}) shooting is off tonight!`,
+            `${playerNameL}'s (${team}) defense is atrocious!`,
+            `${playerNameL}'s (${team}) passing game needs improvement!`,
+            `${playerNameL}'s (${team}) shots just aren't falling!`,
+            `${playerNameL}'s (${team}) offense is in a rut!`,
+            `${playerNameL} (${team}) looks gassed!`
         ];
         
         //select the logs to choose from
@@ -251,20 +252,7 @@ export class GameClass {
             return;
         }
 
-        let points: number = Math.floor(Math.random() * 4) + 1; // either 1, 2, 3, or 4
-
-        //the following if statements are special cases relating to the old scoring system; should be able to remove these
-        /*
-        if (this.total_possessions === 5) { // if there are 5 points left they must be 3 and 2
-            points = 3;
-        }
-        if (this.total_possessions === 4) { // similarly, with 4 they must be 2 and 2
-            points = 2;
-        }
-        if (this.total_possessions < 4) { // with 3 or 2, return themselves
-            points = this.total_possessions;
-        }
-        */
+        let points: number = Math.floor(Math.random() * 3) + 1; // either 1, 2, or 3
 
         let isHomeWinner = Math.random() > 0.5; //flips a coin to determine if home team wins a given possession
 
@@ -318,9 +306,9 @@ export class GameClass {
         // or a bad one for the losers
         const good = Math.random() < 0.5;
         if(good) {
-            this.generateLog(winner, points, true, chosenPlayerHome);
+            this.generateLog(winner, points, true, chosenPlayerHome, chosenPlayerAway);
         } else {
-            this.generateLog(loser, points, false, chosenPlayerAway);
+            this.generateLog(loser, points, false, chosenPlayerAway, chosenPlayerHome);
         }
         this.total_possessions -= 1; // Increments total_possessions down by 1
     }
