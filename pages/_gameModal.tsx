@@ -4,15 +4,9 @@ import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMe
 function Player({ p }: {p:PlayerClass}) {
     return <>
     <div>
+        Player: {p.first_name} {p.last_name}
         2pt: {p._2pt} <br/>
         3pt: {p._3pt} <br/>
-        passing: {p.passing} <br/>
-        dribbling: {p.dribbling} <br/>
-        defense: {p.defense} <br/>
-        jumping: {p.jumping} <br/>
-        stealing: {p.stealing} <br/>
-        blocking: {p.blocking} <br/>
-        speed: {p.speed} <br/>
     </div>
     </>
 }
