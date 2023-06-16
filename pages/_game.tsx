@@ -57,23 +57,16 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
     return null;
   }
 
-  const getBestPlayerStat = (players: PlayerClass[], stat: "points" | "rebounds" | "assists" | "steals" | "blocks") => {
+  const getBestPlayerStat = (players: PlayerClass[], stat:"points"|"rebounds"|"assists"|"steals"|"blocks") => {
     const maxPointsPlayer = players.reduce((maxPlayer, player) => {
       return player.stats[stat] > maxPlayer.stats[stat] ? player : maxPlayer;
-    }, { stats: { [stat]: 0 } });
+    }, players[0]);
 
-    console.log(maxPointsPlayer); //debug statement
-    /* const playerName = `${maxPointsPlayer.first_name.charAt(0)}. ${maxPointsPlayer.last_name}`;       commenting this out for now until I can better diagnose */
-
-    return {
-      value: maxPointsPlayer.stats[stat],
-    /*  player: playerName  */
-    };
+    return maxPointsPlayer.stats[stat];
   };
 
 
   const bestHomePlayerPoints = getBestPlayerStat(game.home.players, "points");
-  /* const bestHomePlayerPointsName = bestHomePlayerPoints.player; */
   const bestHomePlayerRebounds = getBestPlayerStat(game.home.players, "rebounds");
   const bestHomePlayerAssists = getBestPlayerStat(game.home.players, "assists");
   const bestHomePlayerSteals = getBestPlayerStat(game.home.players, "steals");
