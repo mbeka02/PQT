@@ -111,7 +111,7 @@ export class GameClass {
     awaysteals: number = 0;
     homeblocks: number = 0;
     awayblocks: number = 0;
-    total_possessions: number; // Represents the total points of the match. With every play, points will be detracted from this until there are exactly 0 left.
+    total_possessions: number; // Represents the total number of possessions in the match. With every play, one possession will be detracted until there are 0 left.
     logs: LogClass[] = [];
     weather: string;
     homeStadium: boolean;
@@ -181,17 +181,20 @@ export class GameClass {
     }
 
     //This creates a bunch of generic positive outcome logs
-    private generateLog(team: string, num: number, good: boolean) {
+    private generateLog(team: string, num: number, good: boolean, chosenPlayer ?: PlayerClass) {
+        
+        const playerName = chosenPlayer ? `${chosenPlayer.first_name} ${chosenPlayer.last_name}` : 'a player';
+
         const positiveLogs = [
-            `The ${team} team just made an impressive slam dunk!`,
-            `The ${team} team scores ${num} points!`,
-            `The ${team} team makes a fantastic steal!`,
-            `The ${team} team scores an easy layup!`,
-            `The ${team} team's defense is on fire!`,           
-            `The ${team} team makes an incredible block!`,      
-            `The ${team} team hits a beautiful jump shot!`,
-            `The ${team} team's passing game is on point!`,
-            `The ${team} team's fans are going wild after that score!`,
+            `The ${team} team just made an impressive slam dunk by ${playerName}!`,
+            `The ${team} team scores ${num} points by ${playerName}!`,
+            `The ${team} team makes a fantastic steal by ${playerName}!`,
+            `The ${team} team scores an easy layup by ${playerName}!`,
+            `The ${team} team's defense is on fire by ${playerName}!`,           
+            `The ${team} team makes an incredible block by ${playerName}!`,      
+            `The ${team} team hits a beautiful jump shot by ${playerName}!`,
+            `The ${team} team's passing game is on point by ${playerName}!`,
+            `The ${team} team's fans are going wild after that score by ${playerName}!`,
             `The ${team} team's fast break leads to an easy ${num} points!`
           ];
     
@@ -263,7 +266,7 @@ export class GameClass {
         }
         */
 
-        let isHomeWinner = Math.random() > 0.5; //flips a coin to determine if home team wins a given possession (...I think)
+        let isHomeWinner = Math.random() > 0.5; //flips a coin to determine if home team wins a given possession
 
         // Choose winner and loser semi-randomly
 
@@ -310,14 +313,14 @@ export class GameClass {
             chosenPlayer.stats.rebounds += 1;
         }
 */
-        
+
         // Decide whether to create a good log for the winner
         // or a bad one for the losers
         const good = Math.random() < 0.5;
         if(good) {
-            this.generateLog(winner, points, true);
+            this.generateLog(winner, points, true, chosenPlayerHome);
         } else {
-            this.generateLog(loser, points, false);
+            this.generateLog(loser, points, false, chosenPlayerAway);
         }
         this.total_possessions -= 1; // Increments total_possessions down by 1
     }
