@@ -195,7 +195,7 @@ export class GameClass {
             `${playerNameW} (${team}) makes an incredible block on ${playerNameL}!`,      
             `${playerNameW} (${team}) hits a beautiful jump shot over ${playerNameL}!`,
             `${playerNameW}'s (${team}) passing game is on point!`,
-            `${playerNameW}'s (${team}) makes an impressive move for ${num} points!`,
+            `${playerNameW} (${team}) makes an impressive move for ${num} points!`,
             `${playerNameW}'s (${team}) fast break leads to an easy ${num} points!`
           ];
     

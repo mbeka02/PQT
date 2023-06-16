@@ -18,7 +18,7 @@
 
 .contentWrapper {
     width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
