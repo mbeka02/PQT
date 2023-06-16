@@ -29,17 +29,17 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 290px !important;
-    height: 192px;
+    min-width: 290px !important;
+    min-height: 192px;
     padding: 0px !important;
     border: 0px transparent !important;
     margin: 5px;
 }
 
 .team {
-    width: 300px;
+    min-width: 300px;
     border: 1px solid #9c9c9c;
-    height: 100px;
+    min-height: 100px;
     padding: 5px;
     background-color: #eee;
     display: flex;
@@ -48,7 +48,7 @@
 }
 
 .teamWon {
-    border: 3px solid green;
+    border: 3px solid limegreen;
     padding: 4px;
 }
 
