@@ -5,7 +5,7 @@
     flex-wrap: wrap;
 }
 
-{/* this is the container around each game instance */}
+/* this is the container around each game instance */
 .wrapper {
     background-color: goldenrod;
     min-width: 300px;
