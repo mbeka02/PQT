@@ -5,10 +5,11 @@
     flex-wrap: wrap;
 }
 
+{/* this is the container around each game instance */}
 .wrapper {
     background-color: goldenrod;
     min-width: 300px;
-    max-width: 900px;
+    max-width: 800px;
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -84,7 +85,7 @@
     background-color: #000;
     color: white;
     overflow-y: auto;
-    height: 180px;
+    height: 200px;
     width: 278px;
     margin: 5px;
     padding: 5px;

@@ -21,6 +21,16 @@
     overflow-y: auto;
 }
 
+.logs::-webkit-scrollbar {
+width: 4px;               /* width of the entire scrollbar */
+}
+.logs::-webkit-scrollbar-track {
+background: transparent;        /* color of the tracking area */
+}
+.logs::-webkit-scrollbar-thumb {
+background-color: #1a73e8;    /* color of the scroll thumb */
+}
+
 .button {
     position: fixed;
     top: 0px;
