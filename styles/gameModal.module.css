@@ -13,7 +13,9 @@
 .content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
+    height: 1500px;
+    overflow-y: auto;
 }
 
 .content::-webkit-scrollbar {
