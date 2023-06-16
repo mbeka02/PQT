@@ -288,13 +288,13 @@ export class GameClass {
             chosenPlayerHome.stats.points += points;
         } else {
             this.awaypoints += points;
-            chosenPlayer = this.getRandomPlayer(this.away);
+            chosenPlayerAway = this.getRandomPlayer(this.away);
             chosenPlayerHome = this.getRandomPlayer(this.home);
             chosenPlayerAway.stats.points += points;
         }
 
         
-
+/*
         // This code randomly allocates steals and blocks to the same chosenPlayer; probably want to delete/update this code eventually
         if (Math.random() > 0.8) {
                         // 1 every 5
@@ -309,7 +309,8 @@ export class GameClass {
         if(Math.random() > 0.9) {
             chosenPlayer.stats.rebounds += 1;
         }
-
+*/
+        
         // Decide whether to create a good log for the winner
         // or a bad one for the losers
         const good = Math.random() < 0.5;
