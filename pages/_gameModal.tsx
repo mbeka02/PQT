@@ -13,8 +13,7 @@ function Player({ p }: {p:PlayerClass}) {
 export default function GameModal({ home, away, homeScore, awayScore, logs }: { home: TeamClass | undefined, away: TeamClass | undefined, homeScore: number | undefined, awayScore: number | undefined, logs:LogClass[] | undefined}) {
     return <>
     <div className={ styles.wrapper }>
-        <div className={ styles.content }>
-            <div className={ styles.teamswrapper}>
+         <div className={ styles.teamswrapper}>
                 <h1>
                     {home && home.name}
                     &nbsp;vs&nbsp;
@@ -25,6 +24,7 @@ export default function GameModal({ home, away, homeScore, awayScore, logs }: { 
                     |
                     {awayScore}
                 </h3>
+            <div className={ styles.content }>
                 <div className={styles.playersScrollbar}>
                     {home?.players.map((p, i) => <Player p={p} key={i}/>)}
                 </div>
