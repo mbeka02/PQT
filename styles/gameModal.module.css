@@ -43,7 +43,7 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .logs {
-    max-height: 500px;
+    height: 90%;
     overflow-y: auto;
 }
 
