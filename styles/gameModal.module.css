@@ -30,9 +30,10 @@
     flex-direction: row;
     align-items: flex-start;
     height: 90%;
-    width: 50%;
+    width: 100%;
     overflow-y: auto;
     overflow: hidden;
+    flex-grow: 1;
 }
 
 .content::-webkit-scrollbar {
@@ -47,11 +48,12 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 
 .logs {
     max-height: 750px;
-    width: 50%;
+    width: 100%;
     overflow-y: auto;
     flex-direction: row;
     align-items: flex-start;
     overflow: hidden;
+    flex-grow: 1;
 }
 
 .logs::-webkit-scrollbar {
