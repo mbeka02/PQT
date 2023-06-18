@@ -5,7 +5,6 @@ function Player({ p }: {p:PlayerClass}) {
     return <>
     <div>
         Player: {p.first_name} {p.last_name} <br/>
-        <br/>
     </div>
     </>
 }
