@@ -15,9 +15,9 @@ export default function GameModal({ home, away, homeScore, awayScore, logs }: { 
     <div className={ styles.wrapper }>
          <div className={ styles.teamswrapperModal}>
                 <h1>
-                    {home && home.name}
+                    {home && home.city && home.name}
                     &nbsp;vs&nbsp;
-                    {away && away.name}
+                    {away && away.city && away.name}
                 </h1>
                 <h3>
                     {homeScore}
