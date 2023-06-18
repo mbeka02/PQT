@@ -33,7 +33,6 @@
     width: 100%;
     overflow-y: auto;
     overflow: hidden;
-    flex-grow: 1;
     border: 2px solid limegreen;
 }
 
@@ -55,7 +54,6 @@ background-color: #1a73e8;    /* color of the scroll thumb */
     width: 100%;
     overflow-y: auto;
     overflow: hidden;
-    flex-grow: 1;
     border: 2px solid limegreen;
 }
 
