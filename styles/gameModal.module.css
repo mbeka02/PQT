@@ -45,7 +45,7 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .logs {
-    height: 90%;
+    max-height: 750px;
     width: 50%;
     overflow-y: auto;
     flex-direction: row;
