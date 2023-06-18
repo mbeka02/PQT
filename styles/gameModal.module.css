@@ -20,12 +20,12 @@
     min-width: 290px;
     min-height: 192px;
     padding: 0px;
-    border: 2px solid orangered;
+    border: 2px solid limegreen;
     margin: 5px;
     flex-grow: 0;
 }
 
-.content {
+.contentHome {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -34,16 +34,38 @@
     overflow-y: auto;
     overflow: hidden;
     flex-grow: 1;
-    border: 2px solid orangered;
+    border: 2px solid limegreen;
 }
 
-.content::-webkit-scrollbar {
+.contentHome::-webkit-scrollbar {
 width: 4px;               /* width of the entire scrollbar */
 }
-.content::-webkit-scrollbar-track {
+.contentHome::-webkit-scrollbar-track {
 background: transparent;        /* color of the tracking area */
 }
-.content::-webkit-scrollbar-thumb {
+.contentHome::-webkit-scrollbar-thumb {
+background-color: #1a73e8;    /* color of the scroll thumb */
+}
+
+.contentAway {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: 90%;
+    width: 100%;
+    overflow-y: auto;
+    overflow: hidden;
+    flex-grow: 1;
+    border: 2px solid limegreen;
+}
+
+.contentAway::-webkit-scrollbar {
+width: 4px;               /* width of the entire scrollbar */
+}
+.contentAway::-webkit-scrollbar-track {
+background: transparent;        /* color of the tracking area */
+}
+.contentAway::-webkit-scrollbar-thumb {
 background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
@@ -54,7 +76,7 @@ background-color: #1a73e8;    /* color of the scroll thumb */
     flex-direction: row;
     align-items: flex-start;
     flex-grow: 1;
-    border: 2px solid orangered;
+    border: 2px solid limegreen;
 }
 
 .logs::-webkit-scrollbar {
