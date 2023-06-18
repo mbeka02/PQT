@@ -20,7 +20,7 @@
     min-width: 290px;
     min-height: 192px;
     padding: 0px;
-    border: 0px transparent;
+    border: 2px solid orangered;
     margin: 5px;
     flex-grow: 0;
 }
@@ -34,6 +34,7 @@
     overflow-y: auto;
     overflow: hidden;
     flex-grow: 1;
+    border: 2px solid orangered;
 }
 
 .content::-webkit-scrollbar {
@@ -52,8 +53,8 @@ background-color: #1a73e8;    /* color of the scroll thumb */
     overflow-y: auto;
     flex-direction: row;
     align-items: flex-start;
-    overflow: hidden;
     flex-grow: 1;
+    border: 2px solid orangered;
 }
 
 .logs::-webkit-scrollbar {
