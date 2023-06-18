@@ -30,6 +30,8 @@ export default function GameModal({ home, away, homeScore, awayScore, logs }: { 
                     HOME
                     </h2>
                     {home?.players.map((p, i) => <Player p={p} key={i}/>)}
+                </div>
+                <div className={styles.playersScrollbar}>
                     <h2>
                     AWAY
                     </h2>
