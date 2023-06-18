@@ -2,12 +2,44 @@ import styles from 'styles/gameModal.module.css';
 import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
 
 function Player({ p }: {p:PlayerClass}) {
-    return <>
+    return(
+    <>
+      <div className={styles.wrapper}>
+        <div className={styles.content}>
+          <div className={styles.teamContainer}>
+            <h1>{home && home.name}</h1>
+            <h3>{homeScore}</h3>
+            <div className={styles.playersScrollbar}>
+              {home?.players.map((p, i) => (
+                <Player p={p} key={i} />
+              ))}
+            </div>
+          </div>
+          <div className={styles.teamContainer}>
+            <h1>{away && away.name}</h1>
+            <h3>{awayScore}</h3>
+            <div className={styles.playersScrollbar}>
+              {away?.players.map((p, i) => (
+                <Player p={p} key={i} />
+              ))}
+            </div>
+          </div>
+          <div className={styles.logs}>
+            {logs?.map((e, i) => (
+              <p key={i}>{e.content}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+
+  /* <>
     <div>
         Player: {p.first_name} {p.last_name} <br/>
         <br/>
     </div>
-    </>
+    </> */
 }
 
 export default function GameModal({ home, away, homeScore, awayScore, logs }: { home: TeamClass | undefined, away: TeamClass | undefined, homeScore: number | undefined, awayScore: number | undefined, logs:LogClass[] | undefined}) {
