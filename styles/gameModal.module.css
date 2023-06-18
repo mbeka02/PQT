@@ -17,8 +17,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    min-width: 290px;
-    min-height: 192px;
+    min-width: 200px;
+    min-height: 100px;
     padding: 0px;
     border: 2px solid limegreen;
     margin: 5px;
