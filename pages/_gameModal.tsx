@@ -18,21 +18,16 @@ export default function GameModal({ home, away, homeScore, awayScore, logs }: { 
                     &nbsp;vs&nbsp;
                     {away && away.city && away.name}
                 </h1>
-                <h3>
-                    {homeScore}
-                    |
-                    {awayScore}
-                </h3>
             <div className={ styles.content }>
                 <div className={styles.playersScrollbar}>
                     <h2>
-                    HOME
+                    HOME {homeScore}
                     </h2>
                     {home?.players.map((p, i) => <Player p={p} key={i}/>)}
                 </div>
                 <div className={styles.playersScrollbar}>
                     <h2>
-                    AWAY
+                    AWAY {awayScore}
                     </h2>
                     {away?.players.map((p, i) => <Player p={p} key={i}/>)}
                 </div>
