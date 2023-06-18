@@ -32,6 +32,7 @@
     /*width: 90%; */
     overflow-y: auto;
     flex-grow: 1;
+    overflow: hidden;
 }
 
 .content::-webkit-scrollbar {
@@ -48,6 +49,7 @@ background-color: #1a73e8;    /* color of the scroll thumb */
     height: 90%;
     overflow-y: auto;
     flex-grow: 1;
+    overflow: hidden;
 }
 
 .button {
