@@ -2,7 +2,18 @@ import styles from 'styles/gameModal.module.css';
 import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
 
 function Player({ p }: {p:PlayerClass}) {
-    return(
+    return <>
+    <div>
+        Player: {p.first_name} {p.last_name} <br/>
+        <br/>
+    </div>
+    </>
+}
+
+export default function GameModal({ home, away, homeScore, awayScore, logs }: { home: TeamClass | undefined, away: TeamClass | undefined, homeScore: number | undefined, awayScore: number | undefined, logs:LogClass[] | undefined}) {
+    return 
+
+    (
     <>
       <div className={styles.wrapper}>
         <div className={styles.content}>
@@ -33,17 +44,8 @@ function Player({ p }: {p:PlayerClass}) {
       </div>
     </>
   );
-
-  /* <>
-    <div>
-        Player: {p.first_name} {p.last_name} <br/>
-        <br/>
-    </div>
-    </> */
-}
-
-export default function GameModal({ home, away, homeScore, awayScore, logs }: { home: TeamClass | undefined, away: TeamClass | undefined, homeScore: number | undefined, awayScore: number | undefined, logs:LogClass[] | undefined}) {
-    return <>
+/*
+    <>
     <div className={ styles.wrapper }>
         <div className={ styles.content }>
             <h1>
@@ -64,5 +66,6 @@ export default function GameModal({ home, away, homeScore, awayScore, logs }: { 
             </div>
         </div>
     </div>
-    </>
+    </> 
+    */
 }
