@@ -97,14 +97,6 @@ background-color: #1a73e8;    /* color of the scroll thumb */
     z-index: 1000;
 }
 
-.playerLink {
-  background-color: transparent;
-  border: none;
-  color: darkblue;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
 .hidden {
     display: none;
 }

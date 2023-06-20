@@ -1,12 +1,36 @@
 import styles from 'styles/gameModal.module.css';
 import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
+import PlayerModal from 'styles/playerModal.module.css';
 
 function Player({ p }: {p:PlayerClass}) {
-    return <>
+  
+    const [showModal, setShowModal] = useState(false);
+
+    function showModalOnClick() {
+        setShowModal(true);
+    }
+
+    function hideModalOnClick() {
+        setShowModal(false);
+    }
+
+    return (
+        <>
     <div>
-        Player: {p.first_name} {p.last_name} <br/>
+        Player:
+        <button className={styles.playerLink} onClick={showModalOnClick}>
+        {p.first_name} {p.last_name} <br/>
+        </button>
+        <br/>
     </div>
+    {showModal && (
+        <>
+          {/* Render the PlayerModal component here */}
+          <PlayerModal player={p} hideModalOnClick={hideModalOnClick} />
+        </>
+      )}
     </>
+    );
 }
 
 export default function GameModal({ home, away, homeScore, awayScore, logs }: { home: TeamClass | undefined, away: TeamClass | undefined, homeScore: number | undefined, awayScore: number | undefined, logs:LogClass[] | undefined}) {

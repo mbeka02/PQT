@@ -12,7 +12,6 @@ export class PlayerClass {
     coffee: string = '';
     class: string = '';
     zodiac: string = '';
-    vibes: string = '';
     position: string = '';
     style: string = '';
     _2pt: number = 0;
@@ -24,6 +23,36 @@ export class PlayerClass {
     stealing: number = 0;
     blocking: number = 0;
     speed: number = 0;
+
+    Astral_Presence: number;
+    Resilience: number;
+    Radiance: number;
+    Resonance: number;
+    Dynamism: number;
+    Vibes: number;
+    Charm: number;
+    Observation: number;
+    Bravery: number;
+    Creativity: number;
+    Tenacity: number;
+    Intelligence: number;
+    Loyalty: number;
+    Wit: number;
+    Patience: number;
+    Artistry: number;
+    Technomancy: number;
+    Gravity: number;
+    Bioluminescence: number;
+    Stink: number;
+    Rhythm: number;
+    Purple: number;
+    Dankness: number;
+    Savagery: number;
+    Cleanliness: number;
+    Unicorn: number;
+    Thirst: number;
+
+
     stats = {
         points: 0,
         rebounds: 0,
@@ -31,7 +60,8 @@ export class PlayerClass {
         steals: 0,
         blocks: 0
     };
-    constructor(id:number, fn:string, ln:string, t:string, h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number) {
+    
+    constructor(id:number, fn:string, ln:string, t:string, h:string, cond:string[], cui:string, col:string, cof:string, cl:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number, ap: number,rs: number,rd: number,rz: number,dy: number,v: number,ch: number,ob: number,br: number,cr: number,tn: number,it: number,ly: number,w: number,pc: number,ay: number,ty: number,gv: number,bl: number,st: number,rh: number,pp: number,dk: number,sv: number,cl: number,u: number,th: number) {
         this.playerID = id
         this.first_name = fn;
         this.last_name = ln;
@@ -43,7 +73,6 @@ export class PlayerClass {
         this.coffee = cof;
         this.class = cl;
         this.zodiac = z;
-        this.vibes = v;
         this.position = p;
         this.style = s;
         this._2pt = _2;
@@ -55,6 +84,35 @@ export class PlayerClass {
         this.stealing = st;
         this.blocking = b;
         this.speed = spd;
+
+        this.Astral_Presence = ap;
+        this.Resilience = rs;
+        this.Radiance = rd;
+        this.Resonance = rz;
+        this.Dynamism = dy;
+        this.Vibes = v;
+        this.Charm = ch;
+        this.Observation = ob;
+        this.Bravery = br;
+        this.Creativity = cr;
+        this.Tenacity = tn;
+        this.Intelligence = it;
+        this.Loyalty = ly;
+        this.Wit = w;
+        this.Patience = pc;
+        this.Artistry = ay;
+        this.Technomancy = ty;
+        this.Gravity = gv;
+        this.Bioluminescence = bl;
+        this.Stink = st;
+        this.Rhythm = rh;
+        this.Purple = pp;
+        this.Dankness = dk;
+        this.Savagery = sv;
+        this.Cleanliness = cl;
+        this.Unicorn = u;
+        this.Thirst = th;
+
         this.stats = {
             points: 0,
             rebounds: 0,
@@ -158,7 +216,7 @@ export class GameClass {
         this.startTime = new Date().getTime()
     }
 
-    // This generates a random number and ensures that it falls along a Gaussian distribution according to the mean and stdDev defined above
+    // This generates a random number and ensures that it falls along a Gaussian distribution according to the mean and stdDev
     private gaussianRand(mean: number, stdDev: number): number {
         /*
         Quick math lesson! This is a continuous probabilistic distribution using a Gaussian distribution because that's how the scores are distributed.
