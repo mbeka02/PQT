@@ -1,7 +1,7 @@
 import styles from 'styles/gameModal.module.css';
 import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
 import PlayerModal from './_playerModal';
-import React, { useState } from 'react';
+import React from 'react';
 
 export default function GameModal({
   home,
@@ -16,18 +16,6 @@ export default function GameModal({
   awayScore: number | undefined;
   logs: LogClass[] | undefined;
 }) {
-  const [showPlayerModal, setShowPlayerModal] = useState(false);
-  const [selectedPlayer, setSelectedPlayer] = useState<PlayerClass | undefined>(undefined);
-
-  function openPlayerModal(player: PlayerClass) {
-    setSelectedPlayer(player);
-    setShowPlayerModal(true);
-  }
-
-  function closePlayerModal() {
-    setShowPlayerModal(false);
-  }
-
   return (
     <>
       <div className={styles.wrapper}>
@@ -41,11 +29,7 @@ export default function GameModal({
             <div className={styles.playersScrollbar}>
               <h2>HOME {homeScore}</h2>
               {home?.players.map((p, i) => (
-                <PlayerModal
-                  player={p}
-                  hideModalOnClick={closePlayerModal}
-                  key={i}
-                />
+                <Player key={i} p={p} />
               ))}
             </div>
           </div>
@@ -53,11 +37,7 @@ export default function GameModal({
             <div className={styles.playersScrollbar}>
               <h2>AWAY {awayScore}</h2>
               {away?.players.map((p, i) => (
-                <PlayerModal
-                  player={p}
-                  hideModalOnClick={closePlayerModal}
-                  key={i}
-                />
+                <Player key={i} p={p} />
               ))}
             </div>
           </div>
@@ -68,11 +48,27 @@ export default function GameModal({
           </div>
         </div>
       </div>
-      {showPlayerModal && selectedPlayer && (
-        <PlayerModal
-          player={selectedPlayer}
-          hideModalOnClick={closePlayerModal}
-        />
+    </>
+  );
+}
+
+function Player({ p }: { p: PlayerClass }) {
+  const [showModal, setShowModal] = useState(false);
+
+  return (
+    <>
+      <div>
+        Player:
+        <button
+          className={styles.playerLink}
+          onClick={() => setShowModal(true)}
+        >
+          {p.first_name} {p.last_name} <br />
+        </button>
+        <br />
+      </div>
+      {showModal && (
+        <PlayerModal player={p} hideModalOnClick={() => setShowModal(false)} />
       )}
     </>
   );
