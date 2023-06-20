@@ -1,16 +1,18 @@
 import styles from 'styles/gameModal.module.css';
-import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
-
+import { PlayerClass } from '@/public/static/scripts/gameMechanics';
 import React from 'react';
 
 interface PlayerModalProps {
-  player: PlayerClass;
+  player: PlayerClass | undefined;
   hideModalOnClick: () => void;
 }
 
-
 const PlayerModal: React.FC<PlayerModalProps> = ({ player, hideModalOnClick }) => {
-  // Implement the modal component here
+  // Handle case when player object is undefined
+  if (!player) {
+    return null; // or return a placeholder component/message
+  }
+
   return (
     <div className={styles.playerModal}>
       <h2>{player.first_name} {player.last_name}</h2>
