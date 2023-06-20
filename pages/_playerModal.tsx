@@ -14,7 +14,7 @@ const PlayerModal: React.FC<PlayerModalProps> = ({ player, hideModalOnClick }) =
   }
 
   return (
-    <div className={styles.playerModal}>
+    <div className={`${styles.playerModal} ${styles.modalTop}`}>
       <h2>{player.first_name} {player.last_name}</h2>
       {/* Add more content and functionality */}
       <button className={styles.closeButton} onClick={hideModalOnClick}>

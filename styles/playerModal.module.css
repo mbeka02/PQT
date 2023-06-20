@@ -97,6 +97,10 @@ background-color: #1a73e8;    /* color of the scroll thumb */
     z-index: 1000;
 }
 
+.modalTop {
+  z-index: 9999;
+}
+
 .hidden {
     display: none;
 }
