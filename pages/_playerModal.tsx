@@ -16,33 +16,33 @@ const PlayerModal: React.FC<PlayerModalProps> = ({ player, hideModalOnClick }) =
   return (
     <div className={`${styles.playerModal} ${styles.modalTop}`}>
       <h2>{player.first_name} {player.last_name}</h2>
-		{player.Astral_Presence}<br/>
-		{player.Resilience}<br/>
-		{player.Radiance}<br/>
-		{player.Resonance}<br/>
-		{player.Dynamism}<br/>
-		{player.Vibes}<br/>
-		{player.Charm}<br/>
-		{player.Observation}<br/>
-		{player.Bravery}<br/>
-		{player.Creativity}<br/>
-		{player.Tenacity}<br/>
-		{player.Intelligence}<br/>
-		{player.Loyalty}<br/>
-		{player.Wit}<br/>
-		{player.Patience}<br/>
-		{player.Artistry}<br/>
-		{player.Technomancy}<br/>
-		{player.Gravity}<br/>
-		{player.Bioluminescence}<br/>
-		{player.Stink}<br/>
-		{player.Rhythm}<br/>
-		{player.Purple}<br/>
-		{player.Dankness}<br/>
-		{player.Savagery}<br/>
-		{player.Cleanliness}<br/>
-		{player.Unicorn}<br/>
-		{player.Thirst}<br/>
+		Astral_Presence: {player.Astral_Presence}<br/>
+		Resilience: {player.Resilience}<br/>
+		Radiance: {player.Radiance}<br/>
+		Resonance: {player.Resonance}<br/>
+		Dynamism: {player.Dynamism}<br/>
+		Vibes: {player.Vibes}<br/>
+		Charm: {player.Charm}<br/>
+		Observation: {player.Observation}<br/>
+		Bravery: {player.Bravery}<br/>
+		Creativity: {player.Creativity}<br/>
+		Tenacity: {player.Tenacity}<br/>
+		Intelligence: {player.Intelligence}<br/>
+		Loyalty: {player.Loyalty}<br/>
+		Wit: {player.Wit}<br/>
+		Patience: {player.Patience}<br/>
+		Artistry: {player.Artistry}<br/>
+		Technomancy: {player.Technomancy}<br/>
+		Gravity: {player.Gravity}<br/>
+		Bioluminescence: {player.Bioluminescence}<br/>
+		Stink: {player.Stink}<br/>
+		Rhythm: {player.Rhythm}<br/>
+		Purple: {player.Purple}<br/>
+		Dankness: {player.Dankness}<br/>
+		Savagery: {player.Savagery}<br/>
+		Cleanliness: {player.Cleanliness}<br/>
+		Unicorn: {player.Unicorn}<br/>
+		Thirst: {player.Thirst}<br/>
       {/* Add more content and functionality */}
       <button className={styles.closeButton} onClick={hideModalOnClick}>
         Close
