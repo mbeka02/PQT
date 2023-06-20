@@ -35,7 +35,7 @@ export default function GameModal({
   away,
   homeScore,
   awayScore,
-  logs
+  logs,
 }: {
   home: TeamClass | undefined;
   away: TeamClass | undefined;
@@ -43,6 +43,20 @@ export default function GameModal({
   awayScore: number | undefined;
   logs: LogClass[] | undefined;
 }) {
+  const [showPlayerModal, setShowPlayerModal] = useState(false);
+  const [selectedPlayer, setSelectedPlayer] = useState<PlayerClass | undefined>(
+    undefined
+  );
+
+  function openPlayerModal(player: PlayerClass) {
+    setSelectedPlayer(player);
+    setShowPlayerModal(true);
+  }
+
+  function closePlayerModal() {
+    setShowPlayerModal(false);
+  }
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -56,7 +70,7 @@ export default function GameModal({
             <div className={styles.playersScrollbar}>
               <h2>HOME {homeScore}</h2>
               {home?.players.map((p, i) => (
-                <Player p={p} key={i} />
+                <Player p={p} key={i} onClick={() => openPlayerModal(p)} />
               ))}
             </div>
           </div>
@@ -64,10 +78,11 @@ export default function GameModal({
             <div className={styles.playersScrollbar}>
               <h2>AWAY {awayScore}</h2>
               {away?.players.map((p, i) => (
-                <Player p={p} key={i} />
+                <Player p={p} key={i} onClick={() => openPlayerModal(p)} />
               ))}
             </div>
           </div>
+
           <div className={styles.logs}>
             {logs?.map((e, i) => (
               <p key={i}>{e.content}</p>
@@ -75,6 +90,13 @@ export default function GameModal({
           </div>
         </div>
       </div>
+
+      {showPlayerModal && selectedPlayer && (
+        <PlayerModal
+          player={selectedPlayer}
+          hideModalOnClick={closePlayerModal}
+        />
+      )}
     </>
   );
 }
