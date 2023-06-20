@@ -3,7 +3,6 @@ import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMe
 import PlayerModal from './_playerModal';
 import React, { useState } from 'react';
 
-
 export default function GameModal({
   home,
   away,
@@ -17,6 +16,16 @@ export default function GameModal({
   awayScore: number | undefined;
   logs: LogClass[] | undefined;
 }) {
+  const [selectedPlayer, setSelectedPlayer] = useState<PlayerClass | undefined>(undefined);
+
+  function openPlayerModal(player: PlayerClass) {
+    setSelectedPlayer(player);
+  }
+
+  function closePlayerModal() {
+    setSelectedPlayer(undefined);
+  }
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -30,7 +39,11 @@ export default function GameModal({
             <div className={styles.playersScrollbar}>
               <h2>HOME {homeScore}</h2>
               {home?.players.map((p, i) => (
-                <Player key={i} p={p} />
+                <Player
+                  player={p}
+                  key={i}
+                  onClick={() => openPlayerModal(p)}
+                />
               ))}
             </div>
           </div>
@@ -38,7 +51,11 @@ export default function GameModal({
             <div className={styles.playersScrollbar}>
               <h2>AWAY {awayScore}</h2>
               {away?.players.map((p, i) => (
-                <Player key={i} p={p} />
+                <Player
+                  player={p}
+                  key={i}
+                  onClick={() => openPlayerModal(p)}
+                />
               ))}
             </div>
           </div>
@@ -49,28 +66,23 @@ export default function GameModal({
           </div>
         </div>
       </div>
+      {selectedPlayer && (
+        <PlayerModal
+          player={selectedPlayer}
+          hideModalOnClick={closePlayerModal}
+        />
+      )}
     </>
   );
 }
 
-function Player({ p }: { p: PlayerClass }) {
-  const [showModal, setShowModal] = useState(false);
-
+function Player({ player, onClick }: { player: PlayerClass; onClick: () => void }) {
   return (
     <>
       <div>
         Player:
-        <button
-          className={styles.playerLink}
-          onClick={() => setShowModal(true)}
-        >
-          {p.first_name} {p.last_name} <br />
-        </button>
-        <br />
+        <button onClick={onClick}>{player.first_name} {player.last_name}</button>
       </div>
-      {showModal && (
-        <PlayerModal player={p} hideModalOnClick={() => setShowModal(false)} />
-      )}
     </>
   );
 }
