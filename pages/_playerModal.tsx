@@ -5,7 +5,9 @@ import React from 'react';
 
 interface PlayerModalProps {
   player: PlayerClass;
+  hideModalOnClick: () => void;
 }
+
 
 const PlayerModal: React.FC<PlayerModalProps> = ({ player, hideModalOnClick }) => {
   // Implement the modal component here
