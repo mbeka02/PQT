@@ -100,7 +100,7 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 .playerLink {
   background-color: transparent;
   border: none;
-  color: darkblue;
+  color: limegreen;
   cursor: pointer;
   text-decoration: underline;
 }
