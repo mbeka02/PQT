@@ -3,7 +3,7 @@ import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMe
 import PlayerModal from './_playerModal';
 import React, { useState } from 'react';
 
-function Player({ p }: { p: PlayerClass }) {
+function Player({ p, onClick }: { p: PlayerClass, onClick: () => void }) {
   const [showModal, setShowModal] = useState(false);
 
   function showModalOnClick() {
