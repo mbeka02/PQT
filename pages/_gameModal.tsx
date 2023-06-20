@@ -3,68 +3,78 @@ import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMe
 import PlayerModal from './_playerModal';
 import React, { useState } from 'react';
 
+function Player({ p }: { p: PlayerClass }) {
+  const [showModal, setShowModal] = useState(false);
 
-function Player({ p }: {p:PlayerClass}) {
-  
-    const [showModal, setShowModal] = useState(false);
+  function showModalOnClick() {
+    setShowModal(true);
+  }
 
-    function showModalOnClick() {
-        setShowModal(true);
-    }
+  function hideModalOnClick() {
+    setShowModal(false);
+  }
 
-    function hideModalOnClick() {
-        setShowModal(false);
-    }
-
-    return (
-        <>
-    <div>
+  return (
+    <>
+      <div>
         Player:
         <button className={styles.playerLink} onClick={showModalOnClick}>
-        {p.first_name} {p.last_name} <br/>
+          {p.first_name} {p.last_name} <br />
         </button>
-        <br/>
-    </div>
-    {showModal && (
-        <>
-          {/* Render the PlayerModal component here */}
-          <PlayerModal player={p} hideModalOnClick={hideModalOnClick} />
-        </>
+        <br />
+      </div>
+      {showModal && (
+        <PlayerModal player={p} hideModalOnClick={hideModalOnClick} />
       )}
     </>
-    );
+  );
 }
 
-export default function GameModal({ home, away, homeScore, awayScore, logs }: { home: TeamClass | undefined, away: TeamClass | undefined, homeScore: number | undefined, awayScore: number | undefined, logs:LogClass[] | undefined}) {
-    return <>
-    <div className={ styles.wrapper }>
-         <div className={ styles.teamswrapperModal}>
-                <h1>
-                    {home && home.city && home.name}
-                    &nbsp;vs&nbsp;
-                    {away && away.city && away.name}
-                </h1>
-            <div className={ styles.contentHome }>
-                <div className={styles.playersScrollbar}>
-                    <h2>
-                    HOME {homeScore}
-                    </h2>
-                    {home?.players.map((p, i) => <Player p={p} key={i}/>)}
-                </div>
+export default function GameModal({
+  home,
+  away,
+  homeScore,
+  awayScore,
+  logs
+}: {
+  home: TeamClass | undefined;
+  away: TeamClass | undefined;
+  homeScore: number | undefined;
+  awayScore: number | undefined;
+  logs: LogClass[] | undefined;
+}) {
+  return (
+    <>
+      <div className={styles.wrapper}>
+        <div className={styles.teamswrapperModal}>
+          <h1>
+            {home && home.city && home.name}
+            &nbsp;vs&nbsp;
+            {away && away.city && away.name}
+          </h1>
+          <div className={styles.contentHome}>
+            <div className={styles.playersScrollbar}>
+              <h2>HOME {homeScore}</h2>
+              {home?.players.map((p, i) => (
+                <Player p={p} key={i} />
+              ))}
             </div>
-            <div className={ styles.contentAway }>    
-                <div className={styles.playersScrollbar}>
-                    <h2>
-                    AWAY {awayScore}
-                    </h2>
-                    {away?.players.map((p, i) => <Player p={p} key={i}/>)}
-                </div>
+          </div>
+          <div className={styles.contentAway}>
+            <div className={styles.playersScrollbar}>
+              <h2>AWAY {awayScore}</h2>
+              {away?.players.map((p, i) => (
+                <Player p={p} key={i} />
+              ))}
             </div>
-
-            <div className={ styles.logs }>
-                    {logs?.map((e, i) => <p key={i}>{e.content}</p>)}
-            </div>
+          </div>
+          <div className={styles.logs}>
+            {logs?.map((e, i) => (
+              <p key={i}>{e.content}</p>
+            ))}
+          </div>
         </div>
-    </div>
-    </>;
+      </div>
+    </>
+  );
 }
