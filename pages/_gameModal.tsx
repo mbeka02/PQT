@@ -1,12 +1,9 @@
 import styles from 'styles/gameModal.module.css';
-import { PlayerClass } from '@/public/static/scripts/gameMechanics';
+import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
+import PlayerModal from './_playerModal';
 import React, { useState } from 'react';
 
-interface PlayerProps {
-  player: PlayerClass;
-}
-
-const Player: React.FC<PlayerProps> = ({ player }) => {
+function Player({ p }: { p: PlayerClass }) {
   const [showModal, setShowModal] = useState(false);
 
   function showModalOnClick() {
@@ -22,64 +19,62 @@ const Player: React.FC<PlayerProps> = ({ player }) => {
       <div>
         Player:
         <button className={styles.playerLink} onClick={showModalOnClick}>
-          {player.first_name} {player.last_name} <br />
+          {p.first_name} {p.last_name} <br />
         </button>
         <br />
       </div>
       {showModal && (
-        <PlayerModal player={player} hideModalOnClick={hideModalOnClick} />
+        <PlayerModal player={p} hideModalOnClick={hideModalOnClick} />
       )}
     </>
   );
-};
-
-interface PlayerModalProps {
-  player: PlayerClass;
-  hideModalOnClick: () => void;
 }
 
-const PlayerModal: React.FC<PlayerModalProps> = ({
-  player,
-  hideModalOnClick,
-}) => {
+export default function GameModal({
+  home,
+  away,
+  homeScore,
+  awayScore,
+  logs
+}: {
+  home: TeamClass | undefined;
+  away: TeamClass | undefined;
+  homeScore: number | undefined;
+  awayScore: number | undefined;
+  logs: LogClass[] | undefined;
+}) {
   return (
-    <div className={styles.playerModal}>
-      <h2>{player.first_name} {player.last_name}</h2>
-      <div className={styles.playerDetails}>
-        <p>Astral Presence: {player.Astral_Presence}</p>
-        <p>Resilience: {player.Resilience}</p>
-        {/* Add more player details */}
-      </div>
-      <button className={styles.closeButton} onClick={hideModalOnClick}>
-        Close
-      </button>
-    </div>
-  );
-};
-
-const GameModal: React.FC = () => {
-  // Example usage of Player and PlayerModal components
-  const player: PlayerClass = {
-    first_name: 'John',
-    last_name: 'Doe',
-    Astral_Presence: 80,
-    Resilience: 90,
-    // Add more player details
-  };
-
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.teamswrapperModal}>
-        <h1>Game Modal</h1>
-        <div className={styles.contentHome}>
-          <div className={styles.playersScrollbar}>
-            <h2>HOME</h2>
-            <Player player={player} />
+    <>
+      <div className={styles.wrapper}>
+        <div className={styles.teamswrapperModal}>
+          <h1>
+            {home && home.city && home.name}
+            &nbsp;vs&nbsp;
+            {away && away.city && away.name}
+          </h1>
+          <div className={styles.contentHome}>
+            <div className={styles.playersScrollbar}>
+              <h2>HOME {homeScore}</h2>
+              {home?.players.map((p, i) => (
+                <Player p={p} key={i} />
+              ))}
+            </div>
+          </div>
+          <div className={styles.contentAway}>
+            <div className={styles.playersScrollbar}>
+              <h2>AWAY {awayScore}</h2>
+              {away?.players.map((p, i) => (
+                <Player p={p} key={i} />
+              ))}
+            </div>
+          </div>
+          <div className={styles.logs}>
+            {logs?.map((e, i) => (
+              <p key={i}>{e.content}</p>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
-};
-
-export default GameModal;
+}
