@@ -1,7 +1,8 @@
 import styles from 'styles/gameModal.module.css';
 import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
 import PlayerModal from './_playerModal';
-import React from 'react';
+import React, { useState } from 'react';
+
 
 export default function GameModal({
   home,
