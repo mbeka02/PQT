@@ -40,29 +40,26 @@ export default function GameModal({
           <div className={styles.contentHome}>
             <div className={styles.playersScrollbar}>
               <h2>HOME {homeScore}</h2>
-              {home?.players.map((p, i) => (
-                <div key={i}>
+              {{home?.players.map((p, i) => (
                   <PlayerModal
                     player={p}
                     hideModalOnClick={closePlayerModal}
-                    showModalOnClick={() => openPlayerModal(p)}
+                    key={i}
                   />
-                </div>
-              ))}
+                ))}
+
             </div>
           </div>
           <div className={styles.contentAway}>
             <div className={styles.playersScrollbar}>
               <h2>AWAY {awayScore}</h2>
-              {away?.players.map((p, i) => (
-                <div key={i}>
+              {{away?.players.map((p, i) => (
                   <PlayerModal
                     player={p}
                     hideModalOnClick={closePlayerModal}
-                    showModalOnClick={() => openPlayerModal(p)}
+                    key={i}
                   />
-                </div>
-              ))}
+                ))}
             </div>
           </div>
           <div className={styles.logs}>
