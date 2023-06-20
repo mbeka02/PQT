@@ -1,6 +1,6 @@
 import styles from 'styles/gameModal.module.css';
 import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
-import PlayerModal from 'styles/playerModal.module.css';
+import PlayerModal from 'api/_playerModal.tsx';
 import React, { useState } from 'react';
 
 
