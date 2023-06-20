@@ -61,7 +61,7 @@ export class PlayerClass {
         blocks: 0
     };
 
-    constructor(id:number, fn:string, ln:string, t:string, h:string, cond:string[], cui:string, col:string, cof:string, cla:string, z:string, v:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number, ap: number,rs: number,rd: number,rz: number,dy: number,v: number,ch: number,ob: number,br: number,cr: number,tn: number,it: number,ly: number,w: number,pc: number,ay: number,ty: number,gv: number,bl: number,st: number,rh: number,pp: number,dk: number,sv: number,cl: number,u: number,th: number) {
+    constructor(id:number, fn:string, ln:string, t:string, h:string, cond:string[], cui:string, col:string, cof:string, cla:string, z:string, p:string, s:string, _2:number, _3:number, pas:number, d:number, def:number, j:number, st: number, b:number, spd:number, ap: number,rs: number,rd: number,rz: number,dy: number,v: number,ch: number,ob: number,br: number,cr: number,tn: number,it: number,ly: number,w: number,pc: number,ay: number,ty: number,gv: number,bl: number,st: number,rh: number,pp: number,dk: number,sv: number,cl: number,u: number,th: number) {
         this.playerID = id
         this.first_name = fn;
         this.last_name = ln;
