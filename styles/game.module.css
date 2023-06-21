@@ -1,20 +1,19 @@
 .container {
-    justify-content: space-evenly;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-/* this is the container around each game instance */
 .wrapper {
-    background-color: goldenrod;
-    min-width: 300px;
-    max-width: 800px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    margin: 15px;
+  background-color: goldenrod;
+  min-width: 300px;
+  max-width: 800px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  margin: 15px;
+  flex: 1;
 }
 
 .contentWrapper {
