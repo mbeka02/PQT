@@ -8,11 +8,11 @@ interface PlayerModalProps {
 }
 
 const PlayerModal: React.FC<PlayerModalProps> = ({ players, hideModalOnClick }) => {
-  const player = players.length > 0 ? players[0] : null;
-
-  if (!player) {
-    return null; // Render nothing if there are no players
+  if (!players || players.length === 0) {
+    return null; // Render nothing if players array is undefined or empty
   }
+
+  const player = players[0];
 
   return (
     <div className={`${styles.playerModal} ${styles.modalTop}`}>
