@@ -68,7 +68,7 @@ export default function GameModal({
       </div>
       {selectedPlayer && (
         <PlayerModal
-          player={selectedPlayer}
+          players={[selectedPlayer]}
           hideModalOnClick={closePlayerModal}
         />
       )}
