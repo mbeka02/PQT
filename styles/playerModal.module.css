@@ -3,22 +3,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: limegreen; /* Change to the desired background color */
-  border: 2px solid yellow; /* Change to the desired border color */
+  background-color: limegreen;
+  border: 2px solid yellow;
   padding: 20px;
   z-index: 9999;
-  color: white; /* Set the text color to white */
+  color: white;
 }
 
-
-.button {
-  position: absolute; /* Change the position to absolute */
-  top: 10px; /* Adjust the top position as desired */
-  right: 10px; /* Adjust the right position as desired */
-  font-size: 50px;
+.arrows {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   z-index: 1000;
 }
 
+.arrowButton {
+  font-size: 50px;
+}
 
 .modalTop {
   z-index: 9999;
