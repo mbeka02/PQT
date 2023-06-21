@@ -146,4 +146,15 @@
 .gameStats {
   border: 1px solid #9c9c9c;
   width: 278px;
-  height
+  height: 180px;
+  background-color: #eee;
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+}
+
+.statsTable {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
