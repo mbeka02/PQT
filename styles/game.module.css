@@ -81,14 +81,14 @@
 }
 
 .logs {
-    border: 1px solid #9c9c9c;
-    background-color: #000;
-    color: white;
-    overflow-y: auto;
-    height: 200px;
-    width: 278px;
-    margin: 5px;
-    padding: 5px;
+  border: 1px solid #9c9c9c;
+  background-color: #000;
+  color: white;
+  overflow-y: auto;
+  height: 200px;
+  width: 50%;
+  margin: 5px;
+  padding: 5px;
 }
 
 .logs::-webkit-scrollbar {
@@ -152,8 +152,13 @@ background-color: #1a73e8;    /* color of the scroll thumb */
     padding: 5px;
 }
 
+
 .statsTable {
-    width: 100%;
-    height: 100%;
-    padding: 10px;
+  border: 1px solid #9c9c9c;
+  background-color: #eee;
+  text-align: center;
+  height: 200px;
+  width: 50%;
+  margin: 5px;
+  padding: 5px;
 }
