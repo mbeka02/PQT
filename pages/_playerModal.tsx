@@ -1,22 +1,16 @@
 import styles from 'styles/playerModal.module.css';
 import { PlayerClass } from '@/public/static/scripts/gameMechanics';
-import React, { useState } from 'react';
+import React from 'react';
 
 interface PlayerModalProps {
-  player: PlayerClass;
+  player: PlayerClass | undefined;
   hideModalOnClick: () => void;
 }
 
 const PlayerModal: React.FC<PlayerModalProps> = ({ player, hideModalOnClick }) => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  const selectPreviousPlayer = () => {
-    setSelectedIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));
-  };
-
-  const selectNextPlayer = () => {
-    setSelectedIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex + 1));
-  };
+  if (!player) {
+    return null;
+  }
 
   return (
     <div className={`${styles.playerModal} ${styles.modalTop}`}>
