@@ -1,4 +1,4 @@
-import styles from 'styles/gameModal.module.css';
+import styles from 'styles/playerModal.module.css';
 import { PlayerClass } from '@/public/static/scripts/gameMechanics';
 import React from 'react';
 
