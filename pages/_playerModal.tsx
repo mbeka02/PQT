@@ -43,6 +43,12 @@ const PlayerModal: React.FC<PlayerModalProps> = ({ player, hideModalOnClick }) =
 		<strong>Cleanliness:</strong> {player.Cleanliness}<br/>
 		<strong>Unicorn:</strong> {player.Unicorn}<br/>
 		<strong>Thirst:</strong> {player.Thirst}<br/>
+
+		<div>
+		  <button onClick={selectPreviousPlayer}>&larr;</button> {/* left arrow */}
+		  <button onClick={selectNextPlayer}>&rarr;</button>	 {/* right arrow */}
+		</div>
+
       {/* Add more content and functionality */}
       <button className={styles.closeButton} onClick={hideModalOnClick}>
         Close
