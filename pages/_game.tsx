@@ -81,14 +81,13 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
   return (
     <>
       {showModal && (
-        <>
-          <GameModal home={game.home} away={game.away} homeScore={homeScore} awayScore={awayScore} logs={game.logs} />
-          <button className={modalStyles.button} onClick={hideModalOnClick} type="button">
-            X
-          </button>
-        </>
-      )}
-
+      <div className={modalStyles.modalWrapper}>
+        <button className={modalStyles.closeButton} onClick={hideModalOnClick} type="button">
+          X
+        </button>
+        <GameModal home={game.home} away={game.away} homeScore={homeScore} awayScore={awayScore} logs={game.logs} />
+      </div>
+    )}
       <div className={style.wrapper} onClick={showModalOnClick}>
         <h1>{id}</h1>
         <div className={style.contentWrapper}>
