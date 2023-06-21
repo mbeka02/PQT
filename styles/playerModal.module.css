@@ -30,7 +30,7 @@
 .rightArrow {
   position: absolute;
   top: 50%;
-  right: 100px; /* Adjust the right spacing as desired */
+  right: -300px; /* Adjust the right spacing as desired */
   transform: translate(50%, -50%);
   font-size: 50px;
   z-index: 1000;
