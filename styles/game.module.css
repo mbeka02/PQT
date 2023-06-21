@@ -1,160 +1,159 @@
 .container {
-  justify-content: space-evenly;
-  display: flex;
-  flex-wrap: wrap;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
+/* this is the container around each game instance */
 .wrapper {
-  background-color: goldenrod;
-  min-width: 300px;
-  max-width: 800px;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-  margin: 15px;
-  flex: 1;
+    background-color: goldenrod;
+    min-width: 300px;
+    max-width: 800px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    margin: 15px;
 }
 
 .contentWrapper {
-  width: 100%;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .teamswrapper {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  min-width: 290px !important;
-  min-height: 192px;
-  padding: 0px !important;
-  border: 0px transparent !important;
-  margin: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    min-width: 290px !important;
+    min-height: 192px;
+    padding: 0px !important;
+    border: 0px transparent !important;
+    margin: 5px;
 }
 
 .team {
-  min-width: 300px;
-  border: 1px solid #9c9c9c;
-  min-height: 100px;
-  padding: 5px;
-  background-color: #eee;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex: 1;
+    min-width: 300px;
+    border: 1px solid #9c9c9c;
+    min-height: 100px;
+    padding: 5px;
+    background-color: #eee;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .teamWon {
-  border: 3px solid limegreen;
-  padding: 4px;
+    border: 3px solid limegreen;
+    padding: 4px;
 }
 
 .teamLost {
-  border: 3px solid red;
-  padding: 4px;
+    border: 3px solid red;
+    padding: 4px;
 }
 
 .teamDraw {
-  border: 3px solid aqua;
-  padding: 4px;
+    border: 3px solid aqua;
+    padding: 4px;
 }
 
 .team > div {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .team > p {
-  font-size: 30px;
+    font-size: 30px;
 }
 
 .teamDivider {
-  height: 5px;
-  width: 100%;
+    height: 5px;
+    width: 100%;
 }
 
 .logs {
-  border: 1px solid #9c9c9c;
-  background-color: #000;
-  color: white;
-  overflow-y: auto;
-  height: 200px;
-  width: 278px;
-  margin: 5px;
-  padding: 5px;
+    border: 1px solid #9c9c9c;
+    background-color: #000;
+    color: white;
+    overflow-y: auto;
+    height: 200px;
+    width: 278px;
+    margin: 5px;
+    padding: 5px;
 }
 
 .logs::-webkit-scrollbar {
-  width: 4px; /* width of the entire scrollbar */
+width: 4px;               /* width of the entire scrollbar */
 }
-
 .logs::-webkit-scrollbar-track {
-  background: transparent; /* color of the tracking area */
+background: transparent;        /* color of the tracking area */
 }
-
 .logs::-webkit-scrollbar-thumb {
-  background-color: #1a73e8; /* color of the scroll thumb */
+background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .log {
-  color: gray;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 0.5em 0px;
-  padding: 0.5em 0px;
-  border-radius: 5px;
-  cursor: default;
-  transition: 0.1s linear;
+    color: gray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.5em 0px;
+    padding: 0.5em 0px;
+    border-radius: 5px;
+    cursor: default;
+    transition: 0.1s linear;
 }
 
 .log:hover {
-  color: ghostwhite;
-  background-color: #1c1c1c;
+    color: ghostwhite;
+    background-color: #1c1c1c;
 }
 
 .log:hover > .logTime {
-  color: #7FFF00;
+    color: #7FFF00;
 }
 
 .log p {
-  margin: 0px;
+    margin: 0px;
 }
 
 .logTime {
-  transition: 0.1s linear;
-  min-width: 50px;
-  width: 50px;
-  text-align: center;
+    transition: 0.1s linear;
+    min-width: 50px;
+    width: 50px;
+    text-align: center;
 }
 
 .conditions {
-  border: 1px solid #9c9c9c;
-  width: 278px;
-  height: 180px;
-  background-color: #eee;
-  margin: 5px;
-  padding: 5px;
+    border: 1px solid #9c9c9c;
+    width: 278px;
+    height: 180px;
+    background-color: #eee;
+    margin: 5px;
+    padding: 5px;
 }
 
 .gameStats {
-  border: 1px solid #9c9c9c;
-  width: 278px;
-  height: 180px;
-  background-color: #eee;
-  text-align: center;
-  margin: 5px;
-  padding: 5px;
+    border: 1px solid #9c9c9c;
+    width: 278px;
+    height: 180px;
+    background-color: #eee;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
 }
 
 .statsTable {
-  width: 100%;
-  height: 100%;
-  padding: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
 }
