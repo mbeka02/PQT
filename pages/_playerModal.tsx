@@ -13,9 +13,26 @@ const PlayerModal: React.FC<PlayerModalProps> = ({ player, hideModalOnClick }) =
     return null; // or return a placeholder component/message
   }
 
+  const [selectedPlayerIndex, setSelectedPlayerIndex] = useState(0);
+
+  const selectPreviousPlayer = () => {
+    setSelectedPlayerIndex((prevIndex) =>
+      prevIndex === 0 ? player.players.length - 1 : prevIndex - 1
+    );
+  };
+
+  const selectNextPlayer = () => {
+    setSelectedPlayerIndex((prevIndex) =>
+      prevIndex === player.players.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
   return (
     <div className={`${styles.playerModal} ${styles.modalTop}`}>
-      <h2>{player.first_name} {player.last_name}</h2>
+      <h2>
+        {player.players[selectedPlayerIndex].first_name}{' '}
+        {player.players[selectedPlayerIndex].last_name}
+      </h2>
 		<strong>Astral Presence:</strong> {player.Astral_Presence}<br/>
 		<strong>Resilience:</strong> {player.Resilience}<br/>
 		<strong>Radiance:</strong> {player.Radiance}<br/>
