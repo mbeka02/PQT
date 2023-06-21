@@ -10,15 +10,30 @@
   color: white;
 }
 
-.arrows {
+.button {
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
+  font-size: 50px;
   z-index: 1000;
 }
 
-.arrowButton {
+.leftArrow {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translate(-50%, -50%);
   font-size: 50px;
+  z-index: 1000;
+}
+
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(50%, -50%);
+  font-size: 50px;
+  z-index: 1000;
 }
 
 .modalTop {
