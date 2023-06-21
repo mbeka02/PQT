@@ -1,18 +1,13 @@
 import styles from 'styles/playerModal.module.css';
 import { PlayerClass } from '@/public/static/scripts/gameMechanics';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface PlayerModalProps {
-  player: PlayerClass | undefined;
+  player: PlayerClass;
   hideModalOnClick: () => void;
 }
 
 const PlayerModal: React.FC<PlayerModalProps> = ({ player, hideModalOnClick }) => {
-  // Handle case when player object is undefined
-  if (!player) {
-    return null; // or return a placeholder component/message
-  }
-
   const [selectedPlayerIndex, setSelectedPlayerIndex] = useState(0);
 
   const selectPreviousPlayer = () => {
