@@ -10,17 +10,16 @@ interface PlayerModalProps {
 const PlayerModal: React.FC<PlayerModalProps> = ({ player, hideModalOnClick }) => {
   const [selectedPlayerIndex, setSelectedPlayerIndex] = useState(0);
 
-  const selectPreviousPlayer = () => {
-    setSelectedPlayerIndex((prevIndex) =>
-      prevIndex === 0 ? player.players.length - 1 : prevIndex - 1
-    );
-  };
+	  const selectPreviousPlayer = () => {
+	  setSelectedPlayerIndex((prevIndex) =>
+	    prevIndex === 0 ? 0 : prevIndex - 1
+	  );
+	};
 
-  const selectNextPlayer = () => {
-    setSelectedPlayerIndex((prevIndex) =>
-      prevIndex === player.players.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+	  const selectNextPlayer = () => {
+  setSelectedPlayerIndex((prevIndex) => prevIndex + 1);
+	};
+
 
   return (
     <div className={`${styles.playerModal} ${styles.modalTop}`}>
