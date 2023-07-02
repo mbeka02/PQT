@@ -79,11 +79,12 @@ export default function GameModal({
           {/* Render the logs and attach a click event handler */}
           <div className={styles.logs}>
             {logs?.map((e, i) => (
-              <p key={i}> onClick={() => handleLogClick(e.content)}>
-              {e.content}
+              <p key={i} onClick={() => handleLogClick(e.content)}>
+                {e.content}
               </p>
             ))}
           </div>
+
       
           {/* Show Image Modal when required */}
       {showImageModal && (
