@@ -4,6 +4,12 @@ import PlayerModal from './_playerModal';
 import React, { useState } from 'react';
 import ImageModal from './_imageModal';
 
+// Define the type for the selected log content
+interface LogContent {
+  text: string;
+  imageSrc: string;
+}
+
 export default function GameModal({
   home,
   away,
@@ -19,8 +25,8 @@ export default function GameModal({
 }) {
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerClass | undefined>(undefined);
 
-  /* experimenting with imageModal here */
-  const [selectedLog, setSelectedLog] = useState<string>(''); // State to store the selected log content
+  // Define the selected log state with the LogContent type
+  const [selectedLog, setSelectedLog] = useState<LogContent | null>(null);
   const [showImageModal, setShowImageModal] = useState<boolean>(false);
 
   function openPlayerModal(player: PlayerClass) {
@@ -32,15 +38,14 @@ export default function GameModal({
   }
 
 
-/* experimenting with imageModal here */
-  function handleLogClick(logContent: string) {
-  // Create the object with the required properties
-  const logData = {
-    text: logContent,
-    imageSrc: "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1",
-  };
-  setSelectedLog(logData); // Set the selected log content in the state
-  setShowImageModal(true); // Show the Image modal
+function handleLogClick(logContent: string) {
+    // Create the object with the required properties
+    const logData: LogContent = {
+      text: logContent,
+      imageSrc: "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1",
+    };
+    setSelectedLog(logData); // Set the selected log content in the state
+    setShowImageModal(true); // Show the Image modal
 }
 
   function closeImageModal() {
@@ -82,19 +87,19 @@ export default function GameModal({
           </div>
 
             {/* Render the logs and attach a click event handler */}
-            <div className={styles.logs}>
-              {logs?.map((e, i) => (
-                // Attach the click event handler to each log item
-                <p key={i} onClick={() => handleLogClick(e.content)}>
-                  {e.content}
-                </p>
-              ))}
-            </div>
+              <div className={styles.logs}>
+                {logs?.map((e, i) => (
+                  // Attach the click event handler to each log item
+                  <p key={i} onClick={() => handleLogClick(e.content)}>
+                    {e.content}
+                  </p>
+                ))}
+              </div>
 
-            {/* Show Image Modal when required */}
-            {showImageModal && (
-              <ImageModal content={selectedLog} onClose={closeImageModal} />
-            )}
+              {/* Show Image Modal when required */}
+              {showImageModal && selectedLog && (
+                <ImageModal content={selectedLog} onClose={closeImageModal} />
+              )}
 
         </div>
       </div>
