@@ -34,9 +34,14 @@ export default function GameModal({
 
 /* experimenting with imageModal here */
   function handleLogClick(logContent: string) {
-    setSelectedLog(logContent); // Set the selected log content in the state
-    setShowImageModal(true); // Show the Image modal
-  }
+  // Create the object with the required properties
+  const logData = {
+    text: logContent,
+    imageSrc: "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1",
+  };
+  setSelectedLog(logData); // Set the selected log content in the state
+  setShowImageModal(true); // Show the Image modal
+}
 
   function closeImageModal() {
     setShowImageModal(false);
@@ -76,20 +81,20 @@ export default function GameModal({
             </div>
           </div>
 
-          {/* Render the logs and attach a click event handler */}
-          <div className={styles.logs}>
-            {logs?.map((e, i) => (
-              <p key={i} onClick={() => handleLogClick(e.content)}>
-                {e.content}
-              </p>
-            ))}
-          </div>
+            {/* Render the logs and attach a click event handler */}
+            <div className={styles.logs}>
+              {logs?.map((e, i) => (
+                // Attach the click event handler to each log item
+                <p key={i} onClick={() => handleLogClick(e.content)}>
+                  {e.content}
+                </p>
+              ))}
+            </div>
 
-      
-          {/* Show Image Modal when required */}
-      {showImageModal && (
-        <ImageModal content={selectedLog} onClose={closeImageModal} />
-      )}
+            {/* Show Image Modal when required */}
+            {showImageModal && (
+              <ImageModal content={selectedLog} onClose={closeImageModal} />
+            )}
 
         </div>
       </div>
