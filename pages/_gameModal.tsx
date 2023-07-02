@@ -39,13 +39,17 @@ export default function GameModal({
 
 
 function handleLogClick(logContent: string) {
+  // Check if logs is defined and is an array with at least one element
+  if (logs && logs.length > 0) {
     // Create the object with the required properties
     const logData: LogContent = {
       text: logContent,
-      imageSrc: "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1",
+      imageSrc:
+        "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1",
     };
     setSelectedLog(logData); // Set the selected log content in the state
     setShowImageModal(true); // Show the Image modal
+  }
 }
 
   function closeImageModal() {
