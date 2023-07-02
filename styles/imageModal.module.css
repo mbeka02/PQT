@@ -19,23 +19,23 @@
   max-width: 90%;
 }
 
-h1 {
+.modalContent h1 {
   font-size: 24px;
   margin-bottom: 10px;
 }
 
-p {
+.modalContent p {
   font-size: 16px;
   margin-bottom: 20px;
 }
 
-img {
+.modalContent img {
   max-width: 100%;
   height: auto;
   border-radius: 4px;
 }
 
-button {
+.modalContent button {
   background-color: #007bff;
   color: #fff;
   padding: 8px 16px;
