@@ -2,6 +2,7 @@ import styles from 'styles/gameModal.module.css';
 import { TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
 import PlayerModal from './_playerModal';
 import React, { useState } from 'react';
+import ImageModal from './_imageModal';
 
 export default function GameModal({
   home,
@@ -18,12 +19,27 @@ export default function GameModal({
 }) {
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerClass | undefined>(undefined);
 
+  /* experimenting with imageModal here */
+  const [selectedLog, setSelectedLog] = useState<string>(''); // State to store the selected log content
+  const [showImageModal, setShowImageModal] = useState<boolean>(false);
+
   function openPlayerModal(player: PlayerClass) {
     setSelectedPlayer(player);
   }
 
   function closePlayerModal() {
     setSelectedPlayer(undefined);
+  }
+
+
+/* experimenting with imageModal here */
+  function handleLogClick(logContent: string) {
+    setSelectedLog(logContent); // Set the selected log content in the state
+    setShowImageModal(true); // Show the Image modal
+  }
+
+  function closeImageModal() {
+    setShowImageModal(false);
   }
 
   return (
@@ -59,11 +75,21 @@ export default function GameModal({
               ))}
             </div>
           </div>
+
+          {/* Render the logs and attach a click event handler */}
           <div className={styles.logs}>
             {logs?.map((e, i) => (
-              <p key={i}>{e.content}</p>
+              <p key={i}> onClick={() => handleLogClick(e.content)}>
+              {e.content}
+              </p>
             ))}
           </div>
+      
+          {/* Show Image Modal when required */}
+      {showImageModal && (
+        <ImageModal content={selectedLog} onClose={closeImageModal} />
+      )}
+
         </div>
       </div>
       {selectedPlayer && (
