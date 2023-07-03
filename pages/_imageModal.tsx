@@ -16,7 +16,7 @@ export default function ImageModal({ content, onClose }: ImageModalProps) {
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <h1>Log Item</h1>
+        <h1>Game Log:</h1>
         <p>{imageText}</p>
         {imageSrc && <img src={imageSrc} alt="Game Log" />} {/* Render the image only if imageSrc is available */}
         <button onClick={onClose}>Close</button>

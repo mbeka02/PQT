@@ -28,6 +28,7 @@ export default function GameModal({
   // Define the selected log state with the LogContent type
   const [selectedLog, setSelectedLog] = useState<LogContent | null>(null);
   const [showImageModal, setShowImageModal] = useState<boolean>(false);
+  const [selectedGameScore, setSelectedGameScore] = useState<string | null>(null);
 
   function openPlayerModal(player: PlayerClass) {
     setSelectedPlayer(player);
@@ -42,6 +43,7 @@ export default function GameModal({
     if (logs && logs.length > 0) {
       // Find the log that matches the clicked content
       const clickedLog = logs.find((log) => log.content === logContent);
+      const gameScore = `${homeScore} - ${awayScore}`;
 
       if (clickedLog) {
         // Check if the clicked log has an associated image
@@ -54,8 +56,10 @@ export default function GameModal({
           text: logContent,
           imageSrc: imageSrc,
         };
+
         setSelectedLog(logData); // Set the selected log content in the state
         setShowImageModal(true); // Show the Image modal
+        setSelectedGameScore(gameScore); //Pass the game score
       }
     }
   }
@@ -116,7 +120,7 @@ export default function GameModal({
 
           {/* Show Image Modal when required */}
           {showImageModal && selectedLog !== null && (
-            <ImageModal content={selectedLog} onClose={closeImageModal} />
+            <ImageModal content={selectedLog} gameScore={selectedGameScore} onClose={closeImageModal} />
           )}
         </div>
       </div>
