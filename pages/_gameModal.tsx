@@ -101,7 +101,7 @@ function handleLogClick(logContent: string) {
               </div>
 
               {/* Show Image Modal when required */}
-              {showImageModal && selectedLog && selectedLog.text && (
+              {showImageModal && selectedLog !== null && (
                   <ImageModal content={selectedLog} onClose={closeImageModal} />
                 )}
 
