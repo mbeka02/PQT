@@ -48,3 +48,17 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.logItem {
+  display: flex; /* Use flexbox to place log text and button side by side */
+  align-items: center; /* Align items vertically in the center */
+}
+
+.logItem p {
+  flex: 1; /* Allow the log text to grow and fill available space */
+  margin: 0; /* Remove any default margins */
+}
+
+.logItem button {
+  margin-left: 10px; /* Add some spacing between the log text and the button */
+}
