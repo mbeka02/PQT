@@ -1,8 +1,15 @@
-import styles from 'styles/imageModal.module.css';
 import React from 'react';
+import styles from 'styles/imageModal.module.css';
 
-// Updated ImageModal Component
-export default function ImageModal({ content, onClose }: { content: { text: string; imageSrc: string }; onClose: () => void }) {
+interface ImageModalProps {
+  content: {
+    text: string;
+    imageSrc: string;
+  };
+  onClose: () => void;
+}
+
+export default function ImageModal({ content, onClose }: ImageModalProps) {
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
@@ -14,4 +21,3 @@ export default function ImageModal({ content, onClose }: { content: { text: stri
     </div>
   );
 }
-
