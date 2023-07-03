@@ -116,6 +116,7 @@ function handleLogClick(logContent: string) {
                 )}
 
 
+
         </div>
       </div>
       {selectedPlayer && (
