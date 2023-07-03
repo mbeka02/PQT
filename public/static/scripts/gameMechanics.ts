@@ -183,10 +183,12 @@ export class GameClass {
 
 
 // This constructor randomly grabs a home and away team from the TeamClass array
-    constructor(teams:TeamClass[]) {
+    constructor(teams:TeamClass[], imageSrc: string) {
         const homeIndex = Math.round((teams.length - 1) * Math.random())
-        this.home = teams[homeIndex];
         const awayIndex = Math.round((teams.length - 1) * Math.random())
+        this.home = teams[homeIndex];
+        this.imageSrc = imageSrc;
+        
         if(homeIndex == awayIndex) {
             homeIndex == teams.length - 1 ? this.away = teams[homeIndex - 1] : this.away = teams[homeIndex + 1];
         } else {
@@ -280,7 +282,7 @@ export class GameClass {
         
         const res = choices[index]
 
-        this.logs.push(new LogClass(res, this.startTime));
+        this.logs.push(new LogClass(res, this.startTime, this.imageSrc));
     }
 
     playRound(): void {
@@ -338,23 +340,6 @@ export class GameClass {
         }
 
         
-/*
-        // This code randomly allocates steals and blocks to the same chosenPlayer; probably want to delete/update this code eventually
-        if (Math.random() > 0.8) {
-                        // 1 every 5
-                        chosenPlayer.stats.steals += 1;
-                    }
-        else if (Math.random() > 0.8) {
-                            // 1 every less than 5
-                            chosenPlayer.stats.blocks += 1;
-                        }
-
-        // Same random allocation thing here for rebounds; probably want to delete/update this code eventually                
-        if(Math.random() > 0.9) {
-            chosenPlayer.stats.rebounds += 1;
-        }
-*/
-
         // Decide whether to create a good log for the winner
         // or a bad one for the losers
         const good = Math.random() < 0.5;
