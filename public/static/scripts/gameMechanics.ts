@@ -144,6 +144,7 @@ export class TeamClass {
 }
 
 export class LogClass {
+    imageSrc?: string; // Optional property for the image source
     content: string;
     date: number;
     totalWins: number = 0;
