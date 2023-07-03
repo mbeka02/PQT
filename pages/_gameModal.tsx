@@ -44,18 +44,19 @@ function handleLogClick(logContent: string) {
     // Find the log entry with the given content
     const selectedLogEntry = logs.find((log) => log.content === logContent);
 
-    // Check if the selectedLogEntry is defined
-    if (selectedLogEntry) {
+    // Check if the selectedLogEntry is defined and contains the necessary properties
+    if (selectedLogEntry && selectedLogEntry.content && selectedLogEntry.imageSrc) {
       // Create the object with the required properties
       const logData: LogContent = {
         text: selectedLogEntry.content,
-        imageSrc: "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1",
+        imageSrc: selectedLogEntry.imageSrc,
       };
       setSelectedLog(logData); // Set the selected log content in the state
       setShowImageModal(true); // Show the Image modal
     }
   }
 }
+
 
 
   function closeImageModal() {
