@@ -144,17 +144,15 @@ export class TeamClass {
 }
 
 export class LogClass {
-  content: string;
-  date: number;
-  totalWins: number = 0;
-  totalLosses: number = 0;
-  imageSrc: string; // Add the imageSrc property
+    content: string;
+    date: number;
+    totalWins: number = 0;
+    totalLosses: number = 0;
 
-  constructor(content: string, gameStart: number, imageSrc: string) {
-    this.content = content;
-    this.date = new Date().getTime() - gameStart;
-    this.imageSrc = imageSrc; // Initialize the imageSrc property
-  }
+    constructor(content: string, gameStart: number) {
+        this.content = content;
+        this.date = new Date().getTime() - gameStart;
+    }
 }
 
 export class GameClass {
@@ -338,6 +336,22 @@ export class GameClass {
         }
 
         
+/*
+        // This code randomly allocates steals and blocks to the same chosenPlayer; probably want to delete/update this code eventually
+        if (Math.random() > 0.8) {
+                        // 1 every 5
+                        chosenPlayer.stats.steals += 1;
+                    }
+        else if (Math.random() > 0.8) {
+                            // 1 every less than 5
+                            chosenPlayer.stats.blocks += 1;
+                        }
+
+        // Same random allocation thing here for rebounds; probably want to delete/update this code eventually                
+        if(Math.random() > 0.9) {
+            chosenPlayer.stats.rebounds += 1;
+        }
+*/
 
         // Decide whether to create a good log for the winner
         // or a bad one for the losers
