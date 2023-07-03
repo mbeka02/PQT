@@ -144,15 +144,17 @@ export class TeamClass {
 }
 
 export class LogClass {
-    content: string;
-    date: number;
-    totalWins: number = 0;
-    totalLosses: number = 0;
+  content: string;
+  date: number;
+  totalWins: number = 0;
+  totalLosses: number = 0;
+  imageSrc: string; // Add the imageSrc property
 
-    constructor(content: string, gameStart: number) {
-        this.content = content;
-        this.date = new Date().getTime() - gameStart;
-    }
+  constructor(content: string, gameStart: number, imageSrc: string) {
+    this.content = content;
+    this.date = new Date().getTime() - gameStart;
+    this.imageSrc = imageSrc; // Initialize the imageSrc property
+  }
 }
 
 export class GameClass {
@@ -276,13 +278,6 @@ export class GameClass {
 
         const index = Math.floor(Math.random() * choices.length)
         
-        /*
-        //this if statement does the block stat incrementing, mentioned above in positiveLogs[] comments
-        if(choices[index] == positiveLogs[4] || choices[index] == positiveLogs[5]) {
-            team == 'home' ? this.getRandomPlayer(this.home).blocking += 1 : this.getRandomPlayer(this.away).blocking += 1;
-        }
-        */
-
         const res = choices[index]
 
         this.logs.push(new LogClass(res, this.startTime));
