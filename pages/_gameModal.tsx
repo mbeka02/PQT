@@ -37,30 +37,28 @@ export default function GameModal({
     setSelectedPlayer(undefined);
   }
 
+  function handleLogClick(logContent: string) {
+    // Check if logs is defined and is an array with at least one element
+    if (logs && logs.length > 0) {
+      // Find the log that matches the clicked content
+      const clickedLog = logs.find((log) => log.content === logContent);
 
-function handleLogClick(logContent: string) {
-  // Check if logs is defined and is an array with at least one element
-  if (logs && logs.length > 0) {
-    // Find the log that matches the clicked content
-    const clickedLog = logs.find((log) => log.content === logContent);
+      if (clickedLog) {
+        // Check if the clicked log has an associated image
+        const imageSrc = clickedLog.imageSrc
+          ? clickedLog.imageSrc
+          : "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1"; // Use a placeholder image URL here
 
-    if (clickedLog) {
-      // Check if the clicked log has an associated image
-      const imageSrc = clickedLog.imageSrc
-        ? clickedLog.imageSrc
-        : "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1"; // Use a placeholder image URL here
-
-      // Create the object with the required properties
-      const logData: LogContent = {
-        text: logContent,
-        imageSrc: imageSrc,
-      };
-      setSelectedLog(logData); // Set the selected log content in the state
-      setShowImageModal(true); // Show the Image modal
+        // Create the object with the required properties
+        const logData: LogContent = {
+          text: logContent,
+          imageSrc: imageSrc,
+        };
+        setSelectedLog(logData); // Set the selected log content in the state
+        setShowImageModal(true); // Show the Image modal
+      }
     }
   }
-}
-
 
   function closeImageModal() {
     setShowImageModal(false);
@@ -100,23 +98,20 @@ function handleLogClick(logContent: string) {
             </div>
           </div>
 
-            {/* Render the logs and attach a click event handler */}
-              <div className={styles.logs}>
-                {logs?.map((e, i) => (
-                  // Attach the click event handler to each log item
-                  <p key={i} onClick={() => handleLogClick(e.content)}>
-                    {e.content}
-                  </p>
-                ))}
-              </div>
+          {/* Render the logs and attach a click event handler */}
+          <div className={styles.logs}>
+            {logs?.map((e, i) => (
+              // Attach the click event handler to each log item
+              <p key={i} onClick={() => handleLogClick(e.content)}>
+                {e.content}
+              </p>
+            ))}
+          </div>
 
-              {/* Show Image Modal when required */}
-              {showImageModal && selectedLog !== null && (
-                  <ImageModal content={selectedLog} onClose={closeImageModal} />
-                )}
-
-
-
+          {/* Show Image Modal when required */}
+          {showImageModal && selectedLog !== null && (
+            <ImageModal content={selectedLog} onClose={closeImageModal} />
+          )}
         </div>
       </div>
       {selectedPlayer && (
