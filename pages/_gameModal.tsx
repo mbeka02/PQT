@@ -40,15 +40,20 @@ export default function GameModal({
 
 function handleLogClick(logContent: string) {
   // Check if logs is defined and is an array with at least one element
-  if (logs && logs.length > 0) {
-    // Create the object with the required properties
-    const logData: LogContent = {
-      text: logContent,
-      imageSrc:
-        "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1",
-    };
-    setSelectedLog(logData); // Set the selected log content in the state
-    setShowImageModal(true); // Show the Image modal
+  if (logs?.length > 0) {
+    // Find the log entry with the given content
+    const selectedLogEntry = logs.find((log) => log.content === logContent);
+
+    // Check if the selectedLogEntry is defined
+    if (selectedLogEntry) {
+      // Create the object with the required properties
+      const logData: LogContent = {
+        text: selectedLogEntry.content,
+        imageSrc: "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1",
+      };
+      setSelectedLog(logData); // Set the selected log content in the state
+      setShowImageModal(true); // Show the Image modal
+    }
   }
 }
 
