@@ -183,12 +183,10 @@ export class GameClass {
 
 
 // This constructor randomly grabs a home and away team from the TeamClass array
-    constructor(teams:TeamClass[], imageSrc: string) {
+    constructor(teams:TeamClass[]) {
         const homeIndex = Math.round((teams.length - 1) * Math.random())
-        const awayIndex = Math.round((teams.length - 1) * Math.random())
         this.home = teams[homeIndex];
-        this.imageSrc = imageSrc;
-        
+        const awayIndex = Math.round((teams.length - 1) * Math.random())
         if(homeIndex == awayIndex) {
             homeIndex == teams.length - 1 ? this.away = teams[homeIndex - 1] : this.away = teams[homeIndex + 1];
         } else {
@@ -282,7 +280,7 @@ export class GameClass {
         
         const res = choices[index]
 
-        this.logs.push(new LogClass(res, this.startTime, this.imageSrc));
+        this.logs.push(new LogClass(res, this.startTime));
     }
 
     playRound(): void {
@@ -340,6 +338,7 @@ export class GameClass {
         }
 
         
+
         // Decide whether to create a good log for the winner
         // or a bad one for the losers
         const good = Math.random() < 0.5;
