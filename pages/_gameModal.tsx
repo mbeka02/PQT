@@ -40,7 +40,7 @@ export default function GameModal({
 
 function handleLogClick(logContent: string) {
   // Check if logs is defined and is an array with at least one element
-  if (logs?.length > 0) {
+  if (logs && logs.length > 0) {
     // Find the log entry with the given content
     const selectedLogEntry = logs.find((log) => log.content === logContent);
 
@@ -56,6 +56,7 @@ function handleLogClick(logContent: string) {
     }
   }
 }
+
 
   function closeImageModal() {
     setShowImageModal(false);
