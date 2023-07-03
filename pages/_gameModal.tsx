@@ -28,7 +28,7 @@ export default function GameModal({
   // Define the selected log state with the LogContent type
   const [selectedLog, setSelectedLog] = useState<LogContent | null>(null);
   const [showImageModal, setShowImageModal] = useState<boolean>(false);
-  const [selectedGameScore, setSelectedGameScore] = useState<string | null>(null);
+  const [selectedGameScore, setSelectedGameScore] = useState<string>('');
 
   function openPlayerModal(player: PlayerClass) {
     setSelectedPlayer(player);
