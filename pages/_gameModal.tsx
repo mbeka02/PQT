@@ -105,13 +105,13 @@ export default function GameModal({
 
           {/* Render the logs and attach a click event handler */}
           <div className={styles.logs}>
-            {logs?.map((e, i) => (
-              // Render each log inside a container that includes a button
-              <div key={i} className={styles.logItem}>
-                <p>{e.content}</p>
-                <button onClick={() => handleLogButtonClick(e.content)}>Click me</button>
-              </div>
-            ))}
+              {logs?.map((e, i) => (
+                // Wrap the log text and button inside a container div
+                <div className={styles.logItem} key={i}>
+                  <p>{e.content}</p>
+                  <button onClick={() => handleLogClick(e.content)}>View</button>
+                </div>
+              ))}
           </div>
 
           {/* Show Image Modal when required */}

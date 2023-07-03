@@ -49,6 +49,12 @@
   cursor: pointer;
 }
 
+.logs {
+  /* Add some spacing between log items */
+  display: grid;
+  grid-gap: 10px;
+}
+
 .logItem {
   display: flex; /* Use flexbox to place log text and button side by side */
   align-items: center; /* Align items vertically in the center */
