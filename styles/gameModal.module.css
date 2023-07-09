@@ -1,100 +1,100 @@
 .wrapper {
-    top: 20px;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 95%;
-    height: 95%;
-    background-color: none;
-    color: white;
-    border: 2px solid limegreen;
-    flex-direction: column;
+  top: 20px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  height: 95%;
+  background-color: none;
+  color: white;
+  border: 2px solid limegreen;
+  flex-direction: column;
 }
 
 .teamswrapperModal {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    min-width: 200px;
-    min-height: 100px;
-    padding: 0px;
-    border: 2px solid limegreen;
-    margin: 5px;
-    flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-width: 200px;
+  min-height: 100px;
+  padding: 0px;
+  border: 2px solid limegreen;
+  margin: 5px;
+  flex-grow: 0;
 }
 
 .contentHome {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    height: flex;
-    width: 50%;
-    overflow-y: auto;
-    overflow: hidden;
-    border: 2px solid limegreen;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: flex;
+  width: 50%;
+  overflow-y: auto;
+  overflow: hidden;
+  border: 2px solid limegreen;
 }
 
 .contentHome::-webkit-scrollbar {
-width: 4px;               /* width of the entire scrollbar */
+  width: 4px; /* width of the entire scrollbar */
 }
 .contentHome::-webkit-scrollbar-track {
-background: transparent;        /* color of the tracking area */
+  background: transparent; /* color of the tracking area */
 }
 .contentHome::-webkit-scrollbar-thumb {
-background-color: #1a73e8;    /* color of the scroll thumb */
+  background-color: #1a73e8; /* color of the scroll thumb */
 }
 
 .contentAway {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    height: flex;
-    width: 50%;
-    overflow-y: auto;
-    overflow: hidden;
-    border: 2px solid limegreen;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: flex;
+  width: 50%;
+  overflow-y: auto;
+  overflow: hidden;
+  border: 2px solid limegreen;
 }
 
 .contentAway::-webkit-scrollbar {
-width: 4px;               /* width of the entire scrollbar */
+  width: 4px; /* width of the entire scrollbar */
 }
 .contentAway::-webkit-scrollbar-track {
-background: transparent;        /* color of the tracking area */
+  background: transparent; /* color of the tracking area */
 }
 .contentAway::-webkit-scrollbar-thumb {
-background-color: #1a73e8;    /* color of the scroll thumb */
+  background-color: #1a73e8; /* color of the scroll thumb */
 }
 
 .logs {
-    max-height: 750px;
-    width: 100%;
-    overflow-y: auto;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-grow: 1;
-    border: 2px solid limegreen;
+  max-height: 750px;
+  width: 100%;
+  overflow-y: auto;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+  border: 2px solid limegreen;
 }
 
 .logs::-webkit-scrollbar {
-width: 4px;               /* width of the entire scrollbar */
+  width: 4px; /* width of the entire scrollbar */
 }
 .logs::-webkit-scrollbar-track {
-background: transparent;        /* color of the tracking area */
+  background: transparent; /* color of the tracking area */
 }
 .logs::-webkit-scrollbar-thumb {
-background-color: #1a73e8;    /* color of the scroll thumb */
+  background-color: #1a73e8; /* color of the scroll thumb */
 }
 
 .button {
-    position: fixed;
-    top: 0px;
-    right: 0px;
-    font-size: 50px;
-    z-index: 1000;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  font-size: 50px;
+  z-index: 1000;
 }
 
 .playerLink {
@@ -116,7 +116,7 @@ background-color: #1a73e8;    /* color of the scroll thumb */
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: black;
 }
 
 /* New styles for close button */
@@ -133,5 +133,5 @@ background-color: #1a73e8;    /* color of the scroll thumb */
 }
 
 .hidden {
-    display: none;
+  display: none;
 }

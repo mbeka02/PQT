@@ -1,48 +1,83 @@
-import style from '../styles/game.module.css'
-import { useEffect, useState } from 'react';
-import GameModal from './_gameModal';
-import { GameClass, TeamClass, LogClass, PlayerClass } from '@/public/static/scripts/gameMechanics';
-import modalStyles from 'styles/gameModal.module.css';
+import style from "../styles/game.module.css";
+import { useState } from "react";
+import GameModal from "./_gameModal";
+import {
+  GameClass,
+  TeamClass,
+  LogClass,
+  PlayerClass,
+} from "@/public/static/scripts/gameMechanics";
+import modalStyles from "styles/gameModal.module.css";
 
-
-// This function defines the box that displays each team's location, name, W/L record and game score 
-function TeamWrapper({team, gameScore, finished, won, draw} : {team: TeamClass, gameScore: number, finished: boolean, won: boolean, draw:boolean}) {
-    let className = style.team;
-    if(finished && won) {
-        className = `${style.team} ${style.teamWon}`;
-    } else if(finished && draw) {
-        className = `${style.team} ${style.teamdraw}`;
-    } else if(finished && !won) {
-        className = `${style.team} ${style.teamLost}`;
-    }
-    return <>
-    <div className={className}>
+// This function defines the box that displays each team's location, name, W/L record and game score
+function TeamWrapper({
+  team,
+  gameScore,
+  finished,
+  won,
+  draw,
+}: {
+  team: TeamClass;
+  gameScore: number;
+  finished: boolean;
+  won: boolean;
+  draw: boolean;
+}) {
+  /* let className = style.team;
+  if (finished && won) {
+    className = `${style.team} ${style.teamWon}`;
+  } else if (finished && draw) {
+    className = `${style.team} ${style.teamdraw}`;
+  } else if (finished && !won) {
+    className = `${style.team} ${style.teamLost}`;
+  }*/
+  return (
+    <div className="grid grid-cols-custom gap-3">
+      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center ">
         <p>{team.emoji}</p>
         <div>
-            <div>
-                <h3>
-                    {team.city}<br></br>{team.name}
-                </h3>
-                <p><span>{team.wins}</span>-<span>{team.ties}</span>-<span>{team.losses}</span></p>
-            </div>
-            <p>Score: {gameScore}</p>
+          <div>
+            <h3>
+              {team.city}
+              <br></br>
+              {team.name}
+            </h3>
+            <p>
+              <span>{team.wins}</span>-<span>{team.ties}</span>-
+              <span>{team.losses}</span>
+            </p>
+          </div>
         </div>
+      </div>
+      <div className="bg-white p-4 uppercase font-semibold border-solid border-[1px] border-[#9c9c9c] ">
+        <p>Score: {gameScore}</p>
+      </div>
     </div>
-    </>
+  );
 }
 
 // This function defines the box that displays the game logs
-function LogWrapper({ log } : { log: LogClass }) {
-    let seconds = Math.round(log.date / 1000).toString() + "s";
-    return <>
-    <div className={style.log}>
+function LogWrapper({ log }: { log: LogClass }) {
+  let seconds = Math.round(log.date / 1000).toString() + "s";
+  return (
+    <>
+      <div className={style.log}>
         <p className={style.logTime}>{seconds}</p>
         <p className={style.logContent}>{log.content}</p>
-    </div>
+      </div>
     </>
+  );
 }
 
-export default function Game({ game, homeScore, awayScore, id } : { game: GameClass, homeScore: number, awayScore: number, id: number }) {
+export default function Game({
+  game,
+  homeScore,
+  awayScore,
+}: {
+  game: GameClass;
+  homeScore: number;
+  awayScore: number;
+}) {
   const [showModal, setShowModal] = useState(false);
 
   function showModalOnClick() {
@@ -53,11 +88,20 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
     setShowModal(false);
   }
 
-  if (!game || !game.home || !game.away || homeScore === undefined || awayScore === undefined || id === undefined) {
+  if (
+    !game ||
+    !game.home ||
+    !game.away ||
+    homeScore === undefined ||
+    awayScore === undefined
+  ) {
     return null;
   }
 
-  const getBestPlayerStat = (players: PlayerClass[], stat:"points"|"rebounds"|"assists"|"steals"|"blocks") => {
+  const getBestPlayerStat = (
+    players: PlayerClass[],
+    stat: "points" | "rebounds" | "assists" | "steals" | "blocks"
+  ) => {
     const maxPointsPlayer = players.reduce((maxPlayer, player) => {
       return player.stats[stat] > maxPlayer.stats[stat] ? player : maxPlayer;
     }, players[0]);
@@ -65,15 +109,20 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
     return maxPointsPlayer.stats[stat];
   };
 
-
   const bestHomePlayerPoints = getBestPlayerStat(game.home.players, "points");
-  const bestHomePlayerRebounds = getBestPlayerStat(game.home.players, "rebounds");
+  const bestHomePlayerRebounds = getBestPlayerStat(
+    game.home.players,
+    "rebounds"
+  );
   const bestHomePlayerAssists = getBestPlayerStat(game.home.players, "assists");
   const bestHomePlayerSteals = getBestPlayerStat(game.home.players, "steals");
   const bestHomePlayerBlocks = getBestPlayerStat(game.home.players, "blocks");
 
   const bestAwayPlayerPoints = getBestPlayerStat(game.away.players, "points");
-  const bestAwayPlayerRebounds = getBestPlayerStat(game.away.players, "rebounds");
+  const bestAwayPlayerRebounds = getBestPlayerStat(
+    game.away.players,
+    "rebounds"
+  );
   const bestAwayPlayerAssists = getBestPlayerStat(game.away.players, "assists");
   const bestAwayPlayerSteals = getBestPlayerStat(game.away.players, "steals");
   const bestAwayPlayerBlocks = getBestPlayerStat(game.away.players, "blocks");
@@ -81,34 +130,65 @@ export default function Game({ game, homeScore, awayScore, id } : { game: GameCl
   return (
     <>
       {showModal && (
-      <div className={modalStyles.modalWrapper}>
-        <button className={modalStyles.closeButton} onClick={hideModalOnClick} type="button">
-          X
-        </button>
-        <GameModal home={game.home} away={game.away} homeScore={homeScore} awayScore={awayScore} logs={game.logs} />
-      </div>
-    )}
+        <div className={modalStyles.modalWrapper}>
+          <button
+            className={modalStyles.closeButton}
+            onClick={hideModalOnClick}
+            type="button"
+          >
+            X
+          </button>
+          <GameModal
+            home={game.home}
+            away={game.away}
+            homeScore={homeScore}
+            awayScore={awayScore}
+            logs={game.logs}
+          />
+        </div>
+      )}
       <div className={style.wrapper} onClick={showModalOnClick}>
-        <h1>{id}</h1>
-        <div className={style.contentWrapper}>
-          <div className={style.teamswrapper}>
-            <TeamWrapper team={game.home} gameScore={game.homepoints} finished={game.finished} won={game.homeWon} draw={game.draw} />
-            <TeamWrapper team={game.away} gameScore={game.awaypoints} finished={game.finished} won={game.awayWon} draw={game.draw} />
+        <div className=" grid-cols-custom grid ">
+          <div className="  grid gap-3 mx-2">
+            <TeamWrapper
+              team={game.home}
+              gameScore={game.homepoints}
+              finished={game.finished}
+              won={game.homeWon}
+              draw={game.draw}
+            />
+            <TeamWrapper
+              team={game.away}
+              gameScore={game.awaypoints}
+              finished={game.finished}
+              won={game.awayWon}
+              draw={game.draw}
+            />
+            <div className="bg-white p-4 border-solid border-[1px] border-[#9c9c9c]">
+              <p className="font-semibold">
+                Location:{" "}
+                {game.homeStadium
+                  ? game.home.city + " Stadium"
+                  : game.away.city + " Arena"}
+              </p>
+              <h3>Game conditions:</h3>
+
+              <p>Weather: {game.weather}</p>
+            </div>
           </div>
-          <div className={style.logs}>
+
+          <div className="bg-black border-solid border-[1px]  border-[#9c9c9c] h-full  text-white overflow-y-auto  p-1 mx-2">
             {game.logs.length ? (
-              game.logs.map((l, key) => <LogWrapper log={l} key={key}></LogWrapper>)
+              game.logs.map((l, key) => (
+                <LogWrapper log={l} key={key}></LogWrapper>
+              ))
             ) : (
               <p>No logs available yet...</p>
             )}
           </div>
-          <div className={style.conditions}>
-            <h3>Game conditions:</h3>
-            <p>Location: {game.homeStadium ? game.home.city + " Stadium" : game.away.city + " Arena"}</p>
-            <p>Weather: {game.weather}</p>
-          </div>
-          <div className={style.gameStats}>
-            <table className={style.statsTable}>
+
+          <div className={/*style.gameStats*/ "hidden"}>
+            <table className={/*style.statsTable*/ "hidden"}>
               <thead>
                 <tr>
                   <th></th>

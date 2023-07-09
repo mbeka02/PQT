@@ -6,6 +6,10 @@ main {
   font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
+.rb {
+  border: solid 1px red;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
