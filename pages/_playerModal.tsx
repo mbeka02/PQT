@@ -1,13 +1,16 @@
-import styles from 'styles/playerModal.module.css';
-import { PlayerClass } from '@/public/static/scripts/gameMechanics';
-import React from 'react';
+import styles from "styles/playerModal.module.css";
+import { PlayerClass } from "@/public/static/scripts/gameMechanics";
+import React from "react";
 
 interface PlayerModalProps {
   players: PlayerClass[];
   hideModalOnClick: () => void;
 }
 
-const PlayerModal: React.FC<PlayerModalProps> = ({ players, hideModalOnClick }) => {
+const PlayerModal: React.FC<PlayerModalProps> = ({
+  players,
+  hideModalOnClick,
+}) => {
   if (!players || players.length === 0) {
     return null; // Render nothing if players array is undefined or empty
   }
@@ -15,7 +18,7 @@ const PlayerModal: React.FC<PlayerModalProps> = ({ players, hideModalOnClick }) 
   const player = players[0];
 
   return (
-    <div className={`${styles.playerModal} ${styles.modalTop}`}>
+    <div className="   m-auto grid h-3/4 w-4/5  rounded bg-white  p-4 lg:h-xxl   lg:w-1/2 z-10">
       <div className={styles.arrows}>
         <button disabled className={styles.leftArrow}>
           &larr;
@@ -25,7 +28,7 @@ const PlayerModal: React.FC<PlayerModalProps> = ({ players, hideModalOnClick }) 
         </button>
       </div>
 
-      <div className={styles.playerInfo}>
+      <div className="">
         <h2>
           {player.first_name} {player.last_name}
         </h2>

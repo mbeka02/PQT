@@ -112,13 +112,13 @@ export default function Home({ teams }: { teams: APITeamData }) {
           <Link href="/add">Click me to go add players/teams</Link>
         </div>
         <div className="flex flex-wrap justify-evenly">
-          {games?.map((game, i) => (
+          {games?.map((game, index) => (
             <>
               <Game
                 game={game}
                 homeScore={game.homepoints}
                 awayScore={game.awaypoints}
-                key={i}
+                key={index}
               ></Game>
             </>
           ))}

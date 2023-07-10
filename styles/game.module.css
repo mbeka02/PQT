@@ -7,13 +7,14 @@
 
 /* this is the container around each game instance */
 .wrapper {
-  background-color: goldenrod;
-  min-width: 18rem;
-  max-width: 39rem;
-  align-items: center;
+  background-color: #daa520;
+  /*min-width: 18rem;*/
+  width: 34rem;
+  height: 30rem;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  padding: 16px;
+
   margin: 0.5rem;
 }
 
