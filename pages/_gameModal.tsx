@@ -4,7 +4,7 @@ import {
   LogClass,
   PlayerClass,
 } from "@/public/static/scripts/gameMechanics";
-import PlayerModal from "./_playerModal";
+
 import React, { useState } from "react";
 import ImageModal from "./_imageModal";
 
@@ -27,22 +27,10 @@ export default function GameModal({
   awayScore: number | undefined;
   logs: LogClass[] | undefined;
 }) {
-  const [selectedPlayer, setSelectedPlayer] = useState<PlayerClass | undefined>(
-    undefined
-  );
-
   // Define the selected log state with the LogContent type
   const [selectedLog, setSelectedLog] = useState<LogContent | null>(null);
   const [showImageModal, setShowImageModal] = useState<boolean>(false);
   const [selectedGameScore, setSelectedGameScore] = useState<string>("");
-
-  function openPlayerModal(player: PlayerClass) {
-    setSelectedPlayer(player);
-  }
-
-  function closePlayerModal() {
-    setSelectedPlayer(undefined);
-  }
 
   function handleLogClick(logContent: string) {
     // Check if logs is defined and is an array with at least one element
@@ -81,76 +69,25 @@ export default function GameModal({
 
   return (
     <>
-      <div className={styles.wrapper}>
-        <h1>
-          {home && home.city && home.name}
-          &nbsp;vs&nbsp;
-          {away && away.city && away.name}
-        </h1>
-        <div className="flex flex-row flex-wrap justify-between m-2 flex-grow-0 ">
-          <div className={styles.contentHome}>
-            <div className={styles.playersScrollbar}>
-              <h2>HOME {homeScore}</h2>
-              {home?.players.map((p, i) => (
-                <Player player={p} key={i} onClick={() => openPlayerModal(p)} />
-              ))}
-            </div>
+      {/* Render the logs and attach a click event handler */}
+      <div className={styles.logs}>
+        {logs?.map((e, i) => (
+          // Wrap the log text and button inside a container div
+          <div className="flex gap-2" key={i}>
+            <p>{e.content}</p>
+            <button onClick={() => handleLogClick(e.content)}>View</button>
           </div>
-          <div className={styles.contentAway}>
-            <div className={styles.playersScrollbar}>
-              <h2>AWAY {awayScore}</h2>
-              {away?.players.map((p, i) => (
-                <Player player={p} key={i} onClick={() => openPlayerModal(p)} />
-              ))}
-            </div>
-          </div>
-
-          {/* Render the logs and attach a click event handler */}
-          <div className={styles.logs}>
-            {logs?.map((e, i) => (
-              // Wrap the log text and button inside a container div
-              <div className="flex gap-2" key={i}>
-                <p>{e.content}</p>
-                <button onClick={() => handleLogClick(e.content)}>View</button>
-              </div>
-            ))}
-          </div>
-
-          {/* Show Image Modal when required */}
-          {showImageModal && selectedLog !== null && (
-            <ImageModal
-              content={selectedLog}
-              gameScore={selectedGameScore}
-              onClose={closeImageModal}
-            />
-          )}
-        </div>
+        ))}
       </div>
-      {selectedPlayer && (
-        <PlayerModal
-          players={[selectedPlayer]}
-          hideModalOnClick={closePlayerModal}
+
+      {/* Show Image Modal when required */}
+      {showImageModal && selectedLog !== null && (
+        <ImageModal
+          content={selectedLog}
+          gameScore={selectedGameScore}
+          onClose={closeImageModal}
         />
       )}
-    </>
-  );
-}
-
-function Player({
-  player,
-  onClick,
-}: {
-  player: PlayerClass;
-  onClick: () => void;
-}) {
-  return (
-    <>
-      <div>
-        Player:
-        <button onClick={onClick}>
-          {player.first_name} {player.last_name}
-        </button>
-      </div>
     </>
   );
 }
