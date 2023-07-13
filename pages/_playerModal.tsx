@@ -1,4 +1,3 @@
-import styles from "styles/playerModal.module.css";
 import { PlayerClass } from "@/public/static/scripts/gameMechanics";
 import { motion } from "framer-motion";
 import React, { Dispatch, SetStateAction } from "react";
@@ -53,10 +52,9 @@ const PlayerModal: React.FC<PlayerModalProps> = ({
   const players = home.concat(away);
 
   return (
-    //account for user trying to go to non-existant index , fix onClick evts
     <Backdrop>
       <motion.div
-        className="   m-auto grid h-4/5 w-4/5  rounded bg-white  p-4 lg:h-xxl   lg:w-1/2 z-10 relative"
+        className="   m-auto grid h-5/6 w-4/5  rounded bg-white  p-4 lg:h-xxl   lg:w-1/2 z-10 relative"
         variants={dropIn}
       >
         {players.map((player, index) => {
@@ -68,6 +66,7 @@ const PlayerModal: React.FC<PlayerModalProps> = ({
               <button
                 className="absolute  -left-[5%]  bottom-0 top-0  "
                 onClick={() => setSelectedPlayer((prev) => prev - 1)}
+                disabled={selectedPlayer === 0}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,6 +80,7 @@ const PlayerModal: React.FC<PlayerModalProps> = ({
               <button
                 className="absolute  -right-[5%]  bottom-0 top-0"
                 onClick={() => setSelectedPlayer((prev) => prev + 1)}
+                disabled={selectedPlayer === players.length - 1}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -105,99 +105,161 @@ const PlayerModal: React.FC<PlayerModalProps> = ({
               </button>
               <div className="grid grid-cols-custom_3">
                 <div>
-                  <img alt="avatar" src="/default.png" />
+                  <img alt="avatar" src="/default.png" className="w-4/5" />
                 </div>
-                <div className="grid justify-start  py-3 px-2 ">
-                  <h2 className="font-semibold">
-                    {player.first_name} {player.last_name}
-                  </h2>
+                <div className="grid   p-2">
+                  <div className="grid  w-full justify-start">
+                    <h2 className="font-semibold">
+                      {player.first_name} {player.last_name}
+                    </h2>
+                  </div>
                   <div className="">{player.team}</div>
+                  <div className="flex  w-full  gap-4">
+                    <div className="font-semibold">Stats</div>
+                    <div className="grid grid-cols-custom_2  w-1/2">
+                      <div>
+                        <div>{player.stats.points} PPG</div>
+                        <div>{player.stats.rebounds} RPG</div>
+                        <div>{player.stats.assists} APG</div>
+                      </div>
+                      <div>
+                        <div>{player.stats.blocks} BPG</div>
+                        <div> {player.stats.steals} SPG</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="grid grid-cols-custom_2 ">
-                <div className="flex flex-col py-2">
-                  <div>
-                    Astral Presence:<span>{player.Astral_Presence}</span>
+              <div className="grid grid-cols-custom_2  border-solid border-[1px] border-gray-300 ">
+                <div className="flex flex-col py-2  border-solid border-r-[1px] border-gray-300 px-3">
+                  <div className="font-semibold">
+                    Astral Presence:
+                    <span className=" font-normal ml-1">
+                      {player.Astral_Presence}
+                    </span>
                   </div>
-                  <div>Resilience:{player.Resilience} </div>
-                  <div>
-                    Radiance:<span>{player.Radiance}</span>
+                  <div className="font-semibold">
+                    Resilience:{" "}
+                    <span className=" font-normal ml-1">
+                      {player.Resilience}
+                    </span>
                   </div>
-                  <div>
-                    Resonance:<span>{player.Resonance}</span>
+                  <div className="font-semibold">
+                    Radiance:
+                    <span className=" font-normal ml-1">{player.Radiance}</span>
                   </div>
-                  <div>
-                    Dynamism: <span>{player.Dynamism}</span>
+                  <div className="font-semibold">
+                    Resonance:
+                    <span className=" font-normal ml-1">
+                      {player.Resonance}
+                    </span>
                   </div>
-                  <div>
-                    Vibes:<span>{player.Vibes} </span>
+                  <div className="font-semibold">
+                    Dynamism:
+                    <span className=" font-normal ml-1">{player.Dynamism}</span>
                   </div>
-                  <div>
-                    Charm: <span>{player.Charm}</span>
+                  <div className="font-semibold">
+                    Vibes:
+                    <span className=" font-normal ml-1">{player.Vibes} </span>
                   </div>
-                  <div>
-                    Observation:<span>{player.Observation}</span>
+                  <div className="font-semibold">
+                    Charm:
+                    <span className=" font-normal ml-1">{player.Charm}</span>
                   </div>
-                  <div>
-                    Bravery:<span>{player.Bravery} </span>
+                  <div className="font-semibold">
+                    Observation:
+                    <span className=" font-normal ml-1">
+                      {player.Observation}
+                    </span>
                   </div>
-                  <div>
-                    Creativity:<span>{player.Creativity}</span>
+                  <div className="font-semibold">
+                    Bravery :
+                    <span className=" font-normal ml-1">{player.Bravery} </span>
                   </div>
-                  <div>
-                    Tenacity:<span>{player.Tenacity}</span>
-                    <span></span>
+                  <div className="font-semibold">
+                    Creativity:
+                    <span className=" font-normal ml-1">
+                      {player.Creativity}
+                    </span>
                   </div>
-                  <div>
-                    Intelligence:<span>{player.Intelligence}</span>
+                  <div className="font-semibold">
+                    Tenacity:
+                    <span className=" font-normal ml-1">{player.Tenacity}</span>
                   </div>
-                  <div>
-                    Loyalty:<span>{player.Loyalty}</span>
+                  <div className="font-semibold">
+                    Intelligence:
+                    <span className=" font-normal ml-1">
+                      {player.Intelligence}
+                    </span>
                   </div>
-                  <div>
-                    Wit:<span>{player.Wit} </span>
+                  <div className="font-semibold">
+                    Loyalty:
+                    <span className=" font-normal ml-1">{player.Loyalty}</span>
+                  </div>
+                  <div className="font-semibold">
+                    Wit:
+                    <span className=" font-normal ml-1">{player.Wit} </span>
                   </div>
                 </div>
-                <div>
-                  <div>
-                    Patience:<span>{player.Patience}</span>
+                <div className="flex flex-col py-2 px-3">
+                  <div className="font-semibold">
+                    Patience:
+                    <span className=" font-normal ml-1">{player.Patience}</span>
                   </div>
-                  <div>
-                    Artistry: <span>{player.Artistry}</span>
+                  <div className="font-semibold">
+                    Artistry:
+                    <span className=" font-normal ml-1">{player.Artistry}</span>
                   </div>
-                  <div>
-                    Technomancy:<span>{player.Technomancy}</span>
+                  <div className="font-semibold">
+                    Technomancy:
+                    <span className=" font-normal ml-1">
+                      {player.Technomancy}
+                    </span>
                   </div>
-                  <div>
-                    Gravity: <span>{player.Gravity} </span>
+                  <div className="font-semibold">
+                    Gravity:
+                    <span className=" font-normal ml-1">{player.Gravity} </span>
                   </div>
-                  <div>
-                    Bioluminescence: <span>{player.Bioluminescence}</span>
+                  <div className="font-semibold">
+                    Bioluminescence:
+                    <span className=" font-normal ml-1">
+                      {player.Bioluminescence}
+                    </span>
                   </div>
 
-                  <div>
-                    Stink:<span>{player.Stink}</span>
+                  <div className="font-semibold">
+                    Stink:
+                    <span className=" font-normal ml-1">{player.Stink}</span>
                   </div>
-                  <div>
-                    Rhythm:<span>{player.Rhythm}</span>
+                  <div className="font-semibold">
+                    Rhythm:
+                    <span className=" font-normal ml-1">{player.Rhythm}</span>
                   </div>
-                  <div>
-                    Purple:<span>{player.Purple} </span>
+                  <div className="font-semibold">
+                    Purple:
+                    <span className=" font-normal ml-1">{player.Purple} </span>
                   </div>
-                  <div>
-                    Dankness:<span>{player.Dankness} </span>
+                  <div className="font-semibold">
+                    Dankness:
+                    <span className=" font-normal ml-1">{player.Dankness}</span>
                   </div>
-                  <div>
-                    Savagery:<span>{player.Savagery} </span>
+                  <div className="font-semibold">
+                    Savagery:
+                    <span className=" font-normal ml-1">{player.Savagery}</span>
                   </div>
-                  <div>
-                    Cleanliness:<span>{player.Cleanliness} </span>
+                  <div className="font-semibold">
+                    Cleanliness:
+                    <span className=" font-normal ml-1">
+                      {player.Cleanliness}
+                    </span>
                   </div>
-                  <div>
-                    Unicorn:<span>{player.Unicorn} </span>
+                  <div className="font-semibold">
+                    Unicorn:
+                    <span className=" font-normal ml-1">{player.Unicorn} </span>
                   </div>
-                  <div>
-                    Thirst:<span>{player.Thirst} </span>
+                  <div className="font-semibold">
+                    Thirst:
+                    <span className=" font-normal ml-1">{player.Thirst} </span>
                   </div>
                 </div>
               </div>
