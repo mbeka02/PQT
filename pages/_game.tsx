@@ -2,6 +2,8 @@ import style from "../styles/game.module.css";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import PlayerModal from "./_playerModal";
+import modalStyles from "styles/gameModal.module.css";
+
 import {
   GameClass,
   TeamClass,
@@ -32,8 +34,8 @@ function TeamWrapper({
     className = `${style.team} ${style.teamLost}`;
   }*/
   return (
-    <div className="grid grid-cols-custom gap-3">
-      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-24">
+    <div className="grid grid-cols-custom gap-2 text-sm">
+      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-16">
         <p>{team.emoji}</p>
         <div>
           <div>
@@ -48,7 +50,7 @@ function TeamWrapper({
           </div>
         </div>
       </div>
-      <div className="bg-white p-4 uppercase font-semibold border-solid border-[1px] border-[#9c9c9c]  h-24">
+      <div className="bg-white p-4 uppercase font-semibold border-solid border-[1px] border-[#9c9c9c]  h-16  ">
         <p>Score: {gameScore}</p>
       </div>
     </div>
@@ -141,9 +143,8 @@ export default function Game({
     <>
       <div
         className={`${
-          expand ? " h-fit  outline outline-black" : " h-[26rem]"
-        } bg-[#daa520] w-[34rem] p-3 flex  flex-col m-2 ease-in-out duration-700 rounded-sm`}
-        // onClick={showModalOnClick}
+          expand ? " h-fit  outline outline-black" : " h-[18rem]"
+        } bg-[#daa520] w-[34rem] p-3 flex  flex-col m-2 ease-in-out duration-700 rounded-sm  text-sm `}
         onClick={toggleExapnd}
       >
         <div className=" grid-cols-custom grid ">
@@ -162,7 +163,7 @@ export default function Game({
               won={game.awayWon}
               draw={game.draw}
             />
-            <div className="bg-white p-4 border-solid border-[1px] border-[#9c9c9c]">
+            <div className="bg-white p-3   border-solid border-[1px] border-[#9c9c9c]">
               <p className="font-semibold">
                 Location:{" "}
                 {game.homeStadium
@@ -175,7 +176,7 @@ export default function Game({
             </div>
           </div>
 
-          <div className="bg-black border-solid border-[1px]  border-[#9c9c9c] h-[24rem]  text-white overflow-y-scroll grid p-1 mx-2 ">
+          <div className="bg-black border-solid border-[1px]  border-[#9c9c9c] h-[16rem]  text-white overflow-y-scroll grid p-1 mx-2 ">
             {game.logs.length ? (
               game.logs.map((l, key) => (
                 <LogWrapper log={l} key={key}></LogWrapper>
@@ -188,7 +189,7 @@ export default function Game({
         <div className={expand ? " grid" : "hidden"}>
           <table
             className={
-              "min-w-full text-center text-sm font-light bg-white my-4 p-2"
+              "min-w-full text-center  font-light bg-white my-4 p-2 border-solid border-[1px] border-[#9c9c9c]"
             }
           >
             <thead className="border-b font-medium dark:border-neutral-500">
@@ -275,11 +276,11 @@ export default function Game({
             </tbody>
           </table>
           <div className="flex w-full justify-between">
-            <div className="bg-white px-6 grid  ">
+            <div className="bg-white px-6 grid  border-solid border-[1px] border-[#9c9c9c]  ">
               <div className="font-semibold my-2">Home Roster</div>
               {game.home.players.map((player, index) => (
                 <span
-                  className="gap-1 cursor-pointer "
+                  className="gap-1 cursor-pointer hover:font-semibold "
                   onClick={() => openPlayerModal(index)}
                   key={index}
                 >
@@ -288,11 +289,11 @@ export default function Game({
                 </span>
               ))}
             </div>
-            <div className="bg-white px-6  grid">
+            <div className="bg-white px-6  grid border-solid border-[1px] border-[#9c9c9c]">
               <div className="font-semibold my-2">Away Roster</div>
               {game.away.players.map((player, index) => (
                 <span
-                  className="gap-1 cursor-pointer  "
+                  className="gap-1 cursor-pointer hover:font-semibold  "
                   key={index}
                   onClick={() =>
                     openPlayerModal(index + game.away.players.length)
