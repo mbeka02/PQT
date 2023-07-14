@@ -75,7 +75,12 @@ function LogWrapper({
 }) {
   let seconds = Math.round(log.date / 1000).toString() + "s";
   return (
-    <div onClick={() => handleLogButtonClick(log.content)}>
+    <div
+      onClick={(e) => {
+        e.stopPropagation();
+        handleLogButtonClick(log.content);
+      }}
+    >
       <div className={style.log}>
         <p className={style.logTime}>{seconds}</p>
         <p className={style.logContent}>{log.content}</p>
@@ -337,7 +342,10 @@ export default function Game({
               {game.home.players.map((player, index) => (
                 <span
                   className="gap-1 cursor-pointer hover:font-semibold "
-                  onClick={() => openPlayerModal(index)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openPlayerModal(index);
+                  }}
                   key={index}
                 >
                   {player.first_name} {""}
@@ -351,9 +359,10 @@ export default function Game({
                 <span
                   className="gap-1 cursor-pointer hover:font-semibold  "
                   key={index}
-                  onClick={() =>
-                    openPlayerModal(index + game.away.players.length)
-                  }
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openPlayerModal(index + game.away.players.length);
+                  }}
                 >
                   {player.first_name} {""}
                   {player.last_name}

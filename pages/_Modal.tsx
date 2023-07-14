@@ -24,6 +24,7 @@ const dropIn = {
 const Backdrop = ({ children }: { children: React.ReactNode }) => {
   return (
     <motion.div
+      onClick={(e) => e.stopPropagation}
       className="backdrop"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
