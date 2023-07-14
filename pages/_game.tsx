@@ -1,8 +1,9 @@
 import style from "../styles/game.module.css";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import PlayerModal from "./_playerModal";
-import ImageModal from "./_imageModal";
+import Modal from "./_Modal";
+import ImageView from "./_image";
+import PlayerView from "./_player";
 
 import {
   GameClass,
@@ -364,22 +365,32 @@ export default function Game({
       </div>
       {showModal && (
         <AnimatePresence mode="wait">
-          <PlayerModal
-            hideModalOnClick={closePlayerModal}
-            home={game.home.players}
-            away={game.away.players}
-            selectedPlayer={selectedPlayer}
-            setSelectedPlayer={setSelectedPlayer}
+          <Modal
+            children={
+              <PlayerView
+                hideModalOnClick={closePlayerModal}
+                home={game.home.players}
+                away={game.away.players}
+                selectedPlayer={selectedPlayer}
+                setSelectedPlayer={setSelectedPlayer}
+              />
+            }
           />
         </AnimatePresence>
       )}
       {/* Show Image Modal when required */}
       {showImageModal && selectedLog !== null && (
-        <ImageModal
-          content={selectedLog}
-          gameScore={selectedGameScore}
-          onClose={closeImageModal}
-        />
+        <AnimatePresence mode="wait">
+          <Modal
+            children={
+              <ImageView
+                content={selectedLog}
+                gameScore={selectedGameScore}
+                onClose={closeImageModal}
+              />
+            }
+          />
+        </AnimatePresence>
       )}
     </>
   );
