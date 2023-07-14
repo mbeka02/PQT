@@ -80,6 +80,7 @@ function LogWrapper({
     <div
       onClick={(e) => {
         e.stopPropagation();
+        //pass content and index of the generated log
         handleLogButtonClick(log.content, index);
       }}
     >
@@ -106,7 +107,7 @@ export default function Game({
   const [selectedLog, setSelectedLog] = useState<LogContent | null>(null);
   const [showImageModal, setShowImageModal] = useState<boolean>(false);
   const [selectedGameScore, setSelectedGameScore] = useState<string>("");
-
+  //Player Modal
   function closePlayerModal() {
     setShowModal(false);
   }
@@ -119,7 +120,7 @@ export default function Game({
   function toggleExapnd() {
     setExapnd((prev) => !prev);
   }
-
+  //counts tally for the generated log
   const pointsTally = (arr: number[]) => {
     let sum: number = 0;
     for (let index = 0; index < arr.length; index++) {
@@ -133,10 +134,12 @@ export default function Game({
     if (game.logs && game.logs.length > 0) {
       // Find the log that matches the clicked content
       const clickedLog = game.logs.find((log) => log.content === logContent);
+      //do point tallying  based on the time the log was generated
       const home = pointsTally(game.homepointsArr.slice(0, i + 1));
       const away = pointsTally(game.awaypointsArr.slice(0, i + 1));
+
       const gameScore = `${home} - ${away}`;
-      // console.log(game.homepointsArr, game.awaypointsArr);
+
       if (clickedLog) {
         // Check if the clicked log has an associated image
         const imageSrc = clickedLog.imageSrc
