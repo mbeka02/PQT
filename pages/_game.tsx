@@ -2,7 +2,7 @@ import style from "../styles/game.module.css";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import PlayerModal from "./_playerModal";
-import modalStyles from "styles/gameModal.module.css";
+import ImageModal from "./_imageModal";
 
 import {
   GameClass,
@@ -10,6 +10,12 @@ import {
   LogClass,
   PlayerClass,
 } from "@/public/static/scripts/gameMechanics";
+
+// Define the type for the selected log content
+interface LogContent {
+  text: string;
+  imageSrc: string;
+}
 
 // This function defines the box that displays each team's location, name, W/L record and game score
 function TeamWrapper({
@@ -34,8 +40,8 @@ function TeamWrapper({
     className = `${style.team} ${style.teamLost}`;
   }*/
   return (
-    <div className="grid grid-cols-custom gap-2 text-sm">
-      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-16">
+    <div className="grid grid-cols-custom_4 gap-2 text-sm">
+      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-16 gap-4">
         <p>{team.emoji}</p>
         <div>
           <div>
@@ -50,23 +56,30 @@ function TeamWrapper({
           </div>
         </div>
       </div>
-      <div className="bg-white p-4 uppercase font-semibold border-solid border-[1px] border-[#9c9c9c]  h-16  ">
-        <p>Score: {gameScore}</p>
+      <div className="bg-white p-4 uppercase font-semibold border-solid border-[1px] border-[#9c9c9c]  h-16 grid justify-center  items-center ">
+        <p>Score:</p>
+        <p> {gameScore}</p>
       </div>
     </div>
   );
 }
 
 // This function defines the box that displays the game logs
-function LogWrapper({ log }: { log: LogClass }) {
+function LogWrapper({
+  log,
+  handleLogButtonClick,
+}: {
+  log: LogClass;
+  handleLogButtonClick: (logContent: string) => void;
+}) {
   let seconds = Math.round(log.date / 1000).toString() + "s";
   return (
-    <>
+    <div onClick={() => handleLogButtonClick(log.content)}>
       <div className={style.log}>
         <p className={style.logTime}>{seconds}</p>
         <p className={style.logContent}>{log.content}</p>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -82,6 +95,9 @@ export default function Game({
   const [showModal, setShowModal] = useState(false);
   const [expand, setExapnd] = useState(false);
   const [selectedPlayer, setSelectedPlayer] = useState(0);
+  const [selectedLog, setSelectedLog] = useState<LogContent | null>(null);
+  const [showImageModal, setShowImageModal] = useState<boolean>(false);
+  const [selectedGameScore, setSelectedGameScore] = useState<string>("");
 
   function closePlayerModal() {
     setShowModal(false);
@@ -95,6 +111,41 @@ export default function Game({
   function toggleExapnd() {
     setExapnd((prev) => !prev);
   }
+
+  function handleLogClick(logContent: string) {
+    // Check if logs is defined and is an array with at least one element
+    if (game.logs && game.logs.length > 0) {
+      // Find the log that matches the clicked content
+      const clickedLog = game.logs.find((log) => log.content === logContent);
+      const gameScore = `${homeScore} - ${awayScore}`;
+
+      if (clickedLog) {
+        // Check if the clicked log has an associated image
+        const imageSrc = clickedLog.imageSrc
+          ? clickedLog.imageSrc
+          : "https://www.kget.com/wp-content/uploads/sites/2/2023/05/64702907474bb1.35988184.jpeg?w=2560&h=1440&crop=1"; // Use a placeholder image URL here
+
+        // Create the object with the required properties
+        const logData: LogContent = {
+          text: logContent,
+          imageSrc: imageSrc,
+        };
+
+        setSelectedLog(logData); // Set the selected log content in the state
+        setShowImageModal(true); // Show the Image modal
+        setSelectedGameScore(gameScore); //Pass the game score
+      }
+    }
+  }
+
+  function closeImageModal() {
+    setShowImageModal(false);
+  }
+
+  const handleLogButtonClick = (logContent: string) => {
+    // Call the existing function to show the image modal for the clicked log
+    handleLogClick(logContent);
+  };
 
   if (
     !game ||
@@ -179,7 +230,11 @@ export default function Game({
           <div className="bg-black border-solid border-[1px]  border-[#9c9c9c] h-[16rem]  text-white overflow-y-scroll grid p-1 mx-2 ">
             {game.logs.length ? (
               game.logs.map((l, key) => (
-                <LogWrapper log={l} key={key}></LogWrapper>
+                <LogWrapper
+                  log={l}
+                  key={key}
+                  handleLogButtonClick={handleLogButtonClick}
+                ></LogWrapper>
               ))
             ) : (
               <p>No logs available yet...</p>
@@ -317,6 +372,14 @@ export default function Game({
             setSelectedPlayer={setSelectedPlayer}
           />
         </AnimatePresence>
+      )}
+      {/* Show Image Modal when required */}
+      {showImageModal && selectedLog !== null && (
+        <ImageModal
+          content={selectedLog}
+          gameScore={selectedGameScore}
+          onClose={closeImageModal}
+        />
       )}
     </>
   );

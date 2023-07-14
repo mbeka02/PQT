@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
-import gameStyles from "@/styles/game.module.css";
+
 import Game from "./_game";
 import {
   GameClass,
