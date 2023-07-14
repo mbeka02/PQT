@@ -69,16 +69,18 @@ function TeamWrapper({
 function LogWrapper({
   log,
   handleLogButtonClick,
+  index,
 }: {
   log: LogClass;
-  handleLogButtonClick: (logContent: string) => void;
+  handleLogButtonClick: (logContent: string, index: number) => void;
+  index: number;
 }) {
   let seconds = Math.round(log.date / 1000).toString() + "s";
   return (
     <div
       onClick={(e) => {
         e.stopPropagation();
-        handleLogButtonClick(log.content);
+        handleLogButtonClick(log.content, index);
       }}
     >
       <div className={style.log}>
@@ -118,13 +120,23 @@ export default function Game({
     setExapnd((prev) => !prev);
   }
 
-  function handleLogClick(logContent: string) {
+  const pointsTally = (arr: number[]) => {
+    let sum: number = 0;
+    for (let index = 0; index < arr.length; index++) {
+      sum += arr[index];
+    }
+    return sum;
+  };
+
+  function handleLogClick(logContent: string, i: number) {
     // Check if logs is defined and is an array with at least one element
     if (game.logs && game.logs.length > 0) {
       // Find the log that matches the clicked content
       const clickedLog = game.logs.find((log) => log.content === logContent);
-      const gameScore = `${homeScore} - ${awayScore}`;
-
+      const home = pointsTally(game.homepointsArr.slice(0, i + 1));
+      const away = pointsTally(game.awaypointsArr.slice(0, i + 1));
+      const gameScore = `${home} - ${away}`;
+      // console.log(game.homepointsArr, game.awaypointsArr);
       if (clickedLog) {
         // Check if the clicked log has an associated image
         const imageSrc = clickedLog.imageSrc
@@ -148,9 +160,9 @@ export default function Game({
     setShowImageModal(false);
   }
 
-  const handleLogButtonClick = (logContent: string) => {
+  const handleLogButtonClick = (logContent: string, index: number) => {
     // Call the existing function to show the image modal for the clicked log
-    handleLogClick(logContent);
+    handleLogClick(logContent, index);
   };
 
   if (
@@ -240,6 +252,7 @@ export default function Game({
                   log={l}
                   key={key}
                   handleLogButtonClick={handleLogButtonClick}
+                  index={key}
                 ></LogWrapper>
               ))
             ) : (
