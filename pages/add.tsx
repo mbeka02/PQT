@@ -83,8 +83,8 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(() => {
-      console.log("success");
+    }).then((res) => {
+      console.log(res);
     });
   };
 
