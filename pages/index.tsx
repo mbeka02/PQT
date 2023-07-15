@@ -10,6 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Blob } from "buffer";
+import HTMLParser from "htmlparser2";
 
 interface APITeamData {
   [key: string]: {
@@ -24,7 +25,13 @@ interface APITeamData {
   };
 }
 
-export default function Home({ teams }: { teams: APITeamData }) {
+export default function Home({
+  teams,
+  html,
+}: {
+  teams: APITeamData;
+  html: string;
+}) {
   const [games, setGames] = useState<GameClass[]>();
   const [num, setNum] = useState<number>(10);
   const [t, setT] = useState<TeamClass[]>([]);
@@ -44,6 +51,29 @@ export default function Home({ teams }: { teams: APITeamData }) {
       });
     setT(res);
     setGames(Array.from({ length: 10 }, (_) => new GameClass(res)));
+    const fetchData = async () => {
+      try {
+        /*const parser = new DOMParser();
+        const doc = parser.parseFromString(html, "text/html");
+
+        // Process or display the HTML table data as needed
+        const table = doc.querySelector("table");
+        const rows = table?.querySelectorAll("tr");
+
+        rows?.forEach((row) => {
+          const rowData: string[] = [];
+          row.querySelectorAll("td").forEach((cell) => {
+            cell.textContent && rowData.push(cell.textContent);
+          });
+          // Process or display the row data as needed
+          console.log(rowData);
+        });*/
+      } catch (error) {
+        // Handle error
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   if (!Object.keys(teams).length) {
@@ -138,10 +168,13 @@ export async function getServerSideProps() {
     if (teams == undefined || typeof teams === undefined) {
       throw new Error("Team data undefined");
     }
+    const response = await fetch("https://pqt-waltahhh.replit.app/getPlayers");
+    const html = await response.text();
 
     return {
       props: {
         teams,
+        html,
       },
     };
   } catch (error) {
@@ -149,6 +182,7 @@ export async function getServerSideProps() {
     return {
       props: {
         teams: {},
+        html: {},
       },
     };
   }

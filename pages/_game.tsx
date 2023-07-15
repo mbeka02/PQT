@@ -287,12 +287,12 @@ export default function Game({
                 <td>Points:</td>
                 {/*<td><span>{bestHomePlayerPointsName.toString()}</span></td> */}
                 <td>
-                  {bestHomePlayerPoints.first_name.substring(0, 1)}.
+                  {bestHomePlayerPoints.first_name?.substring(0, 1)}.
                   {bestHomePlayerPoints.last_name}
                 </td>
                 <td> {bestHomePlayerPoints.points.toString()}</td>
                 <td>
-                  {bestAwayPlayerPoints.first_name.substring(0, 1)}.
+                  {bestAwayPlayerPoints.first_name?.substring(0, 1)}.
                   {bestAwayPlayerPoints.last_name}
                 </td>
                 <td>{bestAwayPlayerPoints.points.toString()}</td>
@@ -300,13 +300,13 @@ export default function Game({
               <tr>
                 <td>Rebounds:</td>
                 <td>
-                  {bestHomePlayerRebounds.first_name.substring(0, 1)}.
+                  {bestHomePlayerRebounds.first_name?.substring(0, 1)}.
                   {bestHomePlayerRebounds.last_name}
                 </td>
                 <td>{bestHomePlayerRebounds.points.toString()}</td>
 
                 <td>
-                  {bestAwayPlayerRebounds.first_name.substring(0, 1)}.
+                  {bestAwayPlayerRebounds.first_name?.substring(0, 1)}.
                   {bestAwayPlayerRebounds.last_name}
                 </td>
                 <td>{bestAwayPlayerRebounds.points.toString()}</td>
@@ -314,12 +314,12 @@ export default function Game({
               <tr>
                 <td>Assists:</td>
                 <td className=" ">
-                  {bestHomePlayerAssists.first_name.substring(0, 1)}.
+                  {bestHomePlayerAssists.first_name?.substring(0, 1)}.
                   {bestHomePlayerAssists.last_name}
                 </td>
                 <td className="">{bestHomePlayerAssists.points.toString()}</td>
                 <td>
-                  {bestAwayPlayerAssists.first_name.substring(0, 1)}.
+                  {bestAwayPlayerAssists.first_name?.substring(0, 1)}.
                   {bestAwayPlayerAssists.last_name}
                 </td>
                 <td>{bestAwayPlayerAssists.points.toString()}</td>
@@ -327,12 +327,12 @@ export default function Game({
               <tr>
                 <td>Steals:</td>
                 <td>
-                  {bestHomePlayerSteals.first_name.substring(0, 1)}.
+                  {bestHomePlayerSteals.first_name?.substring(0, 1)}.
                   {bestHomePlayerSteals.last_name}
                 </td>
                 <td>{bestHomePlayerSteals.points.toString()}</td>
                 <td>
-                  {bestAwayPlayerSteals.first_name.substring(0, 1)}.
+                  {bestAwayPlayerSteals.first_name?.substring(0, 1)}.
                   {bestAwayPlayerSteals.last_name}
                 </td>
                 <td>{bestAwayPlayerSteals.points.toString()}</td>
@@ -340,12 +340,12 @@ export default function Game({
               <tr>
                 <td>Blocks:</td>
                 <td>
-                  {bestHomePlayerBlocks.first_name.substring(0, 1)}.
+                  {bestHomePlayerBlocks.first_name?.substring(0, 1)}.
                   {bestHomePlayerBlocks.last_name}
                 </td>
                 <td>{bestHomePlayerBlocks.points.toString()}</td>
                 <td>
-                  {bestAwayPlayerBlocks.first_name.substring(0, 1)}.
+                  {bestAwayPlayerBlocks.first_name?.substring(0, 1)}.
                   {bestAwayPlayerBlocks.last_name}
                 </td>
                 <td>{bestAwayPlayerBlocks.points.toString()}</td>

@@ -92,7 +92,7 @@ export default function Home() {
     <>
       <div className={styles.formWrapper}>
         <form
-          className={styles.form}
+          className="hidden"
           action="https://pqt-waltahhh.replit.app/addTeam"
           method="post"
           content="application/json"
