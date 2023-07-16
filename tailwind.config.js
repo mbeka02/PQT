@@ -16,6 +16,9 @@ module.exports = {
         custom_3: "1fr 3fr",
         custom_4: "3fr 1fr",
       },
+      colors: {
+        goldenrod: "#daa520",
+      },
     },
   },
   plugins: [],
