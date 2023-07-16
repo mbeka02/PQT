@@ -87,6 +87,15 @@ export default function Home() {
       console.log(res);
     });
   };
+  //dynamically populate the select options with number range 0-10
+  const options = [];
+  for (let i = 0; i <= 10; ++i) {
+    options.push(
+      <option key={i} value={i}>
+        {i}
+      </option>
+    );
+  }
 
   return (
     <>
@@ -124,8 +133,7 @@ export default function Home() {
             <div className="grid mx-6 border-solid  border-r-[1px] border-black ">
               <div className="grid">
                 <label className="font-semibold" htmlFor="player-name">
-                  {" "}
-                  Name{" "}
+                  Name
                 </label>
                 <input
                   type="text"
@@ -149,7 +157,6 @@ export default function Home() {
 
               <div className="grid">
                 <label htmlFor="home_location" className="font-semibold">
-                  {" "}
                   Home Location
                 </label>
                 <input
@@ -295,135 +302,120 @@ export default function Home() {
               </div>
               <div className="grid">
                 <label htmlFor="_2pt" className="font-semibold">
-                  {" "}
-                  2-Pointers{" "}
+                  2-Pointers
                 </label>
-                <input
-                  type="number"
+                <select
                   id="_2pt"
                   name="_2pt"
-                  min="0"
-                  max="10"
                   className=" h-6 w-1/2 rounded border-2  border-black border-solid"
-                />
+                >
+                  {options}
+                </select>
               </div>
 
               <div className="grid">
                 <label htmlFor="_3pt" className="font-semibold">
                   3-Pointers
                 </label>
-                <input
-                  type="number"
+                <select
                   id="_3pt"
                   name="_3pt"
-                  min="0"
-                  max="10"
                   className=" h-6 w-1/2 rounded border-2  border-black border-solid"
-                />
+                >
+                  {options}{" "}
+                </select>
               </div>
 
               <div className="grid">
                 <label htmlFor="passing" className="font-semibold">
-                  {" "}
                   Passing
                 </label>
-                <input
-                  type="number"
+                <select
                   id="passing"
                   name="passing"
-                  min="0"
-                  max="10"
                   className=" h-6 w-1/2 rounded border-2  border-black border-solid"
-                />
+                >
+                  {options}
+                </select>
               </div>
 
               <div className="grid">
                 <label htmlFor="dribbling" className="font-semibold">
-                  {" "}
                   Dribbling
                 </label>
-                <input
-                  type="number"
+                <select
                   id="dribbling"
                   name="dribbling"
-                  min="0"
-                  max="10"
                   className=" h-6 w-1/2 rounded border-2  border-black border-solid"
-                />
+                >
+                  {" "}
+                  {options}
+                </select>
               </div>
 
               <div className="grid">
                 <label htmlFor="defense" className="font-semibold">
-                  {" "}
-                  Defense{" "}
+                  Defense
                 </label>
-                <input
-                  type="number"
+                <select
                   id="defense"
                   name="defense"
-                  min="0"
-                  max="10"
                   className=" h-6 w-1/2 rounded border-2  border-black border-solid"
-                />
+                >
+                  {options}
+                </select>
               </div>
 
               <div className="grid">
                 <label htmlFor="jumping" className="font-semibold">
                   Jumping
                 </label>
-                <input
-                  type="number"
+                <select
                   id="jumping"
                   name="jumping"
-                  min="0"
-                  max="10"
                   className=" h-6 w-1/2 rounded border-2  border-black border-solid"
-                />
+                >
+                  {options}
+                </select>
               </div>
 
               <div className="grid">
                 <label htmlFor="steals" className="font-semibold">
-                  {" "}
-                  Steals{" "}
+                  Steals
                 </label>
-                <input
-                  type="number"
+                <select
                   id="steals"
                   name="steals"
-                  min="0"
-                  max="10"
                   className=" h-6 w-1/2 rounded border-2  border-black border-solid"
-                />
+                >
+                  {options}{" "}
+                </select>
               </div>
 
               <div className="grid">
                 <label htmlFor="blocks" className="font-semibold">
-                  {" "}
-                  Blocks{" "}
+                  Blocks
                 </label>
-                <input
-                  type="number"
+                <select
                   id="blocks"
                   name="blocks"
-                  min="0"
-                  max="10"
                   className=" h-6 w-1/2 rounded border-2  border-black border-solid"
-                />
+                >
+                  {options}
+                </select>
               </div>
 
               <div className="grid">
                 <label htmlFor="speed" className="font-semibold">
-                  {" "}
-                  Speed{" "}
+                  Speed
                 </label>
-                <input
-                  type="number"
+                <select
                   id="speed"
                   name="speed"
-                  min="0"
-                  max="10"
                   className=" h-6 w-1/2 rounded border-2  border-black border-solid"
-                />
+                >
+                  {options}
+                </select>
               </div>
             </div>
           </div>
