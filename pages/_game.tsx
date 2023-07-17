@@ -42,7 +42,7 @@ function TeamWrapper({
   }*/
   return (
     <div className="grid grid-cols-custom_4 gap-2 text-sm">
-      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-16 gap-4">
+      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-20 md:h-16 gap-4">
         <p>{team.emoji}</p>
         <div>
           <div>
@@ -57,7 +57,7 @@ function TeamWrapper({
           </div>
         </div>
       </div>
-      <div className="bg-white p-4 uppercase font-semibold border-solid border-[1px] border-[#9c9c9c]  h-16 grid justify-center  items-center ">
+      <div className="bg-white p-4 uppercase font-semibold border-solid border-[1px] border-[#9c9c9c] h-20 md:h-16 grid justify-center  items-center ">
         <p>Score:</p>
         <p> {gameScore}</p>
       </div>
@@ -215,11 +215,11 @@ export default function Game({
     <>
       <div
         className={`${
-          expand ? " h-fit  outline outline-black" : " h-[18rem]"
-        } bg-[#daa520] w-[34rem] p-3 flex  flex-col m-2 ease-in-out duration-700 rounded-sm  text-sm `}
+          expand ? " h-fit  outline outline-black" : " h-[22rem] md:h-[18rem]"
+        } bg-[#daa520] w-full md:w-[34rem] p-3 flex  flex-col m-2 ease-in-out duration-700 rounded-sm  text-sm `}
         onClick={toggleExapnd}
       >
-        <div className=" grid-cols-custom grid ">
+        <div className=" md:grid-cols-custom grid grid-cols-custom_2 ">
           <div className="  grid gap-3 mx-2">
             <TeamWrapper
               team={game.home}
@@ -248,7 +248,7 @@ export default function Game({
             </div>
           </div>
 
-          <div className="bg-black border-solid border-[1px]  border-[#9c9c9c] h-[16rem]  text-white overflow-y-scroll grid p-1 mx-2 ">
+          <div className="bg-black border-solid border-[1px]  border-[#9c9c9c] h-[20rem] md:h-[16rem]  text-white overflow-y-scroll grid p-1 mx-2 ">
             {game.logs.length ? (
               game.logs.map((l, key) => (
                 <LogWrapper

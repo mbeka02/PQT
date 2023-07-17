@@ -94,7 +94,7 @@ export default function Home({ teams }: { teams: APITeamData }) {
       </Head>
       <main className={styles.main}>
         <div className={styles.commandCenter}>
-          <div className="grid rb gap-1">
+          <div className="grid  gap-1">
             <div className="flex w-full gap-2 items-center">
               <button
                 onClick={play}
@@ -115,7 +115,7 @@ export default function Home({ teams }: { teams: APITeamData }) {
                 x15
               </button>
             </div>
-            <label>{num * multiplier}</label>
+            <label className="font-semibold">{num * multiplier}</label>
             <input
               type="range"
               id="number"
