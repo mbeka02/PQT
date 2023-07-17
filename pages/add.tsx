@@ -121,7 +121,7 @@ export default function Home() {
           <input type="submit" />
         </form>
         <form
-          className="grid w-2/3  "
+          className="grid md:w-2/3 w-full  "
           action="https://pqt-waltahhh.replit.app/addPlayer"
           method="post"
           content="application/json"
@@ -130,7 +130,7 @@ export default function Home() {
           <h1 className="text-2xl font-semibold my-4">Add a player</h1>
 
           <div className="grid lg:grid-cols-custom_2  border-solid border-t-[1px] border-black ">
-            <div className="grid mx-6 border-solid  border-r-[1px] border-black ">
+            <div className="grid mx-6 border-solid  md:border-r-[1px] border-black ">
               <div className="grid">
                 <label className="font-semibold" htmlFor="player-name">
                   Name
@@ -139,7 +139,7 @@ export default function Home() {
                   type="text"
                   id="player-name"
                   name="name"
-                  className=" h-6 w-1/2  rounded border-2  border-black border-solid "
+                  className=" h-6 md:w-1/2 w-4/5  rounded border-2  border-black border-solid "
                 />
               </div>
 
@@ -151,7 +151,7 @@ export default function Home() {
                   type="number"
                   id="team_id"
                   name="team_id"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 />
               </div>
 
@@ -163,7 +163,7 @@ export default function Home() {
                   type="text"
                   id="home-location"
                   name="home_location"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 />
               </div>
 
@@ -174,7 +174,7 @@ export default function Home() {
                 <select
                   id="conditions"
                   name="conditions"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   <option value="Rainy">Rainy</option>
                   <option value="Sunny">Sunny</option>
@@ -192,7 +192,7 @@ export default function Home() {
                   type="text"
                   id="cuisine"
                   name="cuisine"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 />
               </div>
 
@@ -205,7 +205,7 @@ export default function Home() {
                   type="text"
                   id="color"
                   name="color"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 />
               </div>
 
@@ -216,7 +216,7 @@ export default function Home() {
                 <select
                   id="coffee"
                   name="coffee"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   <option value="Espresso">Espresso</option>
                   <option value="Latte">Latte</option>
@@ -235,7 +235,7 @@ export default function Home() {
                   type="text"
                   id="class"
                   name="class"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 />
               </div>
 
@@ -246,7 +246,7 @@ export default function Home() {
                 <select
                   id="zodiac"
                   name="zodiac"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   <option value="Aries">Aries</option>
                   <option value="Taurus">Taurus</option>
@@ -272,7 +272,7 @@ export default function Home() {
                   type="text"
                   id="vibes"
                   name="vibes"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 />
               </div>
             </div>
@@ -285,7 +285,7 @@ export default function Home() {
                   type="text"
                   id="position"
                   name="position"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 />
               </div>
               <div className="grid">
@@ -297,7 +297,7 @@ export default function Home() {
                   type="text"
                   id="style"
                   name="style"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 />
               </div>
               <div className="grid">
@@ -307,7 +307,7 @@ export default function Home() {
                 <select
                   id="_2pt"
                   name="_2pt"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   {options}
                 </select>
@@ -320,7 +320,7 @@ export default function Home() {
                 <select
                   id="_3pt"
                   name="_3pt"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   {options}{" "}
                 </select>
@@ -333,7 +333,7 @@ export default function Home() {
                 <select
                   id="passing"
                   name="passing"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   {options}
                 </select>
@@ -346,7 +346,7 @@ export default function Home() {
                 <select
                   id="dribbling"
                   name="dribbling"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   {" "}
                   {options}
@@ -360,7 +360,7 @@ export default function Home() {
                 <select
                   id="defense"
                   name="defense"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   {options}
                 </select>
@@ -373,7 +373,7 @@ export default function Home() {
                 <select
                   id="jumping"
                   name="jumping"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   {options}
                 </select>
@@ -386,7 +386,7 @@ export default function Home() {
                 <select
                   id="steals"
                   name="steals"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   {options}{" "}
                 </select>
@@ -399,7 +399,7 @@ export default function Home() {
                 <select
                   id="blocks"
                   name="blocks"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   {options}
                 </select>
@@ -412,7 +412,7 @@ export default function Home() {
                 <select
                   id="speed"
                   name="speed"
-                  className=" h-6 w-1/2 rounded border-2  border-black border-solid"
+                  className=" h-6 md:w-1/2 w-4/5 rounded border-2  border-black border-solid"
                 >
                   {options}
                 </select>

@@ -26,7 +26,7 @@ const PlayerView: React.FC<PlayerProps> = ({
             key={index}
           >
             <button
-              className="absolute   -left-[8%]   md:-left-[5%] bottom-0 top-0  "
+              className="absolute   left-[2%]   md:-left-[5%] bottom-0 top-0  "
               onClick={() => setSelectedPlayer((prev) => prev - 1)}
               disabled={selectedPlayer === 0}
             >
@@ -34,23 +34,21 @@ const PlayerView: React.FC<PlayerProps> = ({
                 xmlns="http://www.w3.org/2000/svg"
                 height="4em"
                 viewBox="0 0 256 512"
-                fill="white "
-                className="hover:fill-goldenrod"
+                className="hover:fill-goldenrod md:fill-white fill-black"
               >
                 <path d="M9.4 278.6c-12.5-12.5-12.5-32.8 0-45.3l128-128c9.2-9.2 22.9-11.9 34.9-6.9s19.8 16.6 19.8 29.6l0 256c0 12.9-7.8 24.6-19.8 29.6s-25.7 2.2-34.9-6.9l-128-128z" />
               </svg>
             </button>
             <button
-              className="absolute -right-[8%]   md:-right-[5%]  bottom-0 top-0"
+              className="absolute right-[2%]   md:-right-[5%]  bottom-0 top-0"
               onClick={() => setSelectedPlayer((prev) => prev + 1)}
               disabled={selectedPlayer === players.length - 1}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="4em"
-                fill="white"
                 viewBox="0 0 256 512"
-                className="hover:fill-goldenrod"
+                className="hover:fill-goldenrod md:fill-white fill-black"
               >
                 <path d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z" />
               </svg>
@@ -94,7 +92,7 @@ const PlayerView: React.FC<PlayerProps> = ({
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-custom_2  border-solid border-[1px] border-gray-300 ">
+            <div className="grid md:grid-cols-custom_2  border-solid border-[1px] border-gray-300 w-3/4 justify-self-center md:w-full  ">
               <div className="flex flex-col py-2  border-solid border-r-[1px] border-gray-300 px-3">
                 <div className="font-semibold">
                   Astral Presence:

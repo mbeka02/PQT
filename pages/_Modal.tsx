@@ -10,7 +10,7 @@ const dropIn = {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.3,
+      duration: 0.5,
       type: "spring",
       damping: 35,
       stiffness: 300,
@@ -38,7 +38,7 @@ const PlayerModal = ({ children }: { children: React.ReactNode }) => {
   return (
     <Backdrop>
       <motion.div
-        className="   m-auto grid h-2/3 w-5/6 md:h-5/6 md:w-4/5  rounded bg-white  p-4 lg:h-xxl   lg:w-1/2 z-10 relative"
+        className="   m-auto grid h-screen w-full md:h-5/6 md:w-4/5  rounded bg-white  p-4 lg:h-xxl   lg:w-1/2 z-10 relative"
         variants={dropIn}
       >
         {children}
