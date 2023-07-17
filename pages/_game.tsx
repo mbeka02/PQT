@@ -41,8 +41,8 @@ function TeamWrapper({
     className = `${style.team} ${style.teamLost}`;
   }*/
   return (
-    <div className="grid grid-cols-custom_4 gap-2 text-sm">
-      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-22 md:h-16 gap-4">
+    <div className="grid grid-cols-custom_4 gap-2 md:text-sm text-xs">
+      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-20 md:h-16 gap-4">
         <p>{team.emoji}</p>
         <div>
           <div>
@@ -57,7 +57,7 @@ function TeamWrapper({
           </div>
         </div>
       </div>
-      <div className="bg-white p-4 uppercase font-semibold border-solid border-[1px] border-[#9c9c9c] h-22 md:h-16 grid justify-center  items-center ">
+      <div className="bg-white p-4 uppercase font-semibold border-solid border-[1px] border-[#9c9c9c] h-20 md:h-16 grid justify-center  items-center ">
         <p>Score:</p>
         <p> {gameScore}</p>
       </div>
