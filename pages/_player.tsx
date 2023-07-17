@@ -2,21 +2,21 @@ import { PlayerClass } from "@/public/static/scripts/gameMechanics";
 import React, { Dispatch, SetStateAction } from "react";
 interface PlayerProps {
   hideModalOnClick: () => void;
-  home: PlayerClass[];
-  away: PlayerClass[];
+  // home: PlayerClass[];
+  // away: PlayerClass[];
+  players: PlayerClass[];
   setSelectedPlayer: Dispatch<SetStateAction<number>>;
   selectedPlayer: number;
 }
 
 const PlayerView: React.FC<PlayerProps> = ({
-  home,
-  away,
+  // home,
+  // away,
   setSelectedPlayer,
   hideModalOnClick,
   selectedPlayer,
+  players,
 }) => {
-  const players = [...home, ...away];
-
   return (
     <>
       {players.map((player, index) => {

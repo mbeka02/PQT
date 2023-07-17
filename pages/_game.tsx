@@ -393,8 +393,9 @@ export default function Game({
           <Modal>
             <PlayerView
               hideModalOnClick={closePlayerModal}
-              home={game.home.players}
-              away={game.away.players}
+              // home={game.home.players}
+              // away={game.away.players}
+              players={[...game.home.players, ...game.away.players]}
               selectedPlayer={selectedPlayer}
               setSelectedPlayer={setSelectedPlayer}
             />
