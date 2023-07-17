@@ -391,15 +391,15 @@ export default function Game({
       {showModal && (
         <AnimatePresence mode="wait">
           <Modal
-            children={
+            children={[
               <PlayerView
                 hideModalOnClick={closePlayerModal}
                 home={game.home.players}
                 away={game.away.players}
                 selectedPlayer={selectedPlayer}
                 setSelectedPlayer={setSelectedPlayer}
-              />
-            }
+              />,
+            ]}
           />
         </AnimatePresence>
       )}
@@ -407,13 +407,13 @@ export default function Game({
       {showImageModal && selectedLog !== null && (
         <AnimatePresence mode="wait">
           <Modal
-            children={
+            children={[
               <ImageView
                 content={selectedLog}
                 gameScore={selectedGameScore}
                 onClose={closeImageModal}
-              />
-            }
+              />,
+            ]}
           />
         </AnimatePresence>
       )}
