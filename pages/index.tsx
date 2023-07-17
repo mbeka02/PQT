@@ -94,22 +94,47 @@ export default function Home({ teams }: { teams: APITeamData }) {
       </Head>
       <main className={styles.main}>
         <div className={styles.commandCenter}>
-          <div className="flex gap-2 items-center">
-            <button onClick={play}>Play a round</button>
-            <button onClick={() => doTimes(5, play)}>x5</button>
-            <button onClick={() => doTimes(15, play)}>x15</button>
+          <div className="grid rb gap-1">
+            <div className="flex w-full gap-2 items-center">
+              <button
+                onClick={play}
+                className="bg-goldenrod p-2 w-28 h-8 rounded flex justify-center items-center text-white font-semibold"
+              >
+                Play a round
+              </button>
+              <button
+                onClick={() => doTimes(5, play)}
+                className="bg-goldenrod p-2 w-10 h-8 rounded flex justify-center items-center text-white font-semibold"
+              >
+                x5
+              </button>
+              <button
+                onClick={() => doTimes(15, play)}
+                className="bg-goldenrod p-2 w-10 h-8 rounded flex justify-center items-center text-white font-semibold"
+              >
+                x15
+              </button>
+            </div>
+            <label>{num * multiplier}</label>
+            <input
+              type="range"
+              id="number"
+              onChange={function (e: any) {
+                updateNumber(parseInt(e.target.value));
+              }}
+              value={num}
+              className="accent-goldenrod "
+            />
+            <button
+              onClick={reset}
+              className="bg-goldenrod p-2 w-24 h-8 rounded flex justify-center items-center text-white font-semibold justify-self-center"
+            >
+              Reset
+            </button>
+            <Link href="/add" className="hidden">
+              Click me to go add players/teams
+            </Link>
           </div>
-          <label>{num * multiplier}</label>
-          <input
-            type="range"
-            id="number"
-            onChange={function (e: any) {
-              updateNumber(parseInt(e.target.value));
-            }}
-            value={num}
-          />
-          <button onClick={reset}>Reset</button>
-          <Link href="/add">Click me to go add players/teams</Link>
         </div>
         <div className="flex flex-wrap justify-evenly">
           {games?.map((game, index) => (
