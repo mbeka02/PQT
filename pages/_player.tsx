@@ -19,7 +19,7 @@ const PlayerView: React.FC<PlayerProps> = ({
 }) => {
   return (
     <>
-      {players.map((player, index) => {
+      {players?.map((player, index) => {
         return (
           <div
             className={selectedPlayer === index ? "grid" : "hidden"}
