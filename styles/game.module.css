@@ -115,7 +115,7 @@
 }
 
 .log:hover {
-  color: ghostwhite;
+  color: hwb(240 97% 0%);
   background-color: #1c1c1c;
 }
 

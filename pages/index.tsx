@@ -44,7 +44,7 @@ export default function Home({ teams }: { teams: APITeamData }) {
       });
     setT(res);
     setGames(Array.from({ length: 10 }, (_) => new GameClass(res)));
-  }, []);
+  }, [teams]);
 
   if (!Object.keys(teams).length) {
     return (

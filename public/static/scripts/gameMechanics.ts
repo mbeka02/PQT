@@ -290,8 +290,8 @@ export class GameClass {
       this.away = teams[awayIndex];
     }
 
-    console.log(this.home);
-    console.log(this.away);
+    //console.log(this.home);
+    // console.log(this.away);
 
     this.home?.players.forEach(
       (p) =>
