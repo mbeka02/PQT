@@ -15,7 +15,7 @@ const PlayerView: React.FC<PlayerProps> = ({
   hideModalOnClick,
   selectedPlayer,
 }) => {
-  const players = home.concat(away);
+  const players = [...home, ...away];
 
   return (
     <>
