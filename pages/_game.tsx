@@ -390,31 +390,27 @@ export default function Game({
       </div>
       {showModal && (
         <AnimatePresence mode="wait">
-          <Modal
-            children={[
-              <PlayerView
-                hideModalOnClick={closePlayerModal}
-                home={game.home.players}
-                away={game.away.players}
-                selectedPlayer={selectedPlayer}
-                setSelectedPlayer={setSelectedPlayer}
-              />,
-            ]}
-          />
+          <Modal>
+            <PlayerView
+              hideModalOnClick={closePlayerModal}
+              home={game.home.players}
+              away={game.away.players}
+              selectedPlayer={selectedPlayer}
+              setSelectedPlayer={setSelectedPlayer}
+            />
+          </Modal>
         </AnimatePresence>
       )}
       {/* Show Image Modal when required */}
       {showImageModal && selectedLog !== null && (
         <AnimatePresence mode="wait">
-          <Modal
-            children={[
-              <ImageView
-                content={selectedLog}
-                gameScore={selectedGameScore}
-                onClose={closeImageModal}
-              />,
-            ]}
-          />
+          <Modal>
+            <ImageView
+              content={selectedLog}
+              gameScore={selectedGameScore}
+              onClose={closeImageModal}
+            />
+          </Modal>
         </AnimatePresence>
       )}
     </>
