@@ -32,17 +32,20 @@ function TeamWrapper({
   won: boolean;
   draw: boolean;
 }) {
-  /* let className = style.team;
+  let className;
   if (finished && won) {
-    className = `${style.team} ${style.teamWon}`;
+    className = ` text-green-800  font-bold `;
   } else if (finished && draw) {
-    className = `${style.team} ${style.teamdraw}`;
+    className = ` text-yellow-500 font-bold `;
   } else if (finished && !won) {
-    className = `${style.team} ${style.teamLost}`;
-  }*/
+    className = ` text-red-800  font-bold `;
+  }
+
   return (
-    <div className="grid grid-cols-custom_4 gap-2 md:text-sm text-xs">
-      <div className="bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-20 md:h-16 gap-4">
+    <div
+      className={`${className}" grid grid-cols-custom_4 gap-2 md:text-sm text-xs"`}
+    >
+      <div className=" bg-white  p-4 border-solid border-[1px] border-[#9c9c9c]  flex flex-row items-center h-20 md:h-16 gap-4">
         <p>{team.emoji}</p>
         <div>
           <div>
@@ -299,7 +302,7 @@ export default function Game({
                 </td>
                 <td>{bestAwayPlayerPoints.points.toString()}</td>
               </tr>
-              <tr>
+              <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm">
                 <td>Rebounds:</td>
                 <td>
                   {bestHomePlayerRebounds.first_name?.substring(0, 1)}.
@@ -313,7 +316,7 @@ export default function Game({
                 </td>
                 <td>{bestAwayPlayerRebounds.points.toString()}</td>
               </tr>
-              <tr>
+              <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm">
                 <td>Assists:</td>
                 <td className=" ">
                   {bestHomePlayerAssists.first_name?.substring(0, 1)}.
@@ -326,7 +329,7 @@ export default function Game({
                 </td>
                 <td>{bestAwayPlayerAssists.points.toString()}</td>
               </tr>
-              <tr>
+              <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm">
                 <td>Steals:</td>
                 <td>
                   {bestHomePlayerSteals.first_name?.substring(0, 1)}.
@@ -339,7 +342,7 @@ export default function Game({
                 </td>
                 <td>{bestAwayPlayerSteals.points.toString()}</td>
               </tr>
-              <tr>
+              <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm">
                 <td>Blocks:</td>
                 <td>
                   {bestHomePlayerBlocks.first_name?.substring(0, 1)}.
@@ -355,7 +358,7 @@ export default function Game({
             </tbody>
           </table>
           <div className="flex w-full justify-between">
-            <div className="bg-white px-6 grid  border-solid border-[1px] border-[#9c9c9c]  ">
+            <div className="bg-white px-6 grid  border-solid border-[1px] border-[#9c9c9c] w-64  ">
               <div className="font-semibold my-2">Home Roster</div>
               {game.home.players.map((player, index) => (
                 <span
@@ -371,7 +374,7 @@ export default function Game({
                 </span>
               ))}
             </div>
-            <div className="bg-white px-6  grid border-solid border-[1px] border-[#9c9c9c]">
+            <div className="bg-white px-6  grid border-solid border-[1px] border-[#9c9c9c] w-64">
               <div className="font-semibold my-2">Away Roster</div>
               {game.away.players.map((player, index) => (
                 <span
