@@ -32,6 +32,7 @@ function TeamWrapper({
   won: boolean;
   draw: boolean;
 }) {
+  //handles end game state
   let className;
   if (finished && won) {
     className = ` text-green-800  font-bold `;
@@ -276,84 +277,89 @@ export default function Game({
           >
             <thead className="border-b font-medium dark:border-neutral-500">
               <tr>
-                <th className="px-6 py-4" colSpan={1} scope="colgroup">
+                <th className=" py-4 " scope="colgroup">
                   Game Leaders
                 </th>
-                <th className="px-6 py-4 " colSpan={2} scope="colgroup">
+                <th className="py-4 " scope="colgroup">
                   Home
                 </th>
-                <th className="px-6 py-4" colSpan={3} scope="colgroup">
+                <th className=" py-4  " scope="colgroup">
                   Away
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm">
+              <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm text-center">
                 <td>Points:</td>
                 {/*<td><span>{bestHomePlayerPointsName.toString()}</span></td> */}
                 <td>
                   {bestHomePlayerPoints.first_name?.substring(0, 1)}.
                   {bestHomePlayerPoints.last_name}
+                  {"   "}
+                  {bestHomePlayerPoints.points.toString()}
                 </td>
-                <td> {bestHomePlayerPoints.points.toString()}</td>
+
                 <td>
                   {bestAwayPlayerPoints.first_name?.substring(0, 1)}.
-                  {bestAwayPlayerPoints.last_name}
+                  {bestAwayPlayerPoints.last_name} {"   "}
+                  {bestAwayPlayerPoints.points.toString()}
                 </td>
-                <td>{bestAwayPlayerPoints.points.toString()}</td>
               </tr>
               <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm">
                 <td>Rebounds:</td>
                 <td>
                   {bestHomePlayerRebounds.first_name?.substring(0, 1)}.
-                  {bestHomePlayerRebounds.last_name}
+                  {bestHomePlayerRebounds.last_name} {"   "}
+                  {bestHomePlayerRebounds.points.toString()}
                 </td>
-                <td>{bestHomePlayerRebounds.points.toString()}</td>
 
                 <td>
                   {bestAwayPlayerRebounds.first_name?.substring(0, 1)}.
-                  {bestAwayPlayerRebounds.last_name}
+                  {bestAwayPlayerRebounds.last_name} {"   "}
+                  {bestAwayPlayerRebounds.points.toString()}
                 </td>
-                <td>{bestAwayPlayerRebounds.points.toString()}</td>
               </tr>
               <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm">
                 <td>Assists:</td>
                 <td className=" ">
                   {bestHomePlayerAssists.first_name?.substring(0, 1)}.
-                  {bestHomePlayerAssists.last_name}
+                  {bestHomePlayerAssists.last_name} {"   "}
+                  {bestHomePlayerAssists.points.toString()}
                 </td>
-                <td className="">{bestHomePlayerAssists.points.toString()}</td>
+
                 <td>
                   {bestAwayPlayerAssists.first_name?.substring(0, 1)}.
-                  {bestAwayPlayerAssists.last_name}
+                  {bestAwayPlayerAssists.last_name} {"   "}
+                  {bestAwayPlayerAssists.points.toString()}
                 </td>
-                <td>{bestAwayPlayerAssists.points.toString()}</td>
               </tr>
               <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm">
                 <td>Steals:</td>
                 <td>
                   {bestHomePlayerSteals.first_name?.substring(0, 1)}.
-                  {bestHomePlayerSteals.last_name}
+                  {bestHomePlayerSteals.last_name} {"   "}
+                  {bestHomePlayerSteals.points.toString()}
                 </td>
-                <td>{bestHomePlayerSteals.points.toString()}</td>
+
                 <td>
                   {bestAwayPlayerSteals.first_name?.substring(0, 1)}.
-                  {bestAwayPlayerSteals.last_name}
+                  {bestAwayPlayerSteals.last_name} {"   "}
+                  {bestAwayPlayerSteals.points.toString()}
                 </td>
-                <td>{bestAwayPlayerSteals.points.toString()}</td>
               </tr>
               <tr className=" cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 hover:shadow-sm">
                 <td>Blocks:</td>
                 <td>
                   {bestHomePlayerBlocks.first_name?.substring(0, 1)}.
-                  {bestHomePlayerBlocks.last_name}
+                  {bestHomePlayerBlocks.last_name} {"   "}
+                  {bestHomePlayerBlocks.points.toString()}
                 </td>
-                <td>{bestHomePlayerBlocks.points.toString()}</td>
+
                 <td>
                   {bestAwayPlayerBlocks.first_name?.substring(0, 1)}.
-                  {bestAwayPlayerBlocks.last_name}
+                  {bestAwayPlayerBlocks.last_name} {"   "}
+                  {bestAwayPlayerBlocks.points.toString()}
                 </td>
-                <td>{bestAwayPlayerBlocks.points.toString()}</td>
               </tr>
             </tbody>
           </table>
