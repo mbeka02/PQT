@@ -98,7 +98,7 @@ export default function Home({ teams }: { teams: APITeamData }) {
             <div className="flex w-full gap-2 items-center">
               <button
                 onClick={play}
-                className="bg-goldenrod p-2 w-28 h-8 rounded flex justify-center items-center text-white font-semibold"
+                className="bg-goldenrod p-1 w-28 h-8 rounded flex justify-center items-center text-white font-semibold"
               >
                 Play a round
               </button>
