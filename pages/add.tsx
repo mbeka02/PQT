@@ -1,5 +1,4 @@
 import { useState } from "react";
-import styles from "styles/add.module.css";
 
 export default function Home() {
   const [teamName, setTeamName] = useState<string>();
@@ -113,9 +112,8 @@ export default function Home() {
           </label>
 
           <label>City</label>
-          <input type="text" name="city" placeholder="city..." />
-          <label htmlFor="name">Name</label>
-          <input type="text" name="name" placeholder="name..." />
+
+          <input type="text" name="last_name" placeholder="name..." />
           <label htmlFor="animal">Animal</label>
           <input type="text" name="animal" placeholder="animal..." />
           <input type="submit" />
@@ -132,17 +130,27 @@ export default function Home() {
           <div className="grid lg:grid-cols-custom_2  border-solid border-t-[1px] border-black ">
             <div className="grid mx-6 border-solid  md:border-r-[1px] border-black ">
               <div className="grid">
-                <label className="font-semibold" htmlFor="player-name">
-                  Name
+                <label className="font-semibold" htmlFor="first_name">
+                  First Name
                 </label>
                 <input
                   type="text"
-                  id="player-name"
-                  name="name"
+                  id="first_name"
+                  name="first_name"
                   className=" h-6 md:w-1/2 w-4/5  rounded border-2  border-black border-solid "
                 />
               </div>
-
+              <div className="grid">
+                <label className="font-semibold" htmlFor="last_name">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  id="last_name"
+                  name="last_name"
+                  className=" h-6 md:w-1/2 w-4/5  rounded border-2  border-black border-solid "
+                />
+              </div>
               <div className="grid">
                 <label htmlFor="team_id" className="font-semibold">
                   Team ID

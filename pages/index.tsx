@@ -24,10 +24,17 @@ interface APITeamData {
   };
 }
 
-export default function Home({ teams }: { teams: APITeamData }) {
+export default function Home({
+  teams,
+}: //player,
+{
+  teams: APITeamData;
+  //player: any;
+}) {
   const [games, setGames] = useState<GameClass[]>();
   const [num, setNum] = useState<number>(10);
   const [t, setT] = useState<TeamClass[]>([]);
+  // console.log(player);
 
   useEffect(() => {
     let res: TeamClass[] = [];
@@ -156,18 +163,45 @@ export default function Home({ teams }: { teams: APITeamData }) {
 export async function getServerSideProps() {
   try {
     let teams: APITeamData | undefined = undefined;
+    let player;
+
     await fetch("https://pqt-waltahhh.replit.app/get25teams")
       .then((response) => response.json())
       .then((data) => (teams = data))
       .catch((err) => console.log(err));
 
+    /*await fetch(`https://pqt-waltahhh.replit.app/player/test`)
+      .then((response) => {
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+          return response.json().then((data) => {
+            // The response was a JSON object
+            // Process your data as an object
+            player = data;
+          });
+        } else {
+          return response.text().then((text) => {
+            // The response wasn't a JSON object
+            // Process your text as a String
+            player = text;
+          });
+        }
+      })
+
+      .catch((err) => console.log(err));*/
+
     if (teams == undefined || typeof teams === undefined) {
       throw new Error("Team data undefined");
     }
 
+    /*if (player === undefined || typeof player === undefined) {
+      throw new Error("Player data undefined");
+    }*/
+
     return {
       props: {
         teams,
+        // player,
       },
     };
   } catch (error) {
@@ -175,6 +209,7 @@ export async function getServerSideProps() {
     return {
       props: {
         teams: {},
+        //player: {},
       },
     };
   }
