@@ -1,9 +1,8 @@
-import style from "../styles/game.module.css";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Modal from "./_Modal";
-import ImageView from "./_image";
-import PlayerView from "./_player";
+import ImageView from "./_imageView";
+import PlayerView from "./_playerView";
 
 import {
   GameClass,

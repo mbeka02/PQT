@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 
 import Game from "./_game";
+import Player from "./_player";
 import {
   GameClass,
   PlayerClass,
@@ -26,15 +27,15 @@ interface APITeamData {
 
 export default function Home({
   teams,
-}: //player,
-{
+  player,
+}: {
   teams: APITeamData;
-  //player: any;
+  player: any;
 }) {
   const [games, setGames] = useState<GameClass[]>();
   const [num, setNum] = useState<number>(10);
   const [t, setT] = useState<TeamClass[]>([]);
-  // console.log(player);
+  console.log(player);
 
   useEffect(() => {
     let res: TeamClass[] = [];
@@ -51,6 +52,9 @@ export default function Home({
       });
     setT(res);
     setGames(Array.from({ length: 10 }, (_) => new GameClass(res)));
+    fetch("/api/hello")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   }, [teams]);
 
   if (!Object.keys(teams).length) {
@@ -144,6 +148,7 @@ export default function Home({
           </div>
         </div>
         <div className="flex flex-wrap justify-evenly">
+          <Player playerInfo={player} />
           {games?.map((game, index) => (
             <>
               <Game
@@ -170,7 +175,7 @@ export async function getServerSideProps() {
       .then((data) => (teams = data))
       .catch((err) => console.log(err));
 
-    /*await fetch(`https://pqt-waltahhh.replit.app/player/test`)
+    await fetch(`https://pqt-waltahhh.replit.app/player/test`)
       .then((response) => {
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.indexOf("application/json") !== -1) {
@@ -180,7 +185,7 @@ export async function getServerSideProps() {
             player = data;
           });
         } else {
-          return response.text().then((text) => {
+          return response.json().then((text) => {
             // The response wasn't a JSON object
             // Process your text as a String
             player = text;
@@ -188,20 +193,20 @@ export async function getServerSideProps() {
         }
       })
 
-      .catch((err) => console.log(err));*/
+      .catch((err) => console.log(err));
 
     if (teams == undefined || typeof teams === undefined) {
       throw new Error("Team data undefined");
     }
 
-    /*if (player === undefined || typeof player === undefined) {
+    if (player === undefined || typeof player === undefined) {
       throw new Error("Player data undefined");
-    }*/
+    }
 
     return {
       props: {
         teams,
-        // player,
+        player,
       },
     };
   } catch (error) {
@@ -209,7 +214,7 @@ export async function getServerSideProps() {
     return {
       props: {
         teams: {},
-        //player: {},
+        player: {},
       },
     };
   }
