@@ -12,7 +12,11 @@ export class PlayerClass {
   class: string = "";
   zodiac: string = "";
   position: string = "";
+  //player number
+  playerNumber: number;
   style: string = "";
+  //flag whether player is playing or not
+  playing: boolean = false;
   _2pt: number = 0;
   _3pt: number = 0;
   passing: number = 0;
@@ -108,7 +112,9 @@ export class PlayerClass {
     sv: number,
     cl: number,
     u: number,
-    th: number
+    th: number,
+    pnum: number,
+    pl: boolean
   ) {
     this.playerID = id;
     this.first_name = fn;
@@ -122,6 +128,7 @@ export class PlayerClass {
     this.class = cla;
     this.zodiac = z;
     this.position = p;
+    this.playerNumber = pnum;
     this.style = s;
     this._2pt = _2;
     this._3pt = _3;
@@ -160,6 +167,7 @@ export class PlayerClass {
     this.Cleanliness = cl;
     this.Unicorn = u;
     this.Thirst = th;
+    this.playing = pl;
 
     this.stats = {
       points: 0,
@@ -276,6 +284,8 @@ export class GameClass {
   homeWon: boolean = false;
   awayWon: boolean = false;
   draw: boolean = false;
+  homeStarters: PlayerClass[] = [];
+  awayStarters: PlayerClass[] = [];
 
   // This constructor randomly grabs a home and away team from the TeamClass array
   constructor(teams: TeamClass[]) {
@@ -289,9 +299,6 @@ export class GameClass {
     } else {
       this.away = teams[awayIndex];
     }
-
-    //console.log(this.home);
-    // console.log(this.away);
 
     this.home?.players.forEach(
       (p) =>
@@ -313,6 +320,18 @@ export class GameClass {
           blocks: 0,
         })
     );
+    //set 5 starting players for each team and assign player numbers
+
+    //set 5 random starters for each team
+    for (let i = 0; i < 5; i++) {
+      let homePlayer = this.getRandomPlayer(this.home);
+      let awayPlayer = this.getRandomPlayer(this.away);
+      homePlayer.playing = true;
+      awayPlayer.playing = true;
+      this.homeStarters.push(homePlayer);
+      this.awayStarters.push(awayPlayer);
+    }
+
     const mean = 100; // statistically average mean possessions per game
     const stdDev = 15; // standard deviation. How much around the mean will 66.6% of data points be.
     this.total_possessions = Math.round(this.gaussianRand(mean, stdDev));
@@ -342,6 +361,12 @@ export class GameClass {
   //This is a function to pull a player from a team at random
   private getRandomPlayer(team: TeamClass): PlayerClass {
     return team.players[Math.round(Math.random() * (team.players.length - 1))];
+  }
+
+  //iso's , actions and passes
+  private generateIso() {
+    const positveISOLogs = [];
+    const negativeISOLogs = [];
   }
 
   //This creates a bunch of generic positive outcome logs

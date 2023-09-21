@@ -366,7 +366,7 @@ export default function Game({
             <div className="bg-white px-6 grid  border-solid border-[1px] border-[#9c9c9c] w-64  ">
               <div className="font-semibold my-2">Home Roster</div>
               {game.home.players.map((player, index) => (
-                <span
+                <p
                   className="gap-1 cursor-pointer hover:font-semibold "
                   onClick={(e) => {
                     e.stopPropagation();
@@ -375,14 +375,17 @@ export default function Game({
                   key={index}
                 >
                   {player.first_name} {""}
-                  {player.last_name}
-                </span>
+                  {player.last_name}{" "}
+                  <span className="font-semibold uppercase mx-1 ">
+                    {player.playing && "p"}
+                  </span>
+                </p>
               ))}
             </div>
             <div className="bg-white px-6  grid border-solid border-[1px] border-[#9c9c9c] w-64">
               <div className="font-semibold my-2">Away Roster</div>
               {game.away.players.map((player, index) => (
-                <span
+                <p
                   className="gap-1 cursor-pointer hover:font-semibold  "
                   key={index}
                   onClick={(e) => {
@@ -391,8 +394,11 @@ export default function Game({
                   }}
                 >
                   {player.first_name} {""}
-                  {player.last_name}
-                </span>
+                  {player.last_name}{" "}
+                  <span className="font-semibold uppercase mx-1 ">
+                    {player.playing && "p"}
+                  </span>
+                </p>
               ))}
             </div>
           </div>

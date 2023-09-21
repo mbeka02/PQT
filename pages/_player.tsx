@@ -5,7 +5,7 @@ export default function Player({ playerInfo }: { playerInfo: any }) {
       <div className="flex justify-between h-20 md:h-16">
         <img src="/default.png" className=" w-20 md:w-16  self-center " />
         <div className="bg-white px-2 w-3/4 border-solid border-[1px] border-[#9c9c9c]">
-          <span>{playerInfo?.first_name}</span>
+          <span className="font-semibold">{playerInfo?.first_name}</span>
           <span>{playerInfo?.location}</span>
         </div>
       </div>
